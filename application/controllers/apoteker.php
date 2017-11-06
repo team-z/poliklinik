@@ -61,9 +61,6 @@ class Apoteker extends CI_Controller {
 	}
 	public function simpanresep()
 	{
-		if ($this->input->post('id_pasien')=="") {
-			redirect('apoteker/detailresep');
-		}else{
 		$id = $this->mod->get_id_resep();
 
 		if ($id) {
@@ -74,21 +71,18 @@ class Apoteker extends CI_Controller {
 		}else{
 			$nilai_baru2 = "RS0001";
 		}
-		if ($cart = $this->cart->contents()) {
-			foreach ($cart as $items) {
-			$object = array('id_resep' => $nilai_baru2 ,
-							'id_pasien' => $this->input->post('id_pasien'),
-							'id_obat' => $items['id'],
-							'jumlah_obat' => $items['qty'],
-							'dosis' => $items['dosis'],
-							'total_harga' => $items['subtotal']
-						 );	
-			$this->db->insert('resep', $object);
-			redirect('apoteker/hapus_resep/all');
+		$cart  = $this->cart->contents();
+		foreach ($cart as $key) {
+			$ids = $nilai_baru2++;
+			$id_obat = $key['id'];
+			$id_pasien = $this->input->post('id_pasien');
+			$jumlah = $key['qty'];
+			$dosis =$key['dosis'];
+			$total = $key['subtotal'];
+			$this->db->query("INSERT INTO resep (id_resep,id_obat,id_pasien,jumlah_obat,dosis,total_harga) VALUES('$ids','$id_obat','$id_pasien','$jumlah','$dosis','$total')");
 		}
-		}
+		redirect('apoteker/hapus_resep/all');
 		
-		}
 		
 	}
 	public function printresep()
@@ -97,7 +91,9 @@ class Apoteker extends CI_Controller {
 	}
 	public function cetakresep()
 	{
-		
+		$where = array('id_pasien' => $this->input->post('id') );
+		$data['resep'] = $this->mod->detail('resep',$where)->result();
+		$this->load->view('apotek/cetak-resep', $data);
 	}
 
 	public function update_image($id)
