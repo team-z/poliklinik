@@ -60,9 +60,9 @@
                                         	<td><?php echo $u->id_obat; ?><input type="hidden" name="id" value="<?php echo $u->id_obat; ?>"></td>
                                         	<td><?php echo $u->nama_obat; ?><input type="hidden" name="nama" value="<?php echo $u->nama_obat; ?>"></td>
                                         	<td><?php echo $u->harga_satuan; ?><input type="hidden" name="harga" value="<?php echo $u->harga_satuan; ?>"></td>
-                                        	<td><input type="number" class="form-control" name="jumlah" placeholder="Jumlah Obat"></td>
+                                        	<td><input type="number" class="form-control" name="jumlah" placeholder="Jumlah Obat" required=""></td>
                                         	<td>
-                                        		<input placeholder="Masukkan Dosis Obat" type="text" class="form-control" name="dosis">
+                                        		<input placeholder="Masukkan Dosis Obat" type="text" class="form-control" name="dosis" required="">
                                         	</td>
                                         	<td><button type="submit" class="btn btn-default">Tambahkan</button></td>
                                         	</form>
