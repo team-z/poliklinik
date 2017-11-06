@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php include 'top-res.php'; ?>
-	
+	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="theme-red">
 <?php include 'navigasi-res.php'; ?>

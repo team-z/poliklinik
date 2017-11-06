@@ -77,6 +77,34 @@ class Resepsionis extends CI_Controller {
 					);
 		
 		$this->mod->tambah('pendaftaran', $object);
+
+		$id_pem = $this->mod->get_id_pembayaran();
+
+		if ($id_pem) {
+			$nilai1 = substr($id_pem['id_bayar'], 2);
+			$nilai_baru1 = (int) $nilai1;
+			$nilai_baru1++;
+			$nilai_baru21 = "RB".str_pad($nilai_baru1, 4, "0", STR_PAD_LEFT);
+		}else{
+			$nilai_baru21 = "RB0001";
+		}
+
+		$this->db->where('id_dokter', $this->input->post('id_dokter'));
+		$rd = $this->db->get('dokter')->result();
+		foreach ($rd as $rdk) {
+			$hrgdok = $rdk->tarif;
+		}
+
+		$data = array('id_bayar' => $nilai_baru21,
+					  'id_pasien' => $this->input->post('id_pasien'),
+					  'biaya_daftar' => '50000',
+					  'biaya_dokter' => $hrgdok,
+					  'biaya_obat' => '0',
+					  'total_biaya' => '50000'
+					 );
+
+		$this->mod->tambah('pembayaran', $data);
+
 		$object['join'] = $this->db->query("SELECT
 											pendaftaran.tanggal_pendaftaran,
 											poli.nama_poli,
