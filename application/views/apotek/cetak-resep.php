@@ -32,10 +32,14 @@
                                 DATA RESEP
                                 
                             </h2>
-                            <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                            <?php 
+                             $no = 1; 
+                             foreach ($pasien as $p) { 
+                            ?>
+                            <a href="<?php echo base_url('index.php/apoteker/print_resep/').$p->id_pasien; ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
                                 <i class="material-icons">print</i>
                                 <span>Cetak Resep</span>
-                            </a>
+                            </a><?php } ?>
                         </div>
                         <br><br>
                         <div class="body">
@@ -59,6 +63,7 @@
                                     </thead>
                                     <tbody>
                                         <?php 
+                             $subtot = 0;
                              $no = 1; 
                              foreach ($resep as $u) { 
                             ?>
@@ -72,11 +77,17 @@
                                             }
                                              ?></td>
                                              <td><?php echo $u->dosis; ?></td>
-                                             <td><?php echo $u->jumlah_obat; ?></td>
-                                             <td><?php echo $u->total_harga; ?></td>
+                                             <td align="right"><?php echo $u->jumlah_obat; ?></td>
+                                             <td align="right">Rp. <?php echo number_format($u->total_harga,2,',','.'); ?> ,-</td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php $subtot += $u->total_harga; } ?>
                                     </tbody>
+                                    <footer>
+                                        <tr>
+                                            <td colspan="4" align="center">Sub Total</td>
+                                            <td align="right">Rp. <?php echo number_format($subtot,2,',','.'); ?> ,-</td>
+                                        </tr>
+                                    </footer>
                                 </table>
                             </div>
                         </div>

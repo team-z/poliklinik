@@ -100,12 +100,20 @@
                                     <?php } ?>
                                 </table>
                                 <div class="row">
-                                    <div class="col-md-8"></div>
+                                    <div class="col-md-5"></div>
                                     <div class="col-md-2">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" class="form-control" name="id_pasien" required="">
                                                 <label class="form-label">Masukkan ID Pasien</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="id_bayar" required="">
+                                                <label class="form-label">Masukkan ID Pembayaran</label>
                                             </div>
                                         </div>
                                     </div>

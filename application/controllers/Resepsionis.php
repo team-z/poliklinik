@@ -95,8 +95,10 @@ class Resepsionis extends CI_Controller {
 			$hrgdok = $rdk->tarif;
 		}
 
+
 		$data = array('id_bayar' => $nilai_baru21,
 					  'id_pasien' => $this->input->post('id_pasien'),
+					  'id_dokter' => $this->input->post('id_dokter'),
 					  'biaya_daftar' => '50000',
 					  'biaya_dokter' => $hrgdok,
 					  'biaya_obat' => '0',
@@ -104,7 +106,8 @@ class Resepsionis extends CI_Controller {
 					 );
 
 		$this->mod->tambah('pembayaran', $data);
-
+		
+		$object['id_bayar'] = array('id_bayar' => $nilai_baru21 );
 		$object['join'] = $this->db->query("SELECT
 											pendaftaran.tanggal_pendaftaran,
 											poli.nama_poli,
@@ -117,10 +120,10 @@ class Resepsionis extends CI_Controller {
 											INNER JOIN pasien ON pendaftaran.id_pasien = pasien.id_pasien
 											INNER JOIN dokter ON pendaftaran.id_dokter = dokter.id_dokter
 											WHERE pendaftaran.id_pendaftaran='$nilai_baru2' ")->result();
-		
+
 		$this->load->view('resepsionis/cetak-res', $object);
 
-		$paper_size  = array(0,0,500,360); //paper size ('A4')
+		$paper_size  = array(0,0,550,360); //paper size ('A4')
 		$orientation = 'landscape'; //tipe format kertas
 		$html = $this->output->get_output();
 		 

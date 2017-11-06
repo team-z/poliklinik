@@ -71,16 +71,49 @@ class Apoteker extends CI_Controller {
 		}else{
 			$nilai_baru2 = "RS0001";
 		}
+		$sub = 0;
 		$cart  = $this->cart->contents();
 		foreach ($cart as $key) {
 			$ids = $nilai_baru2++;
 			$id_obat = $key['id'];
 			$id_pasien = $this->input->post('id_pasien');
+			$id_bayar = $this->input->post('id_bayar');
 			$jumlah = $key['qty'];
 			$dosis =$key['dosis'];
 			$total = $key['subtotal'];
-			$this->db->query("INSERT INTO resep (id_resep,id_obat,id_pasien,jumlah_obat,dosis,total_harga) VALUES('$ids','$id_obat','$id_pasien','$jumlah','$dosis','$total')");
+			$sub += $total;
+			$this->db->query("INSERT INTO resep (id_resep,id_obat,id_pasien,id_bayar,jumlah_obat,dosis,total_harga) VALUES('$ids','$id_obat','$id_pasien','$id_bayar','$jumlah','$dosis','$total')");
 		}
+
+		$id_pem = $this->mod->get_id_pembayaran();
+
+		if ($id_pem) {
+			$nilai1 = substr($id_pem['id_bayar'], 2);
+			$nilai_baru1 = (int) $nilai1;
+			$nilai_baru1++;
+			$nilai_baru21 = "RB".str_pad($nilai_baru1, 4, "0", STR_PAD_LEFT);
+		}else{
+			$nilai_baru21 = "RB0001";
+		}
+
+		$tot_sub = ;
+
+		$this->db->where('id_dokter', $this->input->post('id_dokter'));
+		$rd = $this->db->get('dokter')->result();
+		foreach ($rd as $rdk) {
+			$hrgdok = $rdk->tarif;
+		}
+
+		$data = array('id_bayar' => $nilai_baru21,
+					  'id_pasien' => $this->input->post('id_pasien'),
+					  'biaya_daftar' => '50000',
+					  'biaya_dokter' => $hrgdok,
+					  'biaya_obat' => $sub,
+					  'total_biaya' => '50000'
+					 );
+
+		$this->mod->tambah('pembayaran', $data);
+
 		redirect('apoteker/hapus_resep/all');
 		
 		
@@ -95,6 +128,24 @@ class Apoteker extends CI_Controller {
 		$data['resep'] = $this->mod->detail('resep',$where)->result();
 		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
 		$this->load->view('apotek/cetak-resep', $data);
+	}
+
+	public function print_resep($id)
+	{
+		$where = array('id_pasien' => $id );
+		$data['resep'] = $this->mod->detail('resep',$where)->result();
+		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
+		$this->load->view('apotek/print_resep', $data);
+
+		$paper_size  = array(0,0,500,430); //paper size ('A4')
+		$orientation = 'landscape'; //tipe format kertas
+		$html = $this->output->get_output();
+		 
+		$this->dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("cetak.pdf", array('Attachment'=>0));
 	}
 
 	public function update_image($id)
