@@ -29,28 +29,25 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA OBAT
+                                DATA RESEP
                                 
                             </h2>
-                            <a href="<?php echo base_url('index.php/apoteker/tambahobat'); ?>" class="btn bg-red  waves-effect pull-right">
-                                <i class="material-icons">add</i>
-                                <span>Tambahkan Obat</span>
-                            </a>
                             <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
                                 <i class="material-icons">print</i>
-                                <span>Cetak Obat</span>
+                                <span>Cetak Resep</span>
                             </a>
                         </div>
                         <br><br>
                         <div class="body">
                             <?php 
                              $no = 1; 
-                             foreach ($resep as $u) { 
+                             foreach ($pasien as $p) { 
                             ?>
-                            <h3>ID PASIEN : <?php echo $u->id_pasien; ?></h3>
-                            <h3>NAMA PASIEN :</h3>
+                            <h4>ID PASIEN : <?php echo $p->id_pasien; ?></h4>
+                            <h4>NAMA PASIEN : <?php echo $p->nama_pasien; ?></h4>
+                            <?php } ?><br>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped data">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>ID RESEP</th>
@@ -61,7 +58,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <?php 
+                             $no = 1; 
+                             foreach ($resep as $u) { 
+                            ?>
                                         <tr>
                                             <td><?php echo $u->id_resep; ?></td>
                                             <td><?php 

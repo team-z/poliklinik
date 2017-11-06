@@ -91,8 +91,9 @@ class Apoteker extends CI_Controller {
 	}
 	public function cetakresep()
 	{
-		$where = array('id_pasien' => $this->input->post('id') );
+		$where = array('id_pasien' => $this->input->get('id') );
 		$data['resep'] = $this->mod->detail('resep',$where)->result();
+		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
 		$this->load->view('apotek/cetak-resep', $data);
 	}
 
