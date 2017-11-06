@@ -96,7 +96,7 @@ class Apoteker extends CI_Controller {
 			$nilai_baru21 = "RB0001";
 		}
 
-		$tot_sub = ;
+		// $tot_sub = ;
 
 		$this->db->where('id_dokter', $this->input->post('id_dokter'));
 		$rd = $this->db->get('dokter')->result();
