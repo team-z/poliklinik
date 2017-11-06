@@ -17,5 +17,4 @@
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
-    <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 	<title>Resepsionis</title>

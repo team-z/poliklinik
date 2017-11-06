@@ -219,9 +219,12 @@
 		</div>
 	</section>
 	<?php include 'bottom-res.php'; ?>
+	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 	<script src="<?php echo base_url('js/jquery.chained.min.js'); ?>"></script>
+	<script type="text/javascript">
+        $("#dokter").chained("#poli");		
+   </script>
 	<script>
-		$("#dokter").chained("#poli");	
 		function id_hasil(value) {
 			$.ajax({
 				url : '<?php echo base_url("index.php/Resepsionis/ambil_data_id") ?>',
