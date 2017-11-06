@@ -112,6 +112,12 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT id_bayar FROM pembayaran ORDER BY id_pembayaran DESC LIMIT 1");
 		return $query->row_array();
 	}
+//MODEL RESEP
+	public function get_id_resep()
+	{
+		$query = $this->db->query("SELECT id_resep FROM resep ORDER BY id_resep DESC LIMIT 1");
+		return $query->row_array();
+	}
 }
 
 /* End of file mod.php */

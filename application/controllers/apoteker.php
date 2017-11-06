@@ -7,7 +7,7 @@ class Apoteker extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('form','url','download');
-		$this->load->library(array('upload','dompdf_gen'));
+		$this->load->library(array('upload','dompdf_gen','cart'));
 		$this->load->model('mod');
 		if ($this->session->userdata('status') != 'apotek') {
 			redirect('login');
@@ -22,6 +22,84 @@ class Apoteker extends CI_Controller {
 	{
 		$this->load->view('apotek/input-obat');
 	}
+
+	public function view_resep()
+	{
+		$data['user']=$this->mod->apotek('obat')->result();
+		$this->load->view('apotek/resep',$data);
+	}
+	public function addresep()
+	{
+		$insert_data = array('id' => $this->input->post('id') ,
+							 'name' => $this->input->post('nama'),
+							 'price' => $this->input->post('harga'),
+							 'qty' => $this->input->post('jumlah'),
+							 'dosis' => $this->input->post('dosis'));
+		$this->cart->insert($insert_data);
+		redirect('apoteker/detailresep');
+	}
+	public function detailresep()
+	{
+		$this->load->view('apotek/detailcart');
+	}
+	public function hapus_resep($rowid)
+	{
+		if ($rowid == "all") {
+			$this->cart->destroy();
+			redirect('apoteker/view_resep');
+
+		}else{
+			$data = array(
+				'rowid' => $rowid,
+				'qty' => 0
+			);
+			
+			$this->cart->update($data);
+			redirect('apoteker/detailresep');
+		}
+		
+	}
+	public function simpanresep()
+	{
+		if ($this->input->post('id_pasien')=="") {
+			redirect('apoteker/detailresep');
+		}else{
+		$id = $this->mod->get_id_resep();
+
+		if ($id) {
+			$nilai = substr($id['id_resep'], 2);
+			$nilai_baru = (int) $nilai;
+			$nilai_baru++;
+			$nilai_baru2 = "RS".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
+		}else{
+			$nilai_baru2 = "RS0001";
+		}
+		if ($cart = $this->cart->contents()) {
+			foreach ($cart as $items) {
+			$object = array('id_resep' => $nilai_baru2 ,
+							'id_pasien' => $this->input->post('id_pasien'),
+							'id_obat' => $items['id'],
+							'jumlah_obat' => $items['qty'],
+							'dosis' => $items['dosis'],
+							'total_harga' => $items['subtotal']
+						 );	
+			$this->db->insert('resep', $object);
+			redirect('apoteker/hapus_resep/all');
+		}
+		}
+		
+		}
+		
+	}
+	public function printresep()
+	{
+		$this->load->view('apotek/login_resep');
+	}
+	public function cetakresep()
+	{
+		
+	}
+
 	public function update_image($id)
 	{
 		$image = $this->input->post('image');
