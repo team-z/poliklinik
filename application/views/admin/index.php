@@ -64,8 +64,34 @@
                                                 <a href="#" data-toggle="modal" id="edit-data" data-target="#small" data-poli="<?php echo $u->nama_poli; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
+
+                                                <a href="#" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Data dokter">
+                                                <i class="material-icons">contacts</i>
+                                                </a>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="small" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <form action="<?php echo base_url('index.php/admin/updatepoli/').$u->id_poli ?>" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Edit Poli</h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="poli" type="text" name="poli" class="form-control" placeholder="Nama Poli">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">UPDATE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -163,27 +189,6 @@
                 </form>
                 </div>
             </div>
-            <div class="modal fade" id="small" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                <form action="<?php echo base_url('index.php/admin/tambahpoli') ?>" method="post">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Edit Poli</h4>
-                        </div>
-                        <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input id="poli" type="text" name="poli" class="form-control" placeholder="Nama Poli">
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-link waves-effect">TAMBAHKAN</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </form>
-                </div>
-            </div>
+            
 </body>
 </html>

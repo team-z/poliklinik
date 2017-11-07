@@ -27,7 +27,10 @@ class Admin extends CI_Controller {
 
 	public function updatepoli($id)
 	{
-		
+		$object = array('nama_poli' => $this->input->post('poli') );
+		$where = array('id_poli' => $id);
+		$this->mod->update('poli',$object,$where);
+		redirect('admin');
 	}
 }
 
