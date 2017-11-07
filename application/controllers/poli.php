@@ -8,7 +8,7 @@ class Poli extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('mod');
-		if($this->session->userdata('status') != "login"){
+		if($this->session->userdata('status') != "poli"){
 			redirect('login');
 		}
 	}

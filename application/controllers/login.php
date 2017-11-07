@@ -15,13 +15,25 @@ class Login extends CI_Controller {
 	}
 	public function action()
 	{
-		$where = array('user' => $this->input->post('username') ,
-						'password' => $this->input->post('password') );
-		$data = $this->mod->login('user',$where)->num_rows();
-		if ($data > 0) {
-			$data_session = array('nama' => $this->input->post('username'),
-								'status' => 'login' );
-			$this->session->set_userdata($data_session);
+		$user = $this->input->post('username');
+		$pass = $this->input->post('password');
+		$where = array(
+			'user' => $user ,
+			'password' => $pass 
+			);
+		$data = $this->mod->login('user',$where);
+		if ($data->num_rows() > 0) {
+			foreach ($data->result() as $d) {
+				$data_session = array(
+					'user' => $user,
+					'status' => $d->status
+				);
+
+				$this->session->set_userdata($data_session);
+			}
+			if ($this->session->userdata('status') == 'admin') {
+				redirect('admin');
+			}
 			redirect('poli/index');
 		}else{
 			redirect('login');
