@@ -17,13 +17,18 @@ class Login extends CI_Controller {
 	{
 		$user = $this->input->post('username');
 		$pass = $this->input->post('password');
+		
 		$where = array(
 			'user' => $user ,
 			'password' => $pass 
 			);
+		
 		$data = $this->mod->login('user',$where);
-		if ($data->num_rows() > 0) {
-			foreach ($data->result() as $d) {
+		
+		if ($data->num_rows() > 0) 
+		{
+			foreach ($data->result() as $d) 
+			{
 				$data_session = array(
 					'user' => $user,
 					'status' => $d->status
@@ -31,37 +36,23 @@ class Login extends CI_Controller {
 
 				$this->session->set_userdata($data_session);
 			}
-			if ($this->session->userdata('status') == 'admin') {
+			
+			if ($this->session->userdata('status') == 'admin') 
+			{
 				redirect('admin');
-			}
-			redirect('poli/index');
-		}else{
-		$password = $this->input->post('password');
-
-		$where = array('user' => $user ,
-						'password' => $password );
-
-		$data = $this->mod->login('user',$where);
-
-		if ($data->num_rows() > 0) {
-
-			foreach ($data->result() as $d) {
-				$data_session = array('nama' => $user,
-								'status' => $d->status );
-			$this->session->set_userdata($data_session);
-			}
-
-			if ($this->session->userdata('status')=='admin') {
-				redirect('admin');
-			}else if ($this->session->userdata('status')=='poli') {
+			}else if ($this->session->userdata('status') =='poli') 
+			{
 				redirect('poli');
-			}else{
-			redirect('login');
-		}
+			}else
+			{
+				redirect('login');
+			}
+			
 	}else{
 		redirect('login');
 	}
-}
+	
+	}
 	public function logout()
 	{
 		$this->session->sess_destroy();

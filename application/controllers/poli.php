@@ -45,6 +45,12 @@ class Poli extends CI_Controller {
 		$this->mod->in_dok('dokter',$object);
 		redirect('poli/index');
 	}
+	public function editdokterform($id)
+	{
+		$where = array('id_dokter' => $id);
+		$data = $this->mod->detail('dokter',$where)->result();
+		$this->load->view('poli/edit-dokter', array('data' => $data));
+	}
 
 }
 

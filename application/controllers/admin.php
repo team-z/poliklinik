@@ -15,8 +15,8 @@ class Admin extends CI_Controller {
 	}
 	public function index()
 	{
-		
-		$this->load->view('admin/index');
+		$data['user']=$this->mod->tampil('poli')->result();
+		$this->load->view('admin/index',$data);
 	}
 
 }
