@@ -32,6 +32,12 @@ class Admin extends CI_Controller {
 		$this->mod->update('poli',$object,$where);
 		redirect('admin');
 	}
+	public function datadokter($id)
+	{	
+		$where = array('id_poli'=>$id);
+		$data['user']=$this->mod->detail('dokter',$where)->result();
+		$this->load->view('admin/data-dokter', $data);
+	}
 }
 
 /* End of file admin.php */
