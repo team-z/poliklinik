@@ -20,7 +20,8 @@ class Poli extends CI_Controller {
 	}
 	public function form()
 	{
-		$this->load->view('poli/input-dokter');
+		$data = $this->mod->tampil('poli');
+		$this->load->view('poli/input-dokter' ,array('data' => $data));
 	}
 	public function hapusdokter($id)
 	{
