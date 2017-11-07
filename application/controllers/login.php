@@ -36,9 +36,32 @@ class Login extends CI_Controller {
 			}
 			redirect('poli/index');
 		}else{
+		$password = $this->input->post('password');
+
+		$where = array('user' => $user ,
+						'password' => $password );
+
+		$data = $this->mod->login('user',$where);
+
+		if ($data->num_rows() > 0) {
+
+			foreach ($data->result() as $d) {
+				$data_session = array('nama' => $user,
+								'status' => $d->status );
+			$this->session->set_userdata($data_session);
+			}
+
+			if ($this->session->userdata('status')=='admin') {
+				redirect('admin');
+			}else if ($this->session->userdata('status')=='poli') {
+				redirect('poli');
+			}else{
 			redirect('login');
 		}
+	}else{
+		redirect('login');
 	}
+}
 	public function logout()
 	{
 		$this->session->sess_destroy();
