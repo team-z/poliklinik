@@ -9,7 +9,7 @@
 	<section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h1>Input Dokter</h1>
+                <h1>Edit Dokter</h1>
             </div>
             <?php foreach ($data as $d): ?>           
             <form method="post" action="<?php echo base_url('index.php/poli/updatedokter/').$d->id_dokter; ?>">

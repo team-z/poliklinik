@@ -31,9 +31,9 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA DOKTER
+                                DATA POLI
                             </h2>
-                            <a href="<?php echo base_url('index.php/admin/formpoli') ?>" class="btn bg-red  waves-effect pull-right">
+                            <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Poli</span>
                             </a>
@@ -129,5 +129,25 @@
 
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>js/demo.js"></script>
+    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Input Poli</h4>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>

@@ -18,8 +18,12 @@ class Admin extends CI_Controller {
 		$data['user']=$this->mod->tampil('poli')->result();
 		$this->load->view('admin/index',$data);
 	}
+	public function formpoli()
+	{
+		$this->load->view('admin/formpoli');
+	}
 
-	public function updatedokter($id)
+	public function updatepoli($id)
 	{
 		
 	}

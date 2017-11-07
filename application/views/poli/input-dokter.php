@@ -21,7 +21,7 @@
                                     <center>
                                     <div id="image-preview">
                                         <label for="image-upload" id="image-label">Pilih Foto</label>
-                                            <input type="file" name="image" id="image-upload" />
+                                            <input type="file" accept="img/*" name="image" id="image-upload" />
                                     </div>
                                     </center>
                                 </div>
