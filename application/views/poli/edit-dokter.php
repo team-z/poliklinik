@@ -45,7 +45,7 @@
                                     <select name="tanggal" class="form-control show-tick">
                                          <?php
                                             for ($i=1; $i<=31 ; $i++) { 
-                                            echo '<option value="'.$d->tanggal_lahir.'"';
+                                            echo '<option value="'.$i.'"';
                                                 if ($i==$d->tanggal_lahir) {
                                                     echo ' selected="selected"';
                                                 } echo '>'.$i.'</option>\n';          
