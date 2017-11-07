@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2017 at 02:43 AM
+-- Generation Time: Nov 07, 2017 at 07:36 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -41,15 +41,47 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   `foto` varchar(255) NOT NULL,
   `bio` text NOT NULL,
   PRIMARY KEY (`id_dokter`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `dokter`
 --
 
 INSERT INTO `dokter` (`id_dokter`, `id_poli`, `id_resep`, `nama_dokter`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `spesialisasi`, `foto`, `bio`) VALUES
-(1, '1', 0, 'Ryan', 'Lumajang', '12', 'Januari', '1974', 'Lumajang', '08123456789', 'Bedah Jantung Koroner', '', 'Ryan Adalah seorang dokter Jantung'),
-(2, '2', 0, 'Elysia', 'Sukodono', '2', 'Maret', '1976', 'Tekung', '08124567890', 'Mata Katarak', '', 'Elysia adalah seorang Dokter Mata dengan lulusan S3 di Universitas Harvard bidang kedokteran');
+(3, '3', 0, 'Ryan', 'Lumajang', '7', '8', '1979', 'Lumajang', '0813456789', '', '', 'Ryan adalah seorang pendekar 7Knight');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `obat`
+--
+
+CREATE TABLE IF NOT EXISTS `obat` (
+  `id_obat` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_obat` varchar(255) NOT NULL,
+  `type` enum('pil','sirup','umum') NOT NULL,
+  `stok` int(11) NOT NULL,
+  `harga_satuan` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_obat`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pasien`
+--
+
+CREATE TABLE IF NOT EXISTS `pasien` (
+  `id_pasien` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_pasien` varchar(255) NOT NULL,
+  `umur_pasien` varchar(255) NOT NULL,
+  `alamat` text NOT NULL,
+  `no hp` varchar(255) NOT NULL,
+  `poli` varchar(255) NOT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
+  PRIMARY KEY (`id_pasien`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -61,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `poli` (
   `id_poli` int(11) NOT NULL AUTO_INCREMENT,
   `nama_poli` varchar(255) NOT NULL,
   PRIMARY KEY (`id_poli`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `poli`
@@ -69,7 +101,24 @@ CREATE TABLE IF NOT EXISTS `poli` (
 
 INSERT INTO `poli` (`id_poli`, `nama_poli`) VALUES
 (1, 'Poli Jantung'),
-(2, 'Poli Mata');
+(2, 'Poli Mata'),
+(3, 'Poli Umum');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resep`
+--
+
+CREATE TABLE IF NOT EXISTS `resep` (
+  `id_resep` int(11) NOT NULL AUTO_INCREMENT,
+  `id_dokter` int(11) NOT NULL,
+  `id_obat` int(11) NOT NULL,
+  `jumlah obat` int(11) NOT NULL,
+  `dosis` varchar(255) NOT NULL,
+  `total_harga` int(11) NOT NULL,
+  PRIMARY KEY (`id_resep`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

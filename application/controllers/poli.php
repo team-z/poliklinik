@@ -43,7 +43,7 @@ class Poli extends CI_Controller {
 							'no_hp' => $this->input->post('telpon'),
 							'bio' => $this->input->post('bio'),
 							'id_poli'=> $this->input->post('poli') );
-		$this->mod->in_dok('dokter',$object);
+		$this->mod->tambah('dokter',$object);
 		redirect('poli/index');
 	}
 	public function editdokterform($id)

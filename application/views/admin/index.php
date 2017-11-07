@@ -61,7 +61,7 @@
                                                 <i class="material-icons">delete</i>
                                                 </a>
 
-                                                <a href="<?php echo base_url('index.php/admin/formeditpoli') ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                                <a href="#" data-toggle="modal" id="edit-data" data-target="#small" data-poli="<?php echo $u->nama_poli; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
                                             </td>
@@ -122,31 +122,67 @@
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/ui/tooltips-popovers.js"></script>
-
+    
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>js/admin.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/tables/jquery-datatable.js"></script>
+        <script>
+        $(document).ready(function() {
+            // Untuk sunting
+            $('#small').on('show.bs.modal', function (event) {
+                var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+                var modal          = $(this)
+ 
+                // Isi nilai pada field
+                modal.find('#poli').attr("value",div.data('poli'));
+            });
+        });
+    </script>
 
-    <!-- Demo Js -->
+        <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>js/demo.js"></script>
-    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
+                <form action="<?php echo base_url('index.php/admin/tambahpoli') ?>" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="smallModalLabel">Input Poli</h4>
                         </div>
                         <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="poli" class="form-control" placeholder="Nama Poli">
+                                    </div>
+                                </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="submit" class="btn btn-link waves-effect">TAMBAHKAN</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                         </div>
                     </div>
+                </form>
+                </div>
+            </div>
+            <div class="modal fade" id="small" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <form action="<?php echo base_url('index.php/admin/tambahpoli') ?>" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Edit Poli</h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="poli" type="text" name="poli" class="form-control" placeholder="Nama Poli">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">TAMBAHKAN</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </form>
                 </div>
             </div>
 </body>

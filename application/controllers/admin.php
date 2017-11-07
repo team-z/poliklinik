@@ -18,9 +18,11 @@ class Admin extends CI_Controller {
 		$data['user']=$this->mod->tampil('poli')->result();
 		$this->load->view('admin/index',$data);
 	}
-	public function formpoli()
+	public function tambahpoli()
 	{
-		$this->load->view('admin/formpoli');
+		$object = array('nama_poli' => $this->input->post('poli') );
+		$this->mod->tambah('poli',$object);
+		redirect('admin');
 	}
 
 	public function updatepoli($id)

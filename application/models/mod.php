@@ -12,7 +12,7 @@ class Mod extends CI_Model {
 		$this->db->delete($table); 
 	}
 
-	public function in_dok($table,$object)
+	public function tambah($table,$object)
 	{
 		$this->db->insert($table,$object);
 	}
