@@ -89,13 +89,9 @@
                                                 <b>Poli</b>
                                             </p>
                                     <select name="poli" class="form-control show-tick">
-                                       <?php
-                                        $link = mysqli_connect('localhost','root','','poliklinik');
-                                        $query = mysqli_query($link,"SELECT * FROM poli");
-                                        while ($data = mysqli_fetch_array($query)) { ?>
-                                        <option value="<?php echo $data['id_poli'] ?>"><?php echo $data['nama_poli']; ?></option>
-                                       <?php }?>
-                                        
+                                        <?php foreach ($data->result() as $d): ?>
+                                            <option value="<?php echo $d->id_poli; ?>"><?php echo $d->nama_poli; ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     </div>
                                     <div class="form-group">
