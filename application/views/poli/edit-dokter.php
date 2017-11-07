@@ -11,8 +11,8 @@
             <div class="block-header">
                 <h1>Input Dokter</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/poli/tambahdokter'); ?>">
             <?php foreach ($data as $d): ?>           
+            <form method="post" action="<?php echo base_url('index.php/poli/updatedokter/').$d->id_dokter; ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -101,7 +101,7 @@
                                         $link = mysqli_connect('localhost','root','','poliklinik');
                                         $query = mysqli_query($link,"SELECT * FROM poli");
                                         while ($data = mysqli_fetch_array($query)) { 
-                                        echo '<option value="'.$d->id_poli.'"';
+                                        echo '<option value="'.$data['id_poli'].'"';
                                                 if( $data['id_poli'] ==  $d->id_poli ) {
                                                 echo ' selected="selected"';
                                                 }
@@ -137,8 +137,8 @@
                     </div>
                 </div>
             </div>
-            <?php endforeach ?>
             </form>
+            <?php endforeach ?>
         </div>
     </section>
 	<?php include 'js.php'; ?>

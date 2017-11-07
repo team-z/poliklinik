@@ -52,6 +52,26 @@ class Poli extends CI_Controller {
 		$this->load->view('poli/edit-dokter', array('data' => $data));
 	}
 
+	public function updatedokter($id)
+	{
+		$object  = array('nama_dokter' => $this->input->post('dokter'),
+							'tempat_lahir' => $this->input->post('tempat'),
+							'tanggal_lahir' => $this->input->post('tanggal'),
+							'bulan_lahir' => $this->input->post('bulan'),
+							'tahun_lahir' => $this->input->post('tahun'),
+							'alamat' => $this->input->post('alamat'),
+							'no_hp' => $this->input->post('telpon'),
+							'bio' => $this->input->post('bio'),
+							'id_poli'=> $this->input->post('poli') );
+
+		$where = array('id_dokter' => $id);
+
+		$this->mod->update('dokter' ,$object ,$where);
+		redirect('poli');
+	}
+
+
+
 }
 
 /* End of file admin.php */

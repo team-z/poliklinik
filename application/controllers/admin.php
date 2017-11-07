@@ -19,6 +19,10 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/index',$data);
 	}
 
+	public function updatedokter($id)
+	{
+		
+	}
 }
 
 /* End of file admin.php */
