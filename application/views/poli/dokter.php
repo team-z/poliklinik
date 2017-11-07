@@ -72,7 +72,7 @@
                                                 <i class="material-icons">delete</i>
                                                 </a>
 
-                                                <a href="#" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                                <a href="<?php echo base_url('index.php/poli/editdokterform/').$u->id_dokter; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
                                             </td>

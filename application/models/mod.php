@@ -20,6 +20,14 @@ class Mod extends CI_Model {
 	{
 		return $this->db->get_where($table,$where);
 	}
+	public function detail($table,$where)
+	{
+		return $this->db->get_where($table,$where);
+	}
+	public function update($table,$object,$where)
+	{
+		$this->db->update($table,$object,$where);
+	}
 
 }
 
