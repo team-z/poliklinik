@@ -28,7 +28,7 @@
             }
         </script>
 </head>
-<body class="theme-red">
+<body class="theme-deep-purple">
     <?php include 'navigasi.php'; ?>
     <?php include 'sidebar.php'; ?>
     <section class="content">

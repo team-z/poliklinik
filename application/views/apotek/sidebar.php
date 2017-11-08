@@ -2,7 +2,7 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
+            <div class="user-custom-apo">
                 <div class="image">
                     <img src="<?php echo base_url('uploads/').$this->session->userdata('foto'); ?>" width="48" height="48" alt="User" />
                 </div>

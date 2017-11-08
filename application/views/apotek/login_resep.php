@@ -3,7 +3,7 @@
 <head>
 	<?php include 'css.php'; ?>
 </head>
-<body class="theme-red">
+<body class="theme-deep-purple">
 	<?php include 'navigasi.php'; ?>
 	<?php include 'sidebar.php'; ?>
 	<section class="content">
@@ -14,7 +14,7 @@
                 <br><br><br>
                     <div class="card" style="padding: 10%;">
                         <div class="header" style="border: none;">
-                        <center><h3>MASUKKAN KODE PASIEN UNTUK MELANJUTKAN</h3></center>
+                        <center><h3>MASUKKAN ID PEMBAYARAN UNTUK MELANJUTKAN</h3></center>
                             <div class="row clearfix">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">

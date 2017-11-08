@@ -19,7 +19,7 @@
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 	</head>
-	<body class="theme-red">
+	<body class="theme-deep-purple">
 		<?php include 'navigasi.php'; ?>
 	<?php include 'sidebar.php'; ?>
 	<section class="content">

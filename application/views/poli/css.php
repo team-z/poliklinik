@@ -62,4 +62,8 @@
   text-align: center;
 }
 </style>
+<style type="text/css">
+  .poli {
+    background: url("../images/img-background.jpg") no-repeat no-repeat; }
+  </style>
 <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>

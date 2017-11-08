@@ -3,7 +3,7 @@
 <head>
 	<?php include 'css.php'; ?>
 </head>
-<body class="theme-red">
+<body class="theme-light-blue">
 	<?php include 'navigasi.php'; ?>
 	<?php include 'sidebar.php'; ?>
 	<section class="content">
