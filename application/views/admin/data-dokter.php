@@ -2,8 +2,8 @@
 	<head>
 		<title>Admin Panel</title>
 	<!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+     <link href="<?php echo base_url('roboto/roboto.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('iconfont/material-icons.css') ?>" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url();?>plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <!-- Waves Effect Css -->
