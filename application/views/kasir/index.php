@@ -31,28 +31,24 @@
                             <h2>
                                 FORM PEMBAYARAN
                             </h2>
+                             <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
+                                <i class="material-icons">add</i>
+                                <span>Tambahkan</span>
+                            </a>
                         </div>
                         <br><br>
                         <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <form>
-
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input name="" type="text" class="form-control" placeholder="" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input name="" type="text" class="form-control" placeholder="" />
-                                            </div>
-                                        </div>
-                                        
-                                    </form>
-                                </div>
-                            </div>
+                            <table class="table table-striped data">
+                                <th>
+                                    <td>Id Pasien</td>
+                                    <td>Nama Pasien</td>
+                                    <td>Total Bayar</td>
+                                    <td>Action</td>
+                                </th>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

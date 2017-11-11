@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Admin Panel</title>
 	<!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -19,23 +21,22 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
-
 </head>
 <body class="theme-red">
-	<?php include 'navigasi.php'; ?>
+<?php include 'navigasi.php'; ?>
 	<?php include 'sidebar.php'; ?>
 	<section class="content">
         <div class="container-fluid">
-            <div class="row clearfix">
+        	<div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA DOKTER
+                                DATA PASIEN
                             </h2>
-                            <a href="<?php echo base_url('index.php/Poli/form') ?>" class="btn bg-red  waves-effect pull-right">
+                            <a href="<?php echo base_url('index.php/admin/input_pasien'); ?>"  class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
-                                <span>Tambahkan</span>
+                                <span>Tambahkan Pasien</span>
                             </a>
                         </div>
                         <br><br>
@@ -44,39 +45,55 @@
                                 <table class="table table-bordered table-striped data">
                                     <thead>
                                         <tr>
-                                            <th>ID DOKTER</th>
-                                            <th>FOTO</th>
-                                            <th>NAMA</th>
-                                            <th>POLI</th>
+                                            <th>ID PASIEN</th>
+                                            <th>NAMA PASIEN</th>
+                                            <th>NAMA POLI</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
                                         $no = 1; 
-                                        foreach ($user as $u) { ?>
+                                        foreach ($pasien as $u) { ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td>no pict</td>
-                                            <td><?php echo $u->nama_dokter; ?></td>
+                                            <td><?php echo $u->nama_pasien; ?></td>
                                             <td>
-                                                <?php 
-                                                    $w = array('id_poli' => $u->id_poli );
-                                                    $where = $this->db->where($w);
-                                                    $data = $this->db->get('poli')->result();
-                                                    ?>
-                                                <?php echo $data[0]->nama_poli; ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo base_url('index.php/poli/hapusdokter/').$u->id_dokter; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return">
+                                                <a href="<?php echo base_url('index.php/admin/hapus/').$u->id_pasien; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
 
-                                                <a href="<?php echo base_url('index.php/poli/editdokterform/').$u->id_dokter; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                                <a href="#" data-toggle="modal" id="edit-data" data-target="#small" data-poli="<?php echo $u->nama_pasien; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
+                                                </a>
+
+                                                <a href="<?php echo base_url('index.php/admin/datadokter/').$u->id_poli ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Data dokter">
+                                                <i class="material-icons">contacts</i>
                                                 </a>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="small" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <form action="<?php echo base_url('index.php/admin/updatepoli/').$u->id_poli ?>" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Edit Poli</h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="poli" type="text" name="poli" class="form-control" placeholder="Nama Poli">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">UPDATE</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -87,8 +104,6 @@
             </div>
         </div>
     </section>
-	
-
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.js"></script>
 
@@ -115,7 +130,7 @@
         });
         function warnBeforeRedirect(linkURL) {
             swal({
-              title: "Hapus Dokter?", 
+              title: "Hapus Poli ?", 
               type: "warning",
               showCancelButton: true
              }, function() {
@@ -135,12 +150,47 @@
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/ui/tooltips-popovers.js"></script>
-
+    
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>js/admin.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/tables/jquery-datatable.js"></script>
+        <script>
+        $(document).ready(function() {
+            // Untuk sunting
+            $('#small').on('show.bs.modal', function (event) {
+                var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+                var modal          = $(this)
+ 
+                // Isi nilai pada field
+                modal.find('#poli').attr("value",div.data('poli'));
+            });
+        });
+    </script>
 
-    <!-- Demo Js -->
+        <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>js/demo.js"></script>
+            <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <form action="<?php echo base_url('index.php/admin/tambahpoli') ?>" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="smallModalLabel">Input Poli</h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="poli" class="form-control" placeholder="Nama Poli">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">TAMBAHKAN</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            
 </body>
 </html>
