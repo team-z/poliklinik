@@ -33,8 +33,19 @@ class Poli extends CI_Controller {
 
 	public function tambahdokter()
 	{
-		
-		$object  = array('nama_dokter' => $this->input->post('dokter'),
+		$id = $this->mod->get_id_dokter();
+
+		if ($id) {
+			$nilai = substr($id['id_dokter'], 1);
+			$nilai_baru = (int) $nilai;
+			$nilai_baru++;
+			$nilai_baru2 = "D".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
+
+			echo $nilai_baru2;
+		}
+
+		$object  = array(	'id_dokter' => $nilai_baru2,
+							'nama_dokter' => $this->input->post('dokter'),
 							'tempat_lahir' => $this->input->post('tempat'),
 							'tanggal_lahir' => $this->input->post('tanggal'),
 							'bulan_lahir' => $this->input->post('bulan'),
@@ -69,6 +80,17 @@ class Poli extends CI_Controller {
 
 		$this->mod->update('dokter' ,$object ,$where);
 		redirect('poli');
+	}
+	public function formrekam()
+	{
+		$this->load->view('poli/rekam-medis');
+	}
+	public function caripasien()
+	{
+		$id = $this->input->post('id');
+		$w = array('id_pasien' => $id);
+		$data['pasien'] = $this->mod->detail('pasien',$w)->result();
+		$this->load->view('poli/form-rekam', $data);
 	}
 
 

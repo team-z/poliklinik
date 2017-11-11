@@ -34,6 +34,17 @@ class Mod extends CI_Model {
 		$this->db->delete($table); 
 	}
 
+	public function get_id_dokter()
+	{
+		$query = $this->db->query("SELECT MAX(id_dokter) AS id_dokter FROM dokter");
+		return $query->row_array();
+	}
+	public function get_id_poli()
+	{
+		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
+		return $query->row_array();
+	}
+
 }
 
 /* End of file mod.php */

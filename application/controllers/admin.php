@@ -20,7 +20,19 @@ class Admin extends CI_Controller {
 	}
 	public function tambahpoli()
 	{
-		$object = array('nama_poli' => $this->input->post('poli') );
+		$id = $this->mod->get_id_poli();
+
+		if ($id) {
+			$nilai = substr($id['id_poli'], 1);
+			$nilai_baru = (int) $nilai;
+			$nilai_baru++;
+			$nilai_baru2 = "PL".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+
+			echo $nilai_baru2;
+		}
+		$object = array(
+			'id_poli' => $nilai_baru2,
+			'nama_poli' => $this->input->post('poli') );
 		$this->mod->tambah('poli',$object);
 		redirect('admin');
 	}
