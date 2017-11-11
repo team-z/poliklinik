@@ -57,6 +57,18 @@ class Admin extends CI_Controller {
 		$this->mod->delete_admin('poli',$where);
 		redirect('admin/index');
 	}
+
+	public function pasien()
+	{
+		$data['pasien']=$this->mod->tampil('pasien')->result();
+		$this->load->view('admin/pasien',$data);
+
+	}
+
+	public function input_pasien()
+	{
+		$this->load->view('admin/tambah_pasien');
+	}
 }
 
 /* End of file admin.php */

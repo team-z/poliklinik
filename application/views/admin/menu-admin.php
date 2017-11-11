@@ -15,4 +15,10 @@
                             <span>Poli</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/admin/pasien'); ?>">
+                            <i class="material-icons">assignment</i>
+                            <span>Pasien</span>
+                        </a>
+                    </li>
                 </ul>
