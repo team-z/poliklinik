@@ -57,7 +57,7 @@
                                             <td><?php echo $no++; ?></td>
                                             <td><?php echo $u->nama_poli; ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('index.php/admin/hapuspoli/').$u->id_poli; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
+                                                <a href="<?php echo base_url('index.php/admin/hapus/').$u->id_poli; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
 

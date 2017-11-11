@@ -65,7 +65,7 @@
                                                     $where = $this->db->where($w);
                                                     $data = $this->db->get('poli')->result();
                                                     ?>
-                                                <?php echo $data[0]->nama_poli; ?>
+                                                <?php echo $data[0]->id_poli; ?>
                                             </td>
                                             <td>
                                                 <a href="<?php echo base_url('index.php/poli/hapusdokter/').$u->id_dokter; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">

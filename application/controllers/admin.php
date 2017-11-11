@@ -38,6 +38,13 @@ class Admin extends CI_Controller {
 		$data['user']=$this->mod->detail('dokter',$where)->result();
 		$this->load->view('admin/data-dokter', $data);
 	}
+
+	public function hapus($id)
+	{
+		$where = array('id_poli' =>$id );
+		$this->mod->delete_admin('poli',$where);
+		redirect('admin/index');
+	}
 }
 
 /* End of file admin.php */

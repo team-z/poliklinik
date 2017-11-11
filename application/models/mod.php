@@ -29,6 +29,11 @@ class Mod extends CI_Model {
 		$this->db->update($table,$object,$where);
 	}
 
+	function delete_admin($table,$where){
+		$this->db->where($where);
+		$this->db->delete($table); 
+	}
+
 }
 
 /* End of file mod.php */
