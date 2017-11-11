@@ -26,15 +26,7 @@
         	<div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
-                            <h2>
-                                DATA POLI
-                            </h2>
-                            <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
-                                <i class="material-icons">add</i>
-                                <span>Tambahkan Poli</span>
-                            </a>
-                        </div>
+                        
                         <br><br>
                         <div class="body">
                             <div class="table-responsive">
