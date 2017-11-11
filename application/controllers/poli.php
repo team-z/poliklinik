@@ -40,8 +40,8 @@ class Poli extends CI_Controller {
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
 			$nilai_baru2 = "D".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
-
-			echo $nilai_baru2;
+		}else{
+			$nilai_baru2 = "D0001";
 		}
 
 		$object  = array(	'id_dokter' => $nilai_baru2,

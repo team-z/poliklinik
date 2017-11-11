@@ -27,8 +27,8 @@ class Admin extends CI_Controller {
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
 			$nilai_baru2 = "PL".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
-
-			echo $nilai_baru2;
+		}else{
+			$nilai_baru2 = "PL0001";
 		}
 		$object = array(
 			'id_poli' => $nilai_baru2,
@@ -68,6 +68,30 @@ class Admin extends CI_Controller {
 	public function input_pasien()
 	{
 		$this->load->view('admin/tambah_pasien');
+	}
+	public function add_pasien()
+	{
+		$id = $this->mod->get_id_pasien();
+
+		if ($id) {
+			$nilai = substr($id['id_pasien'], 1);
+			$nilai_baru = (int) $nilai;
+			$nilai_baru++;
+			$nilai_baru2 = "P".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+		}else{
+			$nilai_baru2 = "P0001";
+		}
+		$object = array('id_pasien' => $nilai_baru2 , 
+						'nama_pasien' => $this->input->post('pasien'),
+						'tempat_lahir' => $this->input->post('tempat'),
+						'tanggal_lahir' => $this->input->post('tanggal'),
+						'bulan_lahir' => $this->input->post('bulan'),
+						'tahun_lahir' => $this->input->post('tahun'),
+						'umur_pasien'=>$this->input->post('umur'),
+						'alamat' => $this->input->post('alamat'),
+						'no_hp' => $this->input->post('telpon'),
+						'poli' => $this->input->post('poli'),
+						'jenis_kelamin' => $this->input->post('gender'));
 	}
 }
 

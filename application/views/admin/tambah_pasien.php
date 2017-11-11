@@ -110,9 +110,15 @@
                                             <p>
                                                 <b>Jenis Kelamin</b>
                                             </p>
-                                    <select name="tanggal" class="form-control show-tick">
-                                        <option>Perempuan</option>
-                                        <option>Laki-Laki</option>
+                                    <select name="gender" class="form-control show-tick">
+                                        <?php 
+                                    $gender = array('1' => 'Laki-laki', '2'=>'Perempuan');
+                                    ?>
+                                    <?php
+                                        foreach ($gender as $key=> $value) {
+                                        echo '<option value="' . $key . '">' . $value . '</option>\n';
+                                        }
+                                    ?>
                                     </select>
                                         </div>
                                     </div><br><br>

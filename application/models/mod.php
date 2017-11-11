@@ -44,6 +44,11 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
 		return $query->row_array();
 	}
+	public function get_id_pasien()
+	{
+		$query = $this->db->query("SELECT MAX(id_pasien) AS id_pasien FROM pasien");
+		return $query->row_array();
+	}
 
 }
 
