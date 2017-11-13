@@ -53,6 +53,7 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT MAX(id_rekam) AS id_rekam FROM rekam");
 		return $query->row_array();
 	}
+>>>>>>> 744a4eae77f2dcfcb0e987bc426732ff0b67d0c6
 
 }
 
