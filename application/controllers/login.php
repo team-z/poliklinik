@@ -30,8 +30,9 @@ class Login extends CI_Controller {
 			foreach ($data->result() as $d) 
 			{
 				$data_session = array(
-					'user' => $user,
-					'status' => $d->status
+					'username' => $d->user,
+					'status' => $d->status,
+					'nama' => $d->nama_lengkap
 				);
 
 				$this->session->set_userdata($data_session);

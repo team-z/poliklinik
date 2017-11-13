@@ -14,14 +14,18 @@ class Poli extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$data['user']=$this->mod->tampil('dokter')->result();
+	{	
+		$data['username'] = $this->session->userdata('username');
+		$data['nama'] = $this->session->userdata('nama');
+		$data['user'] = $this->mod->tampil('dokter')->result();
 		$this->load->view('poli/dokter',$data);
 	}
 	public function form()
 	{
-		$data = $this->mod->tampil('poli');
-		$this->load->view('poli/input-dokter' ,array('data' => $data));
+		$data['username'] = $this->session->userdata('username');
+		$data['nama'] = $this->session->userdata('nama');
+		$data['data'] = $this->mod->tampil('poli');
+		$this->load->view('poli/input-dokter' ,$data);
 	}
 	public function hapusdokter($id)
 	{
@@ -47,10 +51,12 @@ class Poli extends CI_Controller {
 		redirect('poli/index');
 	}
 	public function editdokterform($id)
-	{
+	{	
+		$data['username'] = $this->session->userdata('username');
+		$data['nama'] = $this->session->userdata('nama');
 		$where = array('id_dokter' => $id);
-		$data = $this->mod->detail('dokter',$where)->result();
-		$this->load->view('poli/edit-dokter', array('data' => $data));
+		$data['data'] = $this->mod->detail('dokter',$where)->result();
+		$this->load->view('poli/edit-dokter',$data);
 	}
 
 	public function updatedokter($id)

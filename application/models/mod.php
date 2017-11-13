@@ -29,6 +29,8 @@ class Mod extends CI_Model {
 		$this->db->update($table,$object,$where);
 	}
 
+
+
 }
 
 /* End of file mod.php */

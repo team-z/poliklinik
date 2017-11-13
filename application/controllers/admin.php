@@ -29,6 +29,13 @@ class Admin extends CI_Controller {
 	{
 		
 	}
+
+	public function hapuspoli($id)
+	{
+		$where = array('id_poli' => $id);
+		$this->mod->detail('poli' ,$where);
+		redirect('admin');
+	}
 }
 
 /* End of file admin.php */
