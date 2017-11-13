@@ -98,7 +98,7 @@
                                                 <i class="material-icons">add</i>
                                                 <span>Tambahkan</span>
                                             </button>
-                                            <a href="" class="btn btn-primary waves-effect">
+                                            <a href="<?php echo base_url('index.php/poli/formrekam') ?>" class="btn btn-primary waves-effect">
                                                 <i class="material-icons">exit_to_app</i>
                                                 <span>Kembali</span>
                                             </a>
