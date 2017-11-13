@@ -14,18 +14,13 @@ class Poli extends CI_Controller {
 	}
 
 	public function index()
-	{	
-		$data['username'] = $this->session->userdata('username');
-		$data['nama'] = $this->session->userdata('nama');
+	{
 		$data['user'] = $this->mod->tampil('dokter')->result();
 		$this->load->view('poli/dokter',$data);
 	}
 	public function form()
 	{
-		$data['username'] = $this->session->userdata('username');
-		$data['nama'] = $this->session->userdata('nama');
-		$data['data'] = $this->mod->tampil('poli');
-		$this->load->view('poli/input-dokter' ,$data);
+		$this->load->view('poli/input-dokter');
 	}
 	public function hapusdokter($id)
 	{
@@ -62,9 +57,7 @@ class Poli extends CI_Controller {
 		redirect('poli/index');
 	}
 	public function editdokterform($id)
-	{	
-		$data['username'] = $this->session->userdata('username');
-		$data['nama'] = $this->session->userdata('nama');
+	{
 		$where = array('id_dokter' => $id);
 		$data['data'] = $this->mod->detail('dokter',$where)->result();
 		$this->load->view('poli/edit-dokter',$data);
@@ -93,10 +86,33 @@ class Poli extends CI_Controller {
 	}
 	public function caripasien()
 	{
-		$id = $this->input->post('id');
+		$id = $this->input->get('id');
 		$w = array('id_pasien' => $id);
 		$data['pasien'] = $this->mod->detail('pasien',$w)->result();
+		$data['rekam'] = $this->mod->detail('rekam',$w)->result();
 		$this->load->view('poli/form-rekam', $data);
+	}
+	public function tambahrekam()
+	{
+		$id = $this->mod->get_id_rekam();
+
+		if ($id) {
+			$nilai = substr($id['id_rekam'], 1);
+			$nilai_baru = (int) $nilai;
+			$nilai_baru++;
+			$nilai_baru2 = "R".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
+		}else{
+			$nilai_baru2 = "R0001";
+		}
+
+		$object = array('id_rekam' => $nilai_baru2 ,
+						'id_pasien' => $this->input->post('id_pasien'),
+						'tanggal' => $this->input->post('tanggal'),
+						'bulan' => $this->input->post('bulan') ,
+						'tahun' => $this->input->post('tahun') ,
+						'keterangan' => $this->input->post('keterangan'));
+		$this->mod->tambah('rekam',$object);
+		redirect('poli/caripasien/?id='.$this->input->post('id_pasien'));
 	}
 
 

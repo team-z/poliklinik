@@ -18,6 +18,11 @@ class Admin extends CI_Controller {
 		$data['user']=$this->mod->tampil('poli')->result();
 		$this->load->view('admin/index',$data);
 	}
+	public function poli()
+	{
+		$data['user']=$this->mod->tampil('poli')->result();
+		$this->load->view('admin/index',$data);
+	}
 	public function tambahpoli()
 	{
 		$id = $this->mod->get_id_poli();

@@ -8,7 +8,7 @@
 	<?php include 'sidebar.php'; ?>
 	<section class="content">
         <div class="container-fluid">
-            <form method="post" action="<?php echo base_url('index.php/poli/caripasien/'); ?>">
+            <form method="get" action="<?php echo base_url('index.php/poli/caripasien/'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <br><br><br>

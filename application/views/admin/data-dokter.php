@@ -12,6 +12,8 @@
     <link href="<?php echo base_url();?>plugins/animate-css/animate.css" rel="stylesheet" />
     <!-- JQuery DataTable Css -->
     <link href="<?php echo base_url();?>plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <!-- Sweetalert Css -->
+    <link href="<?php echo base_url(); ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <!-- Custom Css -->
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -26,8 +28,11 @@
         	<div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        
-                        <br><br>
+                        <div class="head">
+                        <div class="container-fluid">
+                            <h1>Data Dokter Berdasarkan Poli</h1>
+                        </div>
+                        </div>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped data">
@@ -46,7 +51,7 @@
                                             <td><?php echo $no++; ?></td>
                                             <td><?php echo $u->nama_dokter; ?></td>
                                         	<td>
-                                        		<a href="#" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                        		<a href="#" data-toggle="modal" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
                                         	</td>
@@ -61,7 +66,6 @@
             </div>
         </div>
     </section>
-		<!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
@@ -75,6 +79,7 @@
 
     <!-- Bootstrap Notify Plugin Js -->
     <script src="<?php echo base_url(); ?>plugins/bootstrap-notify/bootstrap-notify.js"></script>
+		<!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
