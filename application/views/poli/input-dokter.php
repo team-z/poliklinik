@@ -2,6 +2,7 @@
 <html>
 <head>
 	<?php include 'css.php'; ?>
+    <?php include 'js.php'; ?>
 </head>
 <body class="theme-red">
 	<?php include 'navigasi.php'; ?>
@@ -85,16 +86,6 @@
                                         </div>
                                     </div><br>
                                     <div class="form-group">
-                                             <p>
-                                                <b>Poli</b>
-                                            </p>
-                                    <select name="poli" class="form-control show-tick">
-                                        <?php foreach ($data->result() as $d): ?>
-                                            <option value="<?php echo $d->id_poli; ?>"><?php echo $d->nama_poli; ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
                                         <div class="form-line">
                                             <input name="telpon" type="text" class="form-control" placeholder="No Telepon" />
                                         </div>
@@ -124,6 +115,6 @@
             </form>
         </div>
     </section>
-	<?php include 'js.php'; ?>
+	
 </body>
 </html>
