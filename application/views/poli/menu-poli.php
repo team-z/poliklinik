@@ -9,4 +9,10 @@
                             <span>Dokter</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/poli/formrekam/'); ?>">
+                            <i class="material-icons">assignment</i>
+                            <span>Rekam Medis</span>
+                        </a>
+                    </li>
                 </ul>

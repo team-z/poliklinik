@@ -29,7 +29,30 @@ class Mod extends CI_Model {
 		$this->db->update($table,$object,$where);
 	}
 
+<<<<<<< HEAD
 
+=======
+	function delete_admin($table,$where){
+		$this->db->where($where);
+		$this->db->delete($table); 
+	}
+
+	public function get_id_dokter()
+	{
+		$query = $this->db->query("SELECT MAX(id_dokter) AS id_dokter FROM dokter");
+		return $query->row_array();
+	}
+	public function get_id_poli()
+	{
+		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
+		return $query->row_array();
+	}
+	public function get_id_pasien()
+	{
+		$query = $this->db->query("SELECT MAX(id_pasien) AS id_pasien FROM pasien");
+		return $query->row_array();
+	}
+>>>>>>> ac14318e9fc2a350971f8467ac1886fa2ee065ea
 
 }
 

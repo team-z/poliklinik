@@ -41,14 +41,21 @@ class Login extends CI_Controller {
 			if ($this->session->userdata('status') == 'admin') 
 			{
 				redirect('admin');
-			}else if ($this->session->userdata('status') =='poli') 
-			{
+			}else if ($this->session->userdata('status') =='poli') {
+			
 				redirect('poli');
-			}else
-			{
+			}
+			else if ($this->session->userdata('status') =='apotek') {
+				redirect('apoteker');
+			}
+			else if ($this->session->userdata('status') =='resepsionis') {
+			
+			}
+			else if ($this->session->userdata('status') =='kasir') {
+				redirect('kasir');
+			}else{
 				redirect('login');
 			}
-			
 	}else{
 		redirect('login');
 	}
