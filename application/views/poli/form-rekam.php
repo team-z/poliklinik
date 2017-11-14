@@ -108,7 +108,15 @@
                             </div>
                         </div>
                         <div class="body">
-                            <h1>Riwayat Rekam Medis</h1>
+                            <div class="row">
+                                <div class="col-md-6"><h1>Data Rekam Medis</h1></div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary pull-right waves-effect">
+                                        <i class="material-icons">print</i>
+                                        <span>Cetak Rekam Medis</span>
+                                    </button>
+                                </div>
+                            </div>
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>

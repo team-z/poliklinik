@@ -86,6 +86,18 @@
                                         </div>
                                     </div><br>
                                     <div class="form-group">
+                                        <p>
+                                            <b>Pilih Poli</b>
+                                        </p>
+                                        <select name="poli" id="" class="form-control show-tick">
+                                            <?php
+                                            $data = $this->db->get('poli')->result(); 
+                                            foreach ($data as $p) { ?>    
+                                            <option value="<?php echo $p->id_poli; ?>"><?php echo $p->nama_poli; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="form-line">
                                             <input name="telpon" type="text" class="form-control" placeholder="No Telepon" />
                                         </div>
