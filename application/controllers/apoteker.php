@@ -17,6 +17,10 @@ class Apoteker extends CI_Controller {
 		$data['user']=$this->mod->tampil('obat')->result();
 		$this->load->view('apotek/data-obat',$data);
 	}
+	public function tambahobat()
+	{
+		$this->load->view('apotek/input-obat');
+	}
 
 }
 

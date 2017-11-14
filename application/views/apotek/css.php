@@ -15,13 +15,9 @@
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url(); ?>plugins/node-waves/waves.css" rel="stylesheet" />
 
+    <link href="<?php echo base_url(); ?>plugins/animate-css/animate.css" rel="stylesheet" />
 <!-- Bootstrap Select Css -->
     <link href="<?php echo base_url(); ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-    <!-- Animation Css -->
-    <link href="<?php echo base_url(); ?>plugins/animate-css/animate.css" rel="stylesheet" />
-
-    <!-- Morris Chart Css-->
-    <link href="<?php echo base_url(); ?>plugins/morrisjs/morris.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
     <link href="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
