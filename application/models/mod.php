@@ -54,6 +54,11 @@ class Mod extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_id_pendaftaran()
+	{
+		$query = $this->db->query("SELECT id_pendaftaran FROM pendaftaran ORDER BY id_pendaftaran DESC LIMIT 1");
+		return $query->row_array();
+	}
 }
 
 /* End of file mod.php */
