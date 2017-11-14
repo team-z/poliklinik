@@ -77,12 +77,11 @@ class Admin extends CI_Controller {
 	public function add_pasien()
 	{
 		$id = $this->mod->get_id_pasien();
-
 		if ($id) {
 			$nilai = substr($id['id_pasien'], 1);
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
-			$nilai_baru2 = "P".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+			$nilai_baru2 = "P".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
 		}else{
 			$nilai_baru2 = "P0001";
 		}
@@ -95,8 +94,10 @@ class Admin extends CI_Controller {
 						'umur_pasien'=>$this->input->post('umur'),
 						'alamat' => $this->input->post('alamat'),
 						'no_hp' => $this->input->post('telpon'),
-						'poli' => $this->input->post('poli'),
 						'jenis_kelamin' => $this->input->post('gender'));
+		$this->mod->tambah('pasien',$object);
+		redirect('admin/pasien');
+
 	}
 
 	public function hapuspoli($id)
@@ -104,6 +105,11 @@ class Admin extends CI_Controller {
 		$where = array('id_poli' => $id);
 		$this->mod->detail('poli' ,$where);
 		redirect('admin');
+	}
+	public function user()
+	{
+		$data['user']=$this->mod->tampil('user')->result();
+		$this->load->view('admin/user',$data);
 	}
 }
 

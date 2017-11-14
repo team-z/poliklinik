@@ -11,7 +11,7 @@
             <div class="block-header">
                 <h1>Input Pasien</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/poli/tambah_pasien'); ?>">
+            <form method="post" action="<?php echo base_url('index.php/admin/add_pasien'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -80,19 +80,6 @@
                                         <div class="form-line">
                                             <input name="umur" type="text" class="form-control" placeholder="Umur Pasien" />
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-
-                                             <p>
-                                                <b>Poli</b>
-                                            </p>
-                                    <select name="poli" class="form-control show-tick">
-                                        <?php
-                                        $data = $this->mod->tampil('poli'); 
-                                        foreach ($data->result() as $d): ?>
-                                            <option value="<?php echo $d->id_poli; ?>"><?php echo $d->nama_poli; ?></option>
-                                        <?php endforeach ?>
-                                    </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-line">

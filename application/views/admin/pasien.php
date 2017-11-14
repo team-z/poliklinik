@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,30 +46,31 @@
                                         <tr>
                                             <th>ID PASIEN</th>
                                             <th>NAMA PASIEN</th>
-                                            <th>NAMA POLI</th>
+                                            <th>JENIS KELAMIN</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        $no = 1; 
-                                        foreach ($pasien as $u) { 
-                                            $data = $this->db->get_where('poli',array('id_poli'=>$u->id_poli))->result();
+                                        foreach ($pasien as $u) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $u->id_pasien; ?></td>
                                             <td><?php echo $u->nama_pasien; ?></td>
-                                            <td><?php echo $data[0]->nama_poli ?></td>
+                                            <td>
+                                                <?php 
+                                                 if ($u->jenis_kelamin == "1") {
+                                                     echo "Laki - Laki";
+                                                 }elseif ($u->jenis_kelamin == "2") {
+                                                     echo "Perempuan";
+                                                 }
+                                                ?>
+                                            </td>
                                             <td>
                                                 <a href="<?php echo base_url('index.php/admin/hapus/').$u->id_pasien; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
-
-                                                <a href="#" data-toggle="modal" id="edit-data" data-target="#small" data-poli="<?php echo $u->nama_pasien; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
-                                                <i class="material-icons">create</i>
-                                                </a>
-
-                                                <a href="<?php echo base_url('index.php/admin/datadokter/').$u->id_poli ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Data dokter">
+                                                <a href="<?php echo base_url('index.php/admin/editpasien/').$u->id_pasien ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update Pasien">
                                                 <i class="material-icons">contacts</i>
                                                 </a>
                                             </td>
@@ -133,7 +133,7 @@
         });
         function warnBeforeRedirect(linkURL) {
             swal({
-              title: "Hapus Poli ?", 
+              title: "Hapus Pasien ?", 
               type: "warning",
               showCancelButton: true
              }, function() {
@@ -145,55 +145,14 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/ui/tooltips-popovers.js"></script>
     
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>js/admin.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/tables/jquery-datatable.js"></script>
-        <script>
-        $(document).ready(function() {
-            // Untuk sunting
-            $('#small').on('show.bs.modal', function (event) {
-                var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-                var modal          = $(this)
- 
-                // Isi nilai pada field
-                modal.find('#poli').attr("value",div.data('poli'));
-            });
-        });
-    </script>
 
         <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>js/demo.js"></script>
-            <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
-                <form action="<?php echo base_url('index.php/admin/tambahpoli') ?>" method="post">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="smallModalLabel">Input Poli</h4>
-                        </div>
-                        <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" name="poli" class="form-control" placeholder="Nama Poli">
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-link waves-effect">TAMBAHKAN</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </form>
-                </div>
-            </div>
             
 </body>
 </html>

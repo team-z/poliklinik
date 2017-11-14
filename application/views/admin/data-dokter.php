@@ -38,7 +38,7 @@
                                 <table class="table table-bordered table-striped data">
                                     <thead>
                                         <tr>
-                                            <th>ID POLI</th>
+                                            <th>ID DOKTER</th>
                                             <th>NAMA DOKTER</th>
                                             <th>AKSI</th>
                                         </tr>
@@ -48,10 +48,10 @@
                                         $no = 1; 
                                         foreach ($user as $u) { ?>
                                         <tr>
-                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $u->id_dokter; ?></td>
                                             <td><?php echo $u->nama_dokter; ?></td>
                                         	<td>
-                                        		<a href="#" data-toggle="modal" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                        		<a href="#" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
                                         	</td>
@@ -68,9 +68,6 @@
     </section>
     <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.js"></script>
 
-    <!-- Select Plugin Js -->
-    <script src="<?php echo base_url(); ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url(); ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
@@ -82,13 +79,6 @@
 		<!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/ui/tooltips-popovers.js"></script>
     
     <!-- Custom Js -->

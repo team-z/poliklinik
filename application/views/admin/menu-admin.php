@@ -21,4 +21,10 @@
                             <span>Pasien</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/admin/user'); ?>">
+                            <i class="material-icons">android</i>
+                            <span>User Management</span>
+                        </a>
+                    </li>
                 </ul>
