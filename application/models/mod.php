@@ -48,6 +48,16 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT MAX(id_pasien) AS id_pasien FROM pasien");
 		return $query->row_array();
 	}
+
+	public function del_pas($table,$where){
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+
+	public function up_pas($table,$object,$where)
+	{
+		$this->db->update($table,$object,$where);
+	}
 	public function get_id_rekam()
 	{
 		$query = $this->db->query("SELECT MAX(id_rekam) AS id_rekam FROM rekam");
@@ -59,6 +69,27 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT id_pendaftaran FROM pendaftaran ORDER BY id_pendaftaran DESC LIMIT 1");
 		return $query->row_array();
 	}
+
+	public function apotek($table)
+	{
+		return $this->db->get($table);
+	}
+
+	public function input_obat($table,$object)
+	{
+		$this->db->insert($table,$object);
+	}
+
+	public function get_id_obat()
+	{
+		$query = $this->db->query("SELECT MAX(id_obat) AS id_obat FROM obat");
+		return $query->row_array();
+	}
+	public function del_obat($table,$where){
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+
 }
 
 /* End of file mod.php */

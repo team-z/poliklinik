@@ -100,11 +100,40 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function del_pas($id)
+	{
+		$where = array('id_pasien' =>$id );
+		$this->mod->del_pas('pasien',$where);
+		redirect('admin/pasien');
+	}
+
+	public function edit_pas()
+	{
+		$this->load->view('admin/edit_pasien');
+	}
+
+	public function up_pas($id)
+	{
+		$data['pasien'] = $this->mod->up_pas('pasien')->result();
+		$object = array('id_pasien' => $nilai_baru2 , 
+						'nama_pasien' => $this->input->post('pasien'),
+						'tempat_lahir' => $this->input->post('tempat'),
+						'tanggal_lahir' => $this->input->post('tanggal'),
+						'bulan_lahir' => $this->input->post('bulan'),
+						'tahun_lahir' => $this->input->post('tahun'),
+						'umur_pasien'=>$this->input->post('umur'),
+						'alamat' => $this->input->post('alamat'),
+						'no_hp' => $this->input->post('telpon'),
+						'jenis_kelamin' => $this->input->post('gender'));
+		$this->mod->up_pas('pasien',$object);
+		redirect('admin/pasien');
+	}
+
 	public function hapuspoli($id)
 	{
 		$where = array('id_poli' => $id);
 		$this->mod->detail('poli' ,$where);
-		redirect('admin');
+		redirect('admin/pasien');
 	}
 	public function user()
 	{

@@ -12,7 +12,7 @@
             <div class="block-header">
                 <h1>Input Obat</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/poli/tambahdokter'); ?>">
+            <form method="post" action="<?php echo base_url('index.php/apoteker/input'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -40,7 +40,7 @@
                                         <p>
                                             <b>Pilih Jenis Obat</b>
                                         </p>
-                                        <select name="kategori" id="" class="form-control show-tick">
+                                        <select name="type" id="" class="form-control show-tick">
                                             <?php 
                                             $jenis = array(
                                                 '1' => 'Pil' ,
@@ -71,11 +71,6 @@
                                             <div class="form-line">
                                                 <input type="number" class="form-control" placeholder="Cth : 50000">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <textarea name="bio" rows="4" class="form-control no-resize" placeholder="Bio"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
