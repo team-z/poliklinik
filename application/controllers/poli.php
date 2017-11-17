@@ -95,7 +95,7 @@ class Poli extends CI_Controller {
 	public function tambahrekam()
 	{
 		$id = $this->mod->get_id_rekam();
-		$waktu = date("h:i:sa");
+		$waktu = date("Y-m-d h:i:sa");
 		
 		if ($id) {
 			$nilai = substr($id['id_rekam'], 1);
@@ -108,9 +108,6 @@ class Poli extends CI_Controller {
 
 		$object = array('id_rekam' => $nilai_baru2 ,
 						'id_pasien' => $this->input->post('id_pasien'),
-						'tanggal' => $this->input->post('tanggal'),
-						'bulan' => $this->input->post('bulan') ,
-						'tahun' => $this->input->post('tahun') ,
 						'waktu' => $waktu,
 						'keterangan' => $this->input->post('keterangan'));
 		$this->mod->tambah('rekam',$object);

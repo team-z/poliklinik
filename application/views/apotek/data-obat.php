@@ -31,9 +31,9 @@
                             <h2>
                                 DATA OBAT
                             </h2>
-                            <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
+                            <a href="<?php echo base_url('index.php/apoteker/tambahobat') ?>" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
-                                <span>Tambahkan Poli</span>
+                                <span>Tambahkan Obat</span>
                             </a>
                         </div>
                         <br><br>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2017 at 08:52 AM
+-- Generation Time: Nov 17, 2017 at 09:52 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `dokter` (
   `id_dokter` char(8) NOT NULL,
   `id_poli` varchar(255) NOT NULL,
-  `id_resep` int(11) NOT NULL,
+  `id_resep` char(8) NOT NULL,
   `nama_dokter` varchar(255) NOT NULL,
   `tempat_lahir` varchar(255) NOT NULL,
   `tanggal_lahir` varchar(255) NOT NULL,
@@ -48,8 +48,9 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 --
 
 INSERT INTO `dokter` (`id_dokter`, `id_poli`, `id_resep`, `nama_dokter`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `spesialisasi`, `foto`, `bio`) VALUES
-('D0001', 'PL0002', 0, 'Putri', 'Malang', '31', '12', '1999', 'Jl MT Haryono', '08345234312', '', '', '---'),
-('D0002', 'PL0003', 0, 'Dika', 'Lumajang', '3', '12', '1999', 'Lumajang', '08123456789', '', '', 'test');
+('D0001', 'PL0002', '0', 'Putri', 'Malang', '31', '12', '1999', 'Jl MT Haryono', '08345234312', '', '', '---'),
+('D0002', 'PL0003', '0', 'Dika', 'Lumajang', '3', '12', '1999', 'Lumajang', '08123456789', '', '', 'test'),
+('D0003', 'PL0002', '0', 'Siegfried', '??', '1', '1', '2017', '??`', '??', '', '', '??');
 
 -- --------------------------------------------------------
 
@@ -58,14 +59,14 @@ INSERT INTO `dokter` (`id_dokter`, `id_poli`, `id_resep`, `nama_dokter`, `tempat
 --
 
 CREATE TABLE IF NOT EXISTS `obat` (
-  `id_obat` int(11) NOT NULL AUTO_INCREMENT,
+  `id_obat` char(8) NOT NULL,
   `nama_obat` varchar(255) NOT NULL,
   `type` enum('pil','sirup','umum') NOT NULL,
   `stok` int(11) NOT NULL,
   `harga_satuan` int(11) NOT NULL,
   `foto` varchar(255) NOT NULL,
   PRIMARY KEY (`id_obat`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `obat` (
 --
 
 CREATE TABLE IF NOT EXISTS `pasien` (
-  `id_pasien` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pasien` char(8) NOT NULL,
   `nama_pasien` varchar(255) NOT NULL,
   `umur_pasien` varchar(255) NOT NULL,
   `tempat_lahir` varchar(255) NOT NULL,
@@ -82,11 +83,48 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `bulan_lahir` int(11) NOT NULL,
   `tahun_lahir` int(11) NOT NULL,
   `alamat` text NOT NULL,
-  `no hp` varchar(255) NOT NULL,
-  `id_poli` int(11) NOT NULL,
+  `no_hp` varchar(255) NOT NULL,
   `jenis_kelamin` enum('1','2') NOT NULL,
   PRIMARY KEY (`id_pasien`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `umur_pasien`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `jenis_kelamin`) VALUES
+('P0001', 'Abdis', '18', 'Lumajang', 1, 1, 2017, 'Jogoyudan', '087654321', '1'),
+('P0002', 'Bagus', '18', 'Yosowilangun', 1, 1, 2017, '???', '87153920', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE IF NOT EXISTS `pembayaran` (
+  `id_bayar` char(8) NOT NULL,
+  `id_pasien` char(8) NOT NULL,
+  `biaya_daftar` int(11) NOT NULL,
+  `biaya_dokter` int(11) NOT NULL,
+  `biaya_obat` int(11) NOT NULL,
+  `total_biaya` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pendaftaran`
+--
+
+CREATE TABLE IF NOT EXISTS `pendaftaran` (
+  `id_pendafataran` char(8) NOT NULL,
+  `id_pasien` char(8) NOT NULL,
+  `id_poli` char(8) NOT NULL,
+  `tanggal_pendaftaran` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `biaya` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -116,14 +154,22 @@ INSERT INTO `poli` (`id_poli`, `nama_poli`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `rekam` (
-  `id_rekam` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pasien` int(11) NOT NULL,
-  `tanggal` int(11) NOT NULL,
-  `bulan` int(11) NOT NULL,
-  `tahun` int(11) NOT NULL,
+  `id_rekam` char(8) NOT NULL,
+  `id_pasien` char(8) NOT NULL,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `keterangan` text NOT NULL,
   PRIMARY KEY (`id_rekam`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rekam`
+--
+
+INSERT INTO `rekam` (`id_rekam`, `id_pasien`, `waktu`, `keterangan`) VALUES
+('R0001', 'P0001', '2017-11-13 19:38:40', 'Sakit Perut'),
+('R0002', 'P0001', '2017-11-13 19:41:32', 'Sakit Demam'),
+('R0003', 'P0002', '2017-11-13 20:00:31', 'Sakit Mata'),
+('R0004', 'P0001', '2017-11-17 02:37:59', 'Panuen');
 
 -- --------------------------------------------------------
 
@@ -132,14 +178,14 @@ CREATE TABLE IF NOT EXISTS `rekam` (
 --
 
 CREATE TABLE IF NOT EXISTS `resep` (
-  `id_resep` int(11) NOT NULL AUTO_INCREMENT,
-  `id_dokter` int(11) NOT NULL,
-  `id_obat` int(11) NOT NULL,
+  `id_resep` char(8) NOT NULL,
+  `id_dokter` char(8) NOT NULL,
+  `id_obat` char(8) NOT NULL,
   `jumlah obat` int(11) NOT NULL,
   `dosis` varchar(255) NOT NULL,
   `total_harga` int(11) NOT NULL,
   PRIMARY KEY (`id_resep`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -168,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `user`, `password`, `status`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `gambar`, `nama_lengkap`) VALUES
-(1, 'admin@admin.com', 'admin', 'admin', 'lumajang', '3', 'Januari', '1999', 'lumajang', '08123456789', '', ''),
-(2, 'poli@poli.com', 'poli', 'poli', 'lumajang', '9', 'Maret', '2003', 'lumajang', '08124356783', '', ''),
+(1, 'admin@admin.com', 'admin', 'admin', 'lumajang', '3', 'Januari', '1999', 'lumajang', '08123456789', '', 'MASTER ADMIN'),
+(2, 'poli@poli.com', 'poli', 'poli', 'lumajang', '9', 'Maret', '2003', 'lumajang', '08124356783', '', 'MASTER POLI'),
 (3, 'apotek', 'apotek', 'apotek', '', '', '', '', '', '', '', ''),
 (4, 'resepsionis', 'resepsionis', 'resepsionis', '', '', '', '', '', '', '', ''),
 (5, 'kasir', 'kasir', 'kasir', '', '', '', '', '', '', '', '');

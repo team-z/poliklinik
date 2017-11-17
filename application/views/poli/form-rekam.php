@@ -36,63 +36,6 @@
                                             <textarea name="keterangan" rows="4" class="form-control no-resize" placeholder="Keterangan Penyakit"></textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                                <b>Tanggal</b>
-                                            </p>
-                                    <select name="tanggal" class="form-control show-tick">
-                                        <?php 
-                                        $date = date("d");
-                                         for ($i=1; $i<=31 ; $i++) {
-                                       echo '<option value="'.$i.'"';
-                                                if( $i ==  $date ) {
-                                                echo ' selected="selected"';
-                                                }
-                                                echo ' >'.$i.'</option>';
-                                                }
-                                           ?>
-                                        
-                                    </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p>
-                                                <b>Bulan</b>
-                                            </p>
-                                    <select name="bulan" class="form-control show-tick">
-                                        <?php 
-                                    $months = array('1' => 'Januari', '2'=>'Februari', '3'=>'Maret', '4'=>'April', '5'=>'Mei', '6'=>'Juni', '7'=>'Juli', '8'=>'Agustus', '9'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember');
-                                    $month = date("m");
-                                        foreach ($months as $key=> $value) {
-                                        echo '<option value="'.$key.'"';
-                                                if( $key ==  $month ) {
-                                                echo ' selected="selected"';
-                                                }
-                                                echo ' >'.$value.'</option>';
-                                                }  
-                                    ?>
-                                    </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p>
-                                                <b>Tahun</b>
-                                            </p>
-                                            <select name="tahun" class="form-control show-tick">
-                                            <?php
-                                            $starting_year  =date('Y', strtotime('-60 year'));
-                                            $ending_year = date('Y');
-                                            $current_year = date('Y');
-                                            for($starting_year; $starting_year <= $ending_year; $starting_year++) {
-                                                echo '<option value="'.$starting_year.'"';
-                                                if( $starting_year ==  $current_year ) {
-                                                echo ' selected="selected"';
-                                                }
-                                                echo ' >'.$starting_year.'</option>';
-                                                }               
-                                             ?>
-                                             </select>
-                                        </div>
-                                    </div><br><br>
                                     <div class="form-group">
                                             <button type="submit" class="btn btn-danger waves-effect">
                                                 <i class="material-icons">add</i>
@@ -130,9 +73,7 @@
                                     <tr>
                                         <td><?php echo $r->id_rekam; ?></td>
                                         <td><?php echo $r->keterangan; ?></td>
-                                        <td>
-                                        <?php echo $r->tanggal; ?> - <?php echo $r->bulan; ?> - <?php echo $r->tahun; ?>
-                                        </td>
+                                        <td><?php echo $r->waktu; ?></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
