@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2017 at 03:04 AM
+-- Generation Time: Nov 17, 2017 at 09:52 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -99,6 +99,21 @@ INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `umur_pasien`, `tempat_lahir`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE IF NOT EXISTS `pembayaran` (
+  `id_bayar` char(8) NOT NULL,
+  `id_pasien` char(8) NOT NULL,
+  `biaya_daftar` int(11) NOT NULL,
+  `biaya_dokter` int(11) NOT NULL,
+  `biaya_obat` int(11) NOT NULL,
+  `total_biaya` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pendaftaran`
 --
 
@@ -153,7 +168,8 @@ CREATE TABLE IF NOT EXISTS `rekam` (
 INSERT INTO `rekam` (`id_rekam`, `id_pasien`, `waktu`, `keterangan`) VALUES
 ('R0001', 'P0001', '2017-11-13 19:38:40', 'Sakit Perut'),
 ('R0002', 'P0001', '2017-11-13 19:41:32', 'Sakit Demam'),
-('R0003', 'P0002', '2017-11-13 20:00:31', 'Sakit Mata');
+('R0003', 'P0002', '2017-11-13 20:00:31', 'Sakit Mata'),
+('R0004', 'P0001', '2017-11-17 02:37:59', 'Panuen');
 
 -- --------------------------------------------------------
 
