@@ -46,7 +46,7 @@
                                          <?php
                                             for ($i=1; $i<=31 ; $i++) { 
                                             echo '<option value="'.$i.'"';
-                                                if ($i==$d->tanggal_lahir) {
+                                                if ($i==$p->tanggal_lahir) {
                                                     echo ' selected="selected"';
                                                 } echo '>'.$i.'</option>\n';          
                                             }             
@@ -64,7 +64,7 @@
                                     <?php
                                         foreach ($months as $key=> $value) {
                                         echo '<option value="'.$key.'"';
-                                        if ($key==$d->bulan_lahir) {
+                                        if ($key==$p->bulan_lahir) {
                                         echo ' selected="selected"';
                                         } echo '>'.$value.'</option>\n';
                                         }
@@ -83,7 +83,7 @@
                                             $current_year = date('Y');
                                             for($starting_year; $starting_year <= $ending_year; $starting_year++) {
                                                 echo '<option value="'.$starting_year.'"';
-                                                if( $starting_year ==  $d->tahun_lahir ) {
+                                                if( $starting_year ==  $p->tahun_lahir ) {
                                                 echo ' selected="selected"';
                                                 }
                                                 echo ' >'.$starting_year.'</option>';
@@ -93,31 +93,13 @@
                                         </div>
                                     </div><br>
                                     <div class="form-group">
-                                             <p>
-                                                <b>Poli</b>
-                                            </p>
-                                    <select name="poli" class="form-control show-tick">
-                                       <?php
-                                        $link = mysqli_connect('localhost','root','','poliklinik');
-                                        $query = mysqli_query($link,"SELECT * FROM poli");
-                                        while ($data = mysqli_fetch_array($query)) { 
-                                        echo '<option value="'.$data['id_poli'].'"';
-                                                if( $data['id_poli'] ==  $d->id_poli ) {
-                                                echo ' selected="selected"';
-                                                }
-                                                echo ' >'.$data['nama_poli'].'</option>';
-                                        }?>
-                                        
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
                                         <div class="form-line">
                                             <input name="telpon" value="<?php echo $p->no_hp; ?>" type="text" class="form-control" placeholder="No Telepon" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea name="alamat" rows="4" class="form-control no-resize" placeholder="Alamat Dokter"><?php echo $d->alamat; ?></textarea>
+                                            <textarea name="alamat" rows="4" class="form-control no-resize" placeholder="Alamat Dokter" value="<?php echo $p->alamat; ?>"><?php echo $p->alamat; ?></textarea>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -132,17 +114,24 @@
                                     ?>
                                     <?php
                                         foreach ($gender as $key=> $value) {
-                                        echo '<option value="' . $key . '">' . $value . '</option>\n';
+                                        echo '<option value="'.$key.'"';
+                                        if ($key==$p->jenis_kelamin) {
+                                        echo ' selected="selected"';
+                                        } echo '>'.$value.'</option>\n';
                                         }
                                     ?>
                                     </select>
                                         </div>
-                                    </div>
+                                    </div><br>
                                     <div class="form-group">
                                             <button type="submit" class="btn btn-danger waves-effect">
                                                 <i class="material-icons">add</i>
                                                 <span>Update</span>
                                             </button>
+                                            <a href="<?php echo base_url('index.php/admin/pasien'); ?>" class="btn btn-primary waves-effect">
+                                                <i class="material-icons">exit_to_app</i>
+                                                <span>Kembali</span>
+                                            </a>
                                     </div>
                                 </div>
                             </div>

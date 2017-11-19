@@ -107,14 +107,16 @@ class Admin extends CI_Controller {
 		redirect('admin/pasien');
 	}
 
-	public function edit_pas()
+	public function edit_pas($id)
 	{
-		$this->load->view('admin/edit_pasien');
+		$where = array('id_pasien' => $id);
+		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
+		$this->load->view('admin/edit_pasien',$data);
 	}
 
 	public function up_pas($id)
 	{
-		$data['pasien'] = $this->mod->up_pas('pasien')->result();
+		$where = array('id_pasien' => $id);
 		$object = array('id_pasien' => $nilai_baru2 , 
 						'nama_pasien' => $this->input->post('pasien'),
 						'tempat_lahir' => $this->input->post('tempat'),
@@ -125,7 +127,7 @@ class Admin extends CI_Controller {
 						'alamat' => $this->input->post('alamat'),
 						'no_hp' => $this->input->post('telpon'),
 						'jenis_kelamin' => $this->input->post('gender'));
-		$this->mod->up_pas('pasien',$object);
+		$this->mod->up_pas('pasien',$object,$where);
 		redirect('admin/pasien');
 	}
 
