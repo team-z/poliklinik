@@ -57,7 +57,7 @@
                                         foreach ($user as $u) { ?>
                                         <tr>
                                             <td><?php echo $u->id_dokter; ?></td>
-                                            <td>no pict</td>
+                                            <td><img class="img-circle" height="100" width="100" src="<?php echo base_url('uploads/').$u->foto; ?>"></td>
                                             <td><?php echo $u->nama_dokter; ?></td>
                                             <td>
                                                 <?php 

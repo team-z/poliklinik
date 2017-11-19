@@ -39,6 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID DOKTER</th>
+                                            <th>FOTO</th>
                                             <th>NAMA DOKTER</th>
                                             <th>AKSI</th>
                                         </tr>
@@ -49,6 +50,7 @@
                                         foreach ($user as $u) { ?>
                                         <tr>
                                             <td><?php echo $u->id_dokter; ?></td>
+                                            <td><img class="img-circle" height="100" width="100" src="<?php echo base_url('uploads/').$u->foto; ?>"></td>
                                             <td><?php echo $u->nama_dokter; ?></td>
                                         	<td>
                                         		<a href="#" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">

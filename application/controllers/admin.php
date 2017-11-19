@@ -7,8 +7,8 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('mod');
-		$this->load->helper('url');
-
+		$this->load->helper('form','url','download');
+		$this->load->library('upload');
 		if ($this->session->userdata('status') != 'admin') {
 			redirect('login');
 		}
