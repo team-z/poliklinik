@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 				redirect('apoteker');
 			}
 			else if ($this->session->userdata('status') =='resepsionis') {
-			
+				redirect('Resepsionis');
 			}
 			else if ($this->session->userdata('status') =='kasir') {
 				redirect('kasir');

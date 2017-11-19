@@ -6,7 +6,8 @@ class Poli extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper('url','form');
+		$this->load->library(array('upload','dompdf_gen'));
 		$this->load->model('mod');
 		if($this->session->userdata('status') != "poli"){
 			redirect('login');
@@ -114,7 +115,21 @@ class Poli extends CI_Controller {
 		redirect('poli/caripasien/?id='.$this->input->post('id_pasien'));
 	}
 
+	public function cetak()
+	{
+		$data['cetak'] = $this->mod->tampil('rekam')->result();
+		$this->load->view('poli/exportrek_med',$data);
 
+		$paper_size  = 'A4'; //paper size (array(0,0,450,360))
+		$orientation = 'portrait'; //tipe format kertas
+		$html = $this->output->get_output();
+		 
+		$this->dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("cetak_rekam.pdf", array('Attachment'=>0));
+	}
 
 }
 

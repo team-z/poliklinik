@@ -235,7 +235,7 @@
 					method : 'POST',
 					dataType:'json',
 					success : function(res){
-						console.log(res[0].nama_dokter);
+						// console.log(res[0].nama_dokter);
 						for (var i = 0; i < res.length; i++) {
 							$("#dokter").append($('<option></option>').attr('value', res[i].id_dokter).text(res[i].nama_dokter));
 						}
