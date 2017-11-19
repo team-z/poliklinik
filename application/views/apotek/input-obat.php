@@ -12,7 +12,7 @@
             <div class="block-header">
                 <h1>Input Obat</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/poli/tambahdokter'); ?>">
+            <form method="post" action="<?php echo base_url('index.php/apoteker/input'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -32,21 +32,17 @@
                                             <input name="obat" type="text" class="form-control" placeholder="Nama Obat" />
                                         </div>
                                     </div>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" name="dist" class="form-control" placeholder="Distributor">
-                                    </div>
-                                </div>
                                         <p>
                                             <b>Pilih Jenis Obat</b>
                                         </p>
-                                        <select name="kategori" id="" class="form-control show-tick">
+                                        <select name="type" id="" class="form-control show-tick">
                                             <?php 
                                             $jenis = array(
                                                 '1' => 'Pil' ,
                                                 '2' => 'Syrup',
                                                 '3' => 'Obat Tetes',
-                                                '4' => 'Plester' ); 
+                                                '4' => 'Plester',
+                                                '5' => 'Kapsul' ); 
                                                 foreach ($jenis as $j => $value) { ?>
                                                 <option value="<?php echo $j; ?>"><?php echo $value ?></option>
                                             <?php  } ?>
@@ -55,7 +51,15 @@
                                             <b>Pilih Kategori Obat</b>
                                         </p>
                                         <select name="kategori" id="" class="form-control show-tick">
-                                            
+                                             <?php 
+                                            $kategori = array(
+                                                '1' => 'keras' ,
+                                                '2' => 'bebas',
+                                                '3' => 'psikotropika',
+                                                '4' => 'rendah' ); 
+                                                foreach ($kategori as $k => $value) { ?>
+                                                <option value="<?php echo $k; ?>"><?php echo $value ?></option>
+                                            <?php  } ?>
                                         </select><br><br>
                                     <div class="form-group">
                                         <div class="form-line">
@@ -71,11 +75,6 @@
                                             <div class="form-line">
                                                 <input type="number" class="form-control" placeholder="Cth : 50000">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <textarea name="bio" rows="4" class="form-control no-resize" placeholder="Bio"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

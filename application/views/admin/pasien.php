@@ -67,10 +67,10 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('index.php/admin/hapus/').$u->id_pasien; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
+                                                <a href="<?php echo base_url('index.php/admin/del_pas/').$u->id_pasien; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
-                                                <a href="<?php echo base_url('index.php/admin/editpasien/').$u->id_pasien ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update Pasien">
+                                                <a href="<?php echo base_url('index.php/admin/edit_pas/').$u->id_pasien ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update Pasien">
                                                 <i class="material-icons">contacts</i>
                                                 </a>
                                             </td>

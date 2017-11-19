@@ -28,10 +28,10 @@ class Admin extends CI_Controller {
 		$id = $this->mod->get_id_poli();
 
 		if ($id) {
-			$nilai = substr($id['id_poli'], 1);
+			$nilai = substr($id['id_poli'], 2);
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
-			$nilai_baru2 = "PL".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+			$nilai_baru2 = "PL".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
 		}else{
 			$nilai_baru2 = "PL0001";
 		}
@@ -100,11 +100,42 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function del_pas($id)
+	{
+		$where = array('id_pasien' =>$id );
+		$this->mod->del_pas('pasien',$where);
+		redirect('admin/pasien');
+	}
+
+	public function edit_pas($id)
+	{
+		$where = array('id_pasien' => $id);
+		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
+		$this->load->view('admin/edit_pasien',$data);
+	}
+
+	public function up_pas($id)
+	{
+		$where = array('id_pasien' => $id);
+		$object = array('id_pasien' => $this->input->post('id') , 
+						'nama_pasien' => $this->input->post('pasien'),
+						'tempat_lahir' => $this->input->post('tempat'),
+						'tanggal_lahir' => $this->input->post('tanggal'),
+						'bulan_lahir' => $this->input->post('bulan'),
+						'tahun_lahir' => $this->input->post('tahun'),
+						'umur_pasien'=>$this->input->post('umur'),
+						'alamat' => $this->input->post('alamat'),
+						'no_hp' => $this->input->post('telpon'),
+						'jenis_kelamin' => $this->input->post('gender'));
+		$this->mod->up_pas('pasien',$object,$where);
+		redirect('admin/pasien');
+	}
+
 	public function hapuspoli($id)
 	{
 		$where = array('id_poli' => $id);
 		$this->mod->detail('poli' ,$where);
-		redirect('admin');
+		redirect('admin/pasien');
 	}
 	public function user()
 	{
