@@ -37,6 +37,10 @@
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan</span>
                             </a>
+                            <a href="<?php echo base_url('index.php/Poli/cetak_dok') ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                                <i class="material-icons">print</i>
+                                <span>Cetak Dokter</span>
+                            </a>
                         </div>
                         <br><br>
                         <div class="body">

@@ -181,6 +181,23 @@ class Poli extends CI_Controller {
 		$this->dompdf->stream("cetak_rekam.pdf", array('Attachment'=>0));
 	}
 
+	public function cetak_dok()
+	{
+		$data['dok'] = $this->mod->tampil('dokter')->result();
+		$this->load->view('poli/export_dokter',$data);
+
+
+		$paper_size  = 'A4'; //paper size (array(0,0,450,360))
+		$orientation = 'portrait'; //tipe format kertas
+		$html = $this->output->get_output();
+		 
+		$this->dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("cetak_dokter.pdf", array('Attachment'=>0));
+	}
+
 }
 
 /* End of file admin.php */
