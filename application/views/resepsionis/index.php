@@ -2,12 +2,18 @@
 <html>
 <head>
 	<?php include 'top-res.php'; ?>
+	<style type="text/css">
+		.index {
+			margin-top: 100px;
+			margin-left: 30px;
+		}
+	</style>
 </head>
 <body class="theme-red">
 <?php include 'navigasi-res.php'; ?>
 	<?php include 'sidebar-res.php'; ?>
 
-	<section class="content">
+	<section class="content index">
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-md-6 col-xs-12">
@@ -19,99 +25,62 @@
 	                            <form id="form_validation" action="<?php echo base_url('index.php/Resepsionis/tambah_pasien'); ?>" method="POST">
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <input type="text" class="form-control" name="nama_pasien" required>
-	                                        <label class="form-label">Nama Pasien</label>
+	                                        <input type="text" class="form-control" name="nama_pasien" placeholder="Nama Pasien" required>
 	                                    </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <input type="text" class="form-control" name="umur_pasien" required>
-	                                        <label class="form-label">Umur Pasien</label>
+	                                        <input type="text" class="form-control" name="umur_pasien"  placeholder="Umur Pasien" required>
 	                                    </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <input type="text" class="form-control" name="tempat_lahir" required>
-	                                        <label class="form-label">Tempat Lahir</label>
+	                                        <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir"  required>
 	                                    </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                        <div class="row">
 	                                        	<div class="col-md-4">
-		                                        	 <select class="form-control show-tick" name="tahun_lahir">
-				                                        <option value="">Lahir Tahun</option>
-				                                        <option value="1990">1990</option>
-				                                        <option value="1991">1991</option>
-				                                        <option value="1992">1992</option>
-				                                        <option value="1993">1993</option>
-				                                        <option value="1994">1994</option>
-				                                        <option value="1995">1995</option>
-				                                        <option value="1996">1996</option>
-				                                        <option value="1997">1997</option>
-				                                        <option value="1998">1998</option>
-				                                        <option value="1999">1999</option>
-				                                        <option value="2000">2000</option>
-				                                    </select>
+		                                        	 <select name="tahun_lahir" class="form-control show-tick">
+		                                            <?php
+		                                            $starting_year  =date('Y', strtotime('-60 year'));
+		                                            $ending_year = date('Y');
+		                                            $current_year = date('Y');
+		                                            for($starting_year; $starting_year <= $ending_year; $starting_year++) {
+		                                                echo '<option value="'.$starting_year.'"';
+		                                                if( $starting_year ==  $current_year ) {
+		                                                echo ' selected="selected"';
+		                                                }
+		                                                echo ' >'.$starting_year.'</option>';
+		                                                }               
+		                                             ?>
+		                                             </select>
 		                                        </div>
 		                                        <div class="col-md-4">
-		                                        	 <select class="form-control show-tick"  name="bulan_lahir">
-				                                        <option value="">Lahir Bulan</option>
-				                                        <option value="01">Januari</option>
-				                                        <option value="02">Febuari</option>
-				                                        <option value="03">Maret</option>
-				                                        <option value="04">April</option>
-				                                        <option value="05">Mei</option>
-				                                        <option value="06">Juni</option>
-				                                        <option value="07">Juli</option>
-				                                        <option value="08">Agustus</option>
-				                                        <option value="09">September</option>
-				                                        <option value="10">Oktober</option>
-				                                        <option value="11">November</option>
-				                                        <option value="12">Desember</option>
-				                                    </select>
+		                                        	   <select name="bulan_lahir" class="form-control show-tick">
+					                                        <?php 
+					                                    $months = array('01' => 'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember');
+					                                    ?>
+					                                    <?php
+					                                        foreach ($months as $key=> $value) {
+					                                        echo '<option value="' . $key . '">' . $value . '</option>\n';
+					                                        }
+					                                    ?>
+					                                    </select>
 		                                        </div>
 		                                        <div class="col-md-4">
-		                                        	 <select class="form-control show-tick" name="tanggal_lahir">
-				                                        <option value="">Lahir Tanggal</option>
-				                                        <option value="01">01</option>
-				                                        <option value="02">02</option>
-				                                        <option value="03">03</option>
-				                                        <option value="04">04</option>
-				                                        <option value="05">05</option>
-				                                        <option value="06">06</option>
-				                                        <option value="07">07</option>
-				                                        <option value="08">08</option>
-				                                        <option value="09">09</option>
-				                                        <option value="10">10</option>
-				                                        <option value="11">11</option>
-				                                        <option value="12">12</option>
-				                                        <option value="13">13</option>
-				                                        <option value="14">14</option>
-				                                        <option value="15">15</option>
-				                                        <option value="16">16</option>
-				                                        <option value="17">17</option>
-				                                        <option value="18">18</option>
-				                                        <option value="19">19</option>
-				                                        <option value="20">20</option>
-				                                        <option value="21">21</option>
-				                                        <option value="22">22</option>
-				                                        <option value="23">23</option>
-				                                        <option value="24">24</option>
-				                                        <option value="25">25</option>
-				                                        <option value="26">26</option>
-				                                        <option value="27">27</option>
-				                                        <option value="28">28</option>
-				                                        <option value="29">29</option>
-				                                        <option value="30">30</option>
-				                                        <option value="31">31</option>
+		                                        	 <select name="tanggal_lahir" class="form-control show-tick">
+				                                        <?php 
+				                                         for ($i=1; $i<=31 ; $i++) { ?>
+				                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				                                         <?php } ?>
 				                                    </select>
 		                                        </div>
 	                                        </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <input type="text" class="form-control" name="no_hp" required>
-	                                        <label class="form-label">No Handphone</label>
+	                                        <input type="text" class="form-control" name="no_hp" placeholder="No Handphone"  required>
 	                                    </div>
 	                                </div>
 	                                <div class="form-group">
@@ -123,8 +92,7 @@
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" required></textarea>
-	                                        <label class="form-label">Alamat</label>
+	                                        <textarea name="alamat" placeholder="Alamat" cols="30" rows="5" class="form-control no-resize" required></textarea>
 	                                    </div>
 	                                </div>
 	                                <button class="btn btn-primary waves-effect" type="submit">Kirim</button>
@@ -141,29 +109,32 @@
 	                            <form id="form_validation" action="<?php echo base_url('index.php/Resepsionis/tambah_pendaftaran'); ?>" method="POST">
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <input onkeyup="id_hasil(value)" type="text" class="form-control" name="id_pasien" required>
-	                                        <label class="form-label">ID Pasien</label>
+	                                        <input onkeyup="id_hasil(value)" type="text" class="form-control" name="id_pasien" placeholder="ID Pasien" required>
 	                                    </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
 	                                        <input type="text" id="nama_pasien" class="form-control" name="nama_pasien" placeholder="Nama Pasien" required>
-	                                        
 	                                    </div>
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <select class="form-control show-tick" name="id_poli">
+	                                        <select  class="form-control show-tick" name="id_poli" id="poli">
 		                                        <option value="">-----pilih Poli-----</option>
-		                                        <?php  
-		                                        $con = mysqli_connect("localhost","root","","poliklinik");
-		                                        $sql = mysqli_query($con, "SELECT * FROM poli");
-		                                        while ($kol = mysqli_fetch_array($sql)) {
-		                                        ?>
-		                                        <option value="<?php echo $kol['id_poli']; ?>"><?php echo $kol['nama_poli']; ?></option>
-		                                        <?php } ?>
+		                                        <?php
+                                            $data = $this->db->get('poli')->result(); 
+                                            foreach ($data as $p) { ?>    
+                                            <option value="<?php echo $p->id_poli; ?>"><?php echo $p->nama_poli; ?></option>
+                                            <?php } ?>
 		                                    </select>
 	                                    </div>
+	                                </div>
+	                                <div class="form-group form-float">
+	                                    <div class="form-group">
+											<select class="form-control show tick" name="dokter" id="dokter">
+												<option>-- Pilih Dokter --</option>
+											</select>
+										</div>
 	                                </div>
 	                                 <div class="form-group form-float">
 	                                    <div class="form-line">	
@@ -172,8 +143,7 @@
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
-	                                        <textarea name="keterangan" cols="30" rows="5" class="form-control no-resize" required></textarea>
-	                                        <label class="form-label">Keterangan/Keluhan</label>
+	                                        <textarea name="keterangan" placeholder="Keterangan/Keluhan" cols="30" rows="5" class="form-control no-resize" required></textarea>
 	                                    </div>
 	                                </div>
 	                                <button class="btn btn-success waves-effect" type="submit">Cetak</button>
@@ -242,7 +212,7 @@
 			</div>
 		</div>
 	</section>
-
+	<?php include 'bottom-res.php'; ?>
 	<script>
 		function id_hasil(value) {
 			$.ajax({
@@ -256,7 +226,23 @@
 				}
 			})
 		}
+		$(document).ready(function () {
+			$("#poli").change(function () {
+				var id = $(this).val();
+
+				$.ajax({
+					url: '<?php echo base_url() ?>index.php/Resepsionis/ambil_data_poli/' + id,
+					method : 'POST',
+					dataType:'json',
+					success : function(res){
+						console.log(res[0].nama_dokter);
+						for (var i = 0; i < res.length; i++) {
+							$("#dokter").append($('<option></option>').attr('value', res[i].id_dokter).text(res[i].nama_dokter));
+						}
+					}
+				})
+			})
+		})
 	</script>
-	<?php include 'bottom-res.php'; ?>
 </body>
 </html>

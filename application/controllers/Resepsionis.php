@@ -35,7 +35,7 @@ class Resepsionis extends CI_Controller {
 			$nilai = substr($id['id_pasien'], 1);
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
-			$nilai_baru2 = "P".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+			$nilai_baru2 = "P".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
 		}else{
 			$nilai_baru2 = "P0001";
 		}
@@ -71,23 +71,36 @@ class Resepsionis extends CI_Controller {
 		$object = array('id_pendaftaran' => $nilai_baru2,
 						'id_pasien' => $this->input->post('id_pasien'),
 						'id_poli' => $this->input->post('id_poli'),
+						'id_dokter' => $this->input->post('id_dokter'),
 						'biaya' => $this->input->post('biaya'),
-						'keterangan' => $this->input->post('keterangan') 
+						'keterangan' => $this->input->post('keterangan')
 					);
 
-		// $this->mod->tambah('pendaftaran', $object);
-
+		$this->mod->tambah('pendaftaran', $object);
+		$object['join'] = $this->db->query("SELECT
+											pendaftaran.tanggal_pendaftaran,
+											poli.nama_poli,
+											dokter.nama_dokter,
+											pasien.nama_pasien,
+											pasien.id_pasien
+											FROM
+											pendaftaran
+											INNER JOIN poli ON pendaftaran.id_poli = poli.id_poli
+											INNER JOIN pasien ON pendaftaran.id_pasien = pasien.id_pasien
+											INNER JOIN dokter ON pendaftaran.id_dokter = dokter.id_dokter
+											WHERE pendaftaran.id_pendaftaran='$nilai_baru2' ")->result();
+		
 		$this->load->view('resepsionis/cetak-res', $object);
 
-		// $paper_size  = array(0,0,450,360); //paper size ('A4')
-		// $orientation = 'landscape'; //tipe format kertas
-		// $html = $this->output->get_output();
+		$paper_size  = array(0,0,450,360); //paper size ('A4')
+		$orientation = 'landscape'; //tipe format kertas
+		$html = $this->output->get_output();
 		 
-		// $this->dompdf->set_paper($paper_size, $orientation);
-		// //Convert to PDF
-		// $this->dompdf->load_html($html);
-		// $this->dompdf->render();
-		// $this->dompdf->stream("cetak.pdf", array('Attachment'=>0));
+		$this->dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("cetak.pdf", array('Attachment'=>0));
 
 		// redirect('Resepsionis/index');
 	}
@@ -98,6 +111,16 @@ class Resepsionis extends CI_Controller {
 
 		$a = $this->db->like('id_pasien', $value)->get('pasien')->row_array();
 		echo json_encode($a);
+	}
+	public function ambil_data_poli($id)
+	{
+		$result = [];
+
+		foreach ($this->mod->dokter($id) as $key => $value) {
+			$result[$key] = $value;
+		}
+
+		echo json_encode($result);
 	}
 
 	public function cetak()
