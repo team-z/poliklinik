@@ -12,7 +12,7 @@
             <div class="block-header">
                 <h1>Input Dokter</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/poli/tambahdokter'); ?>">
+            <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/tambahdokter'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -22,7 +22,7 @@
                                     <center>
                                     <div id="image-preview">
                                         <label for="image-upload" id="image-label">Pilih Foto</label>
-                                            <input type="file" accept="img/*" name="image" id="image-upload" />
+                                            <input type="file" accept="img/*" name="gambar" id="image-upload" />
                                     </div>
                                     </center>
                                 </div>

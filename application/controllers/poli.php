@@ -13,7 +13,7 @@ class Poli extends CI_Controller {
 			redirect('login');
 		}
 	}
-
+//INI SCRIPT PROSES DOKTER
 	public function index()
 	{
 		$data['user'] = $this->mod->tampil('dokter')->result();
@@ -26,6 +26,12 @@ class Poli extends CI_Controller {
 	public function hapusdokter($id)
 	{
 		$where = array('id_dokter' =>$id );
+		$tampil = $this->mod->detail('dokter', $where)->result();
+
+		foreach ($tampil as $le) {
+			$gambar = $le->foto;
+		}
+		unlink('./uploads/'.$gambar);
 		$this->mod->delete('dokter',$where);
 		redirect('poli/index');
 	}
@@ -43,6 +49,19 @@ class Poli extends CI_Controller {
 		}else{
 			$nilai_baru2 = "D0001";
 		}
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '5000';
+		$config['max_width']  = '6000';
+		$config['max_height']  = '2048';
+		$this->load->library('upload',$config);
+		$this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
 
 		$object  = array(	'id_dokter' => $nilai_baru2,
 							'nama_dokter' => $this->input->post('dokter'),
@@ -53,7 +72,8 @@ class Poli extends CI_Controller {
 							'alamat' => $this->input->post('alamat'),
 							'no_hp' => $this->input->post('telpon'),
 							'bio' => $this->input->post('bio'),
-							'id_poli'=> $this->input->post('poli') );
+							'id_poli'=> $this->input->post('poli'),
+							'foto' => $gambar );
 		$this->mod->tambah('dokter',$object);
 		redirect('poli/index');
 	}
@@ -63,10 +83,36 @@ class Poli extends CI_Controller {
 		$data['data'] = $this->mod->detail('dokter',$where)->result();
 		$this->load->view('poli/edit-dokter',$data);
 	}
+	public function update_image($id)
+	{
+		$image = $this->input->post('image');
+		unlink('./uploads/'.$image);
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '6144';
+		$config['max_height']  = '6144';
+		
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
+		$where = array('id_dokter' => $id );
+
+		$object = array('foto' => $gambar);
+		$this->mod->update('dokter', $object, $where);
+		redirect('poli/editdokterform/'.$id);
+	}
 
 	public function updatedokter($id)
 	{
-		$object  = array('nama_dokter' => $this->input->post('dokter'),
+		$object  = array(	'id_dokter' => $id,
+							'nama_dokter' => $this->input->post('dokter'),
 							'tempat_lahir' => $this->input->post('tempat'),
 							'tanggal_lahir' => $this->input->post('tanggal'),
 							'bulan_lahir' => $this->input->post('bulan'),
@@ -74,13 +120,17 @@ class Poli extends CI_Controller {
 							'alamat' => $this->input->post('alamat'),
 							'no_hp' => $this->input->post('telpon'),
 							'bio' => $this->input->post('bio'),
-							'id_poli'=> $this->input->post('poli') );
+							'id_poli'=> $this->input->post('poli'),
+							 );
 
 		$where = array('id_dokter' => $id);
 
 		$this->mod->update('dokter' ,$object ,$where);
 		redirect('poli');
 	}
+//INI AKHIR SCRIPT PROSES DOKTER
+
+//INI SCRIPT PROSES REKAM MEDIS
 	public function formrekam()
 	{
 		$this->load->view('poli/rekam-medis');
