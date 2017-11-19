@@ -6,7 +6,8 @@ class Apoteker extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper('url','form');
+		$this->load->library(array('upload','dompdf_gen'));
 		$this->load->model('mod');
 		if ($this->session->userdata('status') != 'apotek') {
 			redirect('login');
@@ -25,6 +26,11 @@ class Apoteker extends CI_Controller {
 	public function input()
 	{
 		$id = $this->mod->get_id_obat();
+		$kategori = $this->input->post('kategori');
+		$stok = $this->input->post('stok');
+		$harga_satuan = $this->input->post('harga_satuan');
+		$foto = $this->input->post('foto');
+
 		if ($id) {
 			$nilai = substr($id['id_obat'], 1);
 			$nilai_baru = (int) $nilai;
@@ -36,12 +42,13 @@ class Apoteker extends CI_Controller {
 		$object = array('id_obat' => $nilai_baru2 , 
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
-						'kategori' => $this->input->post('kategori'),
-						'stok' => $this->input->post('stok'),
-						'harga_satuan' => $this->input->post('harga_satuan'),
-						'foto' => $this->input->post('foto'));
+						// 'kategori' => $kategori,
+						'stok' => $stok,
+						'harga_satuan' => $harga_satuan,
+						'foto' => "kalska");
 		$this->mod->input_obat('obat',$object);
-		redirect('apotek/data-obat');
+
+		redirect('apoteker/index');
 	}
 
 	public function del_obat($id)
@@ -49,6 +56,22 @@ class Apoteker extends CI_Controller {
 		$where = array('id_' =>$id );
 		$this->mod->del_obat('obat',$where);
 		redirect('apotek/data-obat');
+	}
+
+	public function cetak_obat()
+	{
+		$data['obat'] = $this->mod->tampil('obat')->result();
+		$this->load->view('apotek/export_obat',$data);
+
+		$paper_size  = 'A4'; //paper size (array(0,0,450,360))
+		$orientation = 'portrait'; //tipe format kertas
+		$html = $this->output->get_output();
+		 
+		$this->dompdf->set_paper($paper_size, $orientation);
+		//Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("cetak_obat.pdf", array('Attachment'=>0));
 	}
 
 }

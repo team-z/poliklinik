@@ -6,7 +6,7 @@
 	<center>
 		<h3>POLIKLINIK PELANGI KASIH</h3>
 		<b>Bahagiamu SukaCita Ku</b><br>
-		Kartu Pendaftaran<br>
+		Daftar Dokter<br>
 		<hr width="100%" height="75"></hr><br>
 	</center>
 	POLIKLINIK PELANGI KASIH<br>
