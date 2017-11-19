@@ -12,7 +12,7 @@ class Poli extends CI_Controller {
 			redirect('login');
 		}
 	}
-
+//INI SCRIPT PROSES DOKTER
 	public function index()
 	{
 		$data['user'] = $this->mod->tampil('dokter')->result();
@@ -25,6 +25,12 @@ class Poli extends CI_Controller {
 	public function hapusdokter($id)
 	{
 		$where = array('id_dokter' =>$id );
+		$tampil = $this->mod->detail('dokter', $where)->result();
+
+		foreach ($tampil as $le) {
+			$gambar = $le->foto;
+		}
+		unlink('./uploads/'.$gambar);
 		$this->mod->delete('dokter',$where);
 		redirect('poli/index');
 	}
@@ -121,6 +127,9 @@ class Poli extends CI_Controller {
 		$this->mod->update('dokter' ,$object ,$where);
 		redirect('poli');
 	}
+//INI AKHIR SCRIPT PROSES DOKTER
+
+//INI SCRIPT PROSES REKAM MEDIS
 	public function formrekam()
 	{
 		$this->load->view('poli/rekam-medis');
@@ -154,7 +163,7 @@ class Poli extends CI_Controller {
 		$this->mod->tambah('rekam',$object);
 		redirect('poli/caripasien/?id='.$this->input->post('id_pasien'));
 	}
-
+//INI AKHIR SCRIPT PROSES REKAM MEDIS
 
 
 }

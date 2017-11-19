@@ -31,7 +31,7 @@
                             <h2>
                                 FORM PEMBAYARAN
                             </h2>
-                             <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
+                             <a href="" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan</span>
                             </a>

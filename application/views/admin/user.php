@@ -65,7 +65,7 @@
                                                 <a href="<?php echo base_url('index.php/admin/hapus/').$u->id; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
-                                                <a href="<?php echo base_url('index.php/admin/editpasien/').$u->id; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Detail User">
+                                                <a href="<?php echo base_url('index.php/admin/edituser/').$u->id; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Detail User">
                                                 <i class="material-icons">contacts</i>
                                                 </a>
                                             </td>

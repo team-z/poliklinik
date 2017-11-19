@@ -9,7 +9,6 @@
 	<section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h1>Edit Dokter</h1>
             </div>
             <?php foreach ($pasien as $p): ?>           
             <form method="post" action="<?php echo base_url('index.php/admin/up_pas/').$p->id_pasien; ?>">
@@ -17,12 +16,26 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
+                        <h1>Edit Dokter</h1>
+                        </div>
+                        <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <center>
-                                    <div id="image-preview">
-                                        <label for="image-upload" id="image-label">Pilih Foto</label>
-                                            <input type="file" name="image" id="image-upload" />
+                                    <div class="form-group">
+                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$d->id_dokter; ?>">
+
+                                            <h1>Pilih foto</h1>
+
+                                            <img id="preview" src="<?php echo base_url('uploads/').$d->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+
+                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $d->foto; ?>" name="gambar">
+
+                                            <input type="hidden" name="image" value="<?php echo $d->foto; ?>"><br>
+
+                                            <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons">camera_alt</i><span>Update Foto</span></button>
+
+                                        </form>
                                     </div>
                                     </center>
                                 </div>
