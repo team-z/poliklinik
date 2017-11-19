@@ -48,6 +48,12 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT MAX(id_pasien) AS id_pasien FROM pasien");
 		return $query->row_array();
 	}
+	public function dokter($id){
+		$this->db->order_by('nama_dokter','ASC');
+		$query= $this->db->get_where('dokter',array('id_poli'=>$id));
+
+		return $query->result();
+	}
 
 	public function del_pas($table,$where){
 		$this->db->where($where);
@@ -70,12 +76,12 @@ class Mod extends CI_Model {
 		return $query->row_array();
 	}
 
-<<<<<<< HEAD
+
 	public function kasir($table)
 	{
 		return $this->db->get($table);
 	}
-=======
+
 	public function apotek($table)
 	{
 		return $this->db->get($table);
@@ -96,7 +102,7 @@ class Mod extends CI_Model {
 		$this->db->delete($table);
 	}
 
->>>>>>> 3b96b70fc27a2943b4b39447110ffc96857423bf
+
 }
 
 /* End of file mod.php */
