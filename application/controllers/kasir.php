@@ -13,7 +13,18 @@ class Kasir extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('kasir/index');
+		$data['kasir']=$this->mod->kasir('pembayaran')->result();
+		$this->load->view('kasir/index',$data);
+	}
+
+	public function kasir($value='')
+	{
+		$this->load->view('input_kasir', $data, FALSE);
+	}
+
+	public function input_menu($value='')
+	{
+		# code..
 	}
 
 }

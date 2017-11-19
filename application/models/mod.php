@@ -59,6 +59,11 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT id_pendaftaran FROM pendaftaran ORDER BY id_pendaftaran DESC LIMIT 1");
 		return $query->row_array();
 	}
+
+	public function kasir($table)
+	{
+		return $this->db->get($table);
+	}
 }
 
 /* End of file mod.php */

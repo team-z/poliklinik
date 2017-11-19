@@ -39,15 +39,27 @@
                         <br><br>
                         <div class="body">
                             <table class="table table-striped data">
-                                <th>
-                                    <td>Id Pasien</td>
-                                    <td>Nama Pasien</td>
-                                    <td>Total Bayar</td>
-                                    <td>Action</td>
-                                </th>
                                 <tr>
-                                    <td></td>
+                                    <th>No</th>
+                                    <th>Id Pasien</th>
+                                    <th>Biaya Pendaftaran</th>
+                                    <th>Biaya Dokter</th>
+                                    <th>Biaya Obat</th>
+                                    <th>Total Biaya</th>
                                 </tr>
+                                <?php 
+                                    $no=1;
+                                    foreach ($kasir as $k){
+                                 ?>
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $k->id_pasien; ?></td>
+                                    <td><?php echo $k->biaya_daftar; ?></td>
+                                    <td><?php echo $k->biaya_dokter; ?></td>
+                                    <td><?php echo $k->biaya_obat; ?></td>
+                                    <td><?php echo $k->total_biaya; ?></td>
+                                </tr>
+                                <?php } ?>
                             </table>
                         </div>
                     </div>
