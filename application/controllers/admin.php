@@ -28,10 +28,10 @@ class Admin extends CI_Controller {
 		$id = $this->mod->get_id_poli();
 
 		if ($id) {
-			$nilai = substr($id['id_poli'], 1);
+			$nilai = substr($id['id_poli'], 2);
 			$nilai_baru = (int) $nilai;
 			$nilai_baru++;
-			$nilai_baru2 = "PL".str_pad($nilai_baru, 5, "0", STR_PAD_LEFT);
+			$nilai_baru2 = "PL".str_pad($nilai_baru, 4, "0", STR_PAD_LEFT);
 		}else{
 			$nilai_baru2 = "PL0001";
 		}
@@ -117,7 +117,7 @@ class Admin extends CI_Controller {
 	public function up_pas($id)
 	{
 		$where = array('id_pasien' => $id);
-		$object = array('id_pasien' => $nilai_baru2 , 
+		$object = array('id_pasien' => $this->input->post('id') , 
 						'nama_pasien' => $this->input->post('pasien'),
 						'tempat_lahir' => $this->input->post('tempat'),
 						'tanggal_lahir' => $this->input->post('tanggal'),

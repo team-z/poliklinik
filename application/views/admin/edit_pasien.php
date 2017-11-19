@@ -26,6 +26,7 @@
                                     </div>
                                     </center>
                                 </div>
+                                <input type="hidden" name="id" value="<?php echo $p->id_pasien; ?>">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">

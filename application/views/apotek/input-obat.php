@@ -32,11 +32,6 @@
                                             <input name="obat" type="text" class="form-control" placeholder="Nama Obat" />
                                         </div>
                                     </div>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" name="dist" class="form-control" placeholder="Distributor">
-                                    </div>
-                                </div>
                                         <p>
                                             <b>Pilih Jenis Obat</b>
                                         </p>
@@ -46,7 +41,8 @@
                                                 '1' => 'Pil' ,
                                                 '2' => 'Syrup',
                                                 '3' => 'Obat Tetes',
-                                                '4' => 'Plester' ); 
+                                                '4' => 'Plester',
+                                                '5' => 'Kapsul' ); 
                                                 foreach ($jenis as $j => $value) { ?>
                                                 <option value="<?php echo $j; ?>"><?php echo $value ?></option>
                                             <?php  } ?>
@@ -55,7 +51,15 @@
                                             <b>Pilih Kategori Obat</b>
                                         </p>
                                         <select name="kategori" id="" class="form-control show-tick">
-                                            
+                                             <?php 
+                                            $kategori = array(
+                                                '1' => 'keras' ,
+                                                '2' => 'bebas',
+                                                '3' => 'psikotropika',
+                                                '4' => 'rendah' ); 
+                                                foreach ($kategori as $k => $value) { ?>
+                                                <option value="<?php echo $k; ?>"><?php echo $value ?></option>
+                                            <?php  } ?>
                                         </select><br><br>
                                     <div class="form-group">
                                         <div class="form-line">

@@ -36,6 +36,7 @@ class Apoteker extends CI_Controller {
 		$object = array('id_obat' => $nilai_baru2 , 
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
+						'kategori' => $this->input->post('kategori'),
 						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan'),
 						'foto' => $this->input->post('foto'));
