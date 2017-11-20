@@ -66,11 +66,6 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
 		return $query->row_array();
 	}
-	public function kasir($table)
-	{
-		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
-		return $query->row_array();
-	}
 //MODEL OBAT
 	public function apotek($table)
 	{
