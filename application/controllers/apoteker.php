@@ -54,9 +54,9 @@ class Apoteker extends CI_Controller {
 
 	public function edit_ob($id)
 	{
-		$where = array('id_dokter' => $id);
-		$data['data'] = $this->mod->detail('dokter',$where)->result();
-		$this->load->view('poli/edit-dokter',$data);
+		$where = array('id_obat' => $id);
+		$data['obat'] = $this->mod->detail('obat',$where)->result();
+		$this->load->view('apotek/edit_obat',$data);
 	}
 
 	public function edit_obat()
