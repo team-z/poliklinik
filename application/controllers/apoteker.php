@@ -6,7 +6,7 @@ class Apoteker extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url','form');
+		$this->load->helper('form','url','download');
 		$this->load->library(array('upload','dompdf_gen'));
 		$this->load->model('mod');
 		if ($this->session->userdata('status') != 'apotek') {
@@ -22,7 +22,30 @@ class Apoteker extends CI_Controller {
 	{
 		$this->load->view('apotek/input-obat');
 	}
+	public function update_image($id)
+	{
+		$image = $this->input->post('image');
+		unlink('./uploads/'.$image);
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '6144';
+		$config['max_height']  = '6144';
+		
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
+		$where = array('id_obat' => $id );
 
+		$object = array('foto' => $gambar);
+		$this->mod->update('obat', $object, $where);
+		redirect('apoteker/edit_ob/'.$id);
+	}
 	public function input()
 	{
 		$id = $this->mod->get_id_obat();
@@ -35,12 +58,25 @@ class Apoteker extends CI_Controller {
 		}else{
 			$nilai_baru2 = "A0001";
 		}
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '5000';
+		$config['max_width']  = '6000';
+		$config['max_height']  = '2048';
+		$this->load->library('upload',$config);
+		$this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
 		$object = array('id_obat' => $nilai_baru2 , 
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'harga_satuan' => $this->input->post('harga_satuan')
-						//'foto' => $this->input->post('foto')
+						'harga_satuan' => $this->input->post('harga_satuan'),
+						'foto' => $gambar
 					);
 				
 		$this->mod->input_obat('obat',$object);
@@ -63,16 +99,22 @@ class Apoteker extends CI_Controller {
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'harga_satuan' => $this->input->post('harga_satuan')
-						//'foto' => $this->input->post('foto')
+						'harga_satuan' => $this->input->post('harga_satuan'),
+						'foto' => $this->input->post('foto')
 					);
 		$this->mod->up_obat('obat',$object,$where);
-		redirect('apoteker/index');
+		redirect('apoteker/edit_ob/'.$id);
 	}
 
 	public function hps_obat($id)
 	{
-		$where = array('id_obat' => $id );
+		$where = array('id_obat' =>$id );
+		$tampil = $this->mod->detail('obat', $where)->result();
+
+		foreach ($tampil as $le) {
+			$gambar = $le->gambar;
+		}
+		unlink('./uploads/'.$gambar);
 		$this->mod->del_obat('obat',$where);
 		redirect('apoteker');
 	}

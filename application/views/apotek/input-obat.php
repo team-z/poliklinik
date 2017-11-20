@@ -3,6 +3,30 @@
 <head>
 	<?php include 'css.php'; ?>
     <?php include 'js.php'; ?>
+    <script>
+            function tampilkanPreview(gambar,idpreview){
+                var gb = gambar.files;
+                for (var i = 0; i < gb.length; i++){
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+                        preview.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview);
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+                        alert("file yang anda upload tidak sesuai. Khusus mengunakan image.");
+                    }
+                   
+                }    
+            }
+    </script>
 </head>
 <body class="theme-red">
 	<?php include 'navigasi.php'; ?>
@@ -12,7 +36,7 @@
             <div class="block-header">
                 <h1>Input Obat</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/apoteker/input'); ?>">
+            <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/apoteker/input'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -20,11 +44,12 @@
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <center>
-                                    <div id="image-preview">
-                                        <label for="image-upload" id="image-label">Pilih Foto</label>
-                                            <input type="file" accept="img/*" name="image" id="image-upload" />
-                                    </div>
-                                    </center>
+                                            <h1>Pilih foto</h1>
+
+                                            <img id="preview" src="<?php echo base_url('images/person.png'); ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+
+                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" name="gambar">
+                                </center>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
