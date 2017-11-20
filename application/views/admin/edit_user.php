@@ -9,29 +9,30 @@
 	<section class="content">
         <div class="container-fluid">
             <div class="block-header">
+                
             </div>
-            <?php foreach ($pasien as $p): ?>           
-            <form method="post" action="<?php echo base_url('index.php/admin/up_pas/').$p->id_pasien; ?>">
+            <?php foreach ($user as $u): ?>           
+            <form method="post" action="">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                        <h1>Edit Dokter</h1>
+                        <h1>Edit User</h1>
                         </div>
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <center>
                                     <div class="form-group">
-                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$d->id_dokter; ?>">
+                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/admin/update_image/').$u->id; ?>">
 
                                             <h1>Pilih foto</h1>
 
-                                            <img id="preview" src="<?php echo base_url('uploads/').$d->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+                                            <img id="preview" src="<?php echo base_url('uploads/').$u->gambar; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
 
-                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $d->foto; ?>" name="gambar">
+                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $u->gambar; ?>" name="gambar">
 
-                                            <input type="hidden" name="image" value="<?php echo $d->foto; ?>"><br>
+                                            <input type="hidden" name="image" value="<?php echo $u->gambar; ?>"><br>
 
                                             <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons">camera_alt</i><span>Update Foto</span></button>
 
@@ -39,18 +40,31 @@
                                     </div>
                                     </center>
                                 </div>
-                                <input type="hidden" name="id" value="<?php echo $p->id_pasien; ?>">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input value="<?php echo $p->nama_pasien; ?>" name="pasien" type="text" class="form-control" placeholder="Nama Dokter" />
+                                        <input type="text" class="form-control" value="<?php echo $u->user; ?>" name="user">
+                                        <label class="form-label">Username</label>
                                         </div>
                                     </div>
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input value="<?php echo $p->tempat_lahir ?>" type="text" name="tempat" class="form-control" placeholder="Tempat Lahir">
+                                        <input value="<?php echo $u->password ?>" type="password" name="password" class="form-control" placeholder="Password">
+                                        <label class="form-label">Password</label>
                                     </div>
                                 </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input name="telpon" value="<?php echo $u->no_hp; ?>" type="text" class="form-control" placeholder="No Telepon" />
+                                            <label class="form-label">Nomor telepon</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <textarea name="alamat" rows="4" class="form-control no-resize" placeholder="Alamat Dokter" value="<?php echo $u->alamat; ?>"><?php echo $u->alamat; ?></textarea>
+                                            <label class="form-label">Alamat</label>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <p>
@@ -60,7 +74,7 @@
                                          <?php
                                             for ($i=1; $i<=31 ; $i++) { 
                                             echo '<option value="'.$i.'"';
-                                                if ($i==$p->tanggal_lahir) {
+                                                if ($i==$u->tanggal_lahir) {
                                                     echo ' selected="selected"';
                                                 } echo '>'.$i.'</option>\n';          
                                             }             
@@ -78,7 +92,7 @@
                                     <?php
                                         foreach ($months as $key=> $value) {
                                         echo '<option value="'.$key.'"';
-                                        if ($key==$p->bulan_lahir) {
+                                        if ($key==$u->bulan_lahir) {
                                         echo ' selected="selected"';
                                         } echo '>'.$value.'</option>\n';
                                         }
@@ -97,7 +111,7 @@
                                             $current_year = date('Y');
                                             for($starting_year; $starting_year <= $ending_year; $starting_year++) {
                                                 echo '<option value="'.$starting_year.'"';
-                                                if( $starting_year ==  $p->tahun_lahir ) {
+                                                if( $starting_year ==  $u->tahun_lahir ) {
                                                 echo ' selected="selected"';
                                                 }
                                                 echo ' >'.$starting_year.'</option>';
@@ -106,37 +120,12 @@
                                              </select>
                                         </div>
                                     </div><br>
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input name="telpon" value="<?php echo $p->no_hp; ?>" type="text" class="form-control" placeholder="No Telepon" />
+                                            <input name="telpon" value="<?php echo $u->tempat_lahir; ?>" type="text" class="form-control" placeholder="No Telepon" />
+                                            <label class="form-label">Tempat Lahir</label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <textarea name="alamat" rows="4" class="form-control no-resize" placeholder="Alamat Dokter" value="<?php echo $p->alamat; ?>"><?php echo $p->alamat; ?></textarea>
-                                        </div>
-                                    </div>
-                                     <div class="form-group">
-                                         <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                                <b>Jenis Kelamin</b>
-                                            </p>
-                                    <select name="gender" class="form-control show-tick">
-                                        <?php 
-                                    $gender = array('1' => 'Laki-laki', '2'=>'Perempuan');
-                                    ?>
-                                    <?php
-                                        foreach ($gender as $key=> $value) {
-                                        echo '<option value="'.$key.'"';
-                                        if ($key==$p->jenis_kelamin) {
-                                        echo ' selected="selected"';
-                                        } echo '>'.$value.'</option>\n';
-                                        }
-                                    ?>
-                                    </select>
-                                        </div>
-                                    </div><br>
                                     <div class="form-group">
                                             <button type="submit" class="btn btn-danger waves-effect">
                                                 <i class="material-icons">add</i>

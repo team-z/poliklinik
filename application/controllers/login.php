@@ -32,7 +32,8 @@ class Login extends CI_Controller {
 				$data_session = array(
 					'username' => $d->user,
 					'status' => $d->status,
-					'nama' => $d->nama_lengkap
+					'nama' => $d->nama_lengkap,
+					'foto' => $d->gambar
 				);
 
 				$this->session->set_userdata($data_session);
@@ -49,7 +50,7 @@ class Login extends CI_Controller {
 				redirect('apoteker');
 			}
 			else if ($this->session->userdata('status') =='resepsionis') {
-			
+				redirect('Resepsionis');
 			}
 			else if ($this->session->userdata('status') =='kasir') {
 				redirect('kasir');

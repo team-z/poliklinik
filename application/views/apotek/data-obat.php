@@ -30,10 +30,15 @@
                         <div class="header">
                             <h2>
                                 DATA OBAT
+                                
                             </h2>
                             <a href="<?php echo base_url('index.php/apoteker/tambahobat'); ?>" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Obat</span>
+                            </a>
+                            <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                                <i class="material-icons">print</i>
+                                <span>Cetak Obat</span>
                             </a>
                         </div>
                         <br><br>
