@@ -70,12 +70,10 @@ class Mod extends CI_Model {
 		return $query->row_array();
 	}
 
-<<<<<<< HEAD
 	public function kasir($table)
 	{
 		return $this->db->get($table);
 	}
-=======
 	public function apotek($table)
 	{
 		return $this->db->get($table);
@@ -96,7 +94,6 @@ class Mod extends CI_Model {
 		$this->db->delete($table);
 	}
 
->>>>>>> 3b96b70fc27a2943b4b39447110ffc96857423bf
 }
 
 /* End of file mod.php */

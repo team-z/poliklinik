@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Admin Panel</title>
+		<title>Kasir Panel</title>
 	<!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
                             </h2>
                              <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
-                                <span>Tambahkan</span>
+                                <span>Tambahkan Pembayaran</span>
                             </a>
                         </div>
                         <br><br>
