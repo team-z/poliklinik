@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
 						'no_hp' => $this->input->post('telpon'),
 						'jenis_kelamin' => $this->input->post('gender'));
 		$this->mod->up_pas('pasien',$object,$where);
-		redirect('admin/pasien');
+		redirect('admin/edit_pas/'.$id);
 	}
 
 //INI AKHIR SCRIPT PROSES PASIEN
