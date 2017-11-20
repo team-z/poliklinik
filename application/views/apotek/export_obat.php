@@ -15,7 +15,7 @@
 				<th>ID Obat</th>
 				<th>Nama Obat</th>
 				<th>Type</th>
-				<th>Stok</th>
+				<th>Kategori</th>
 				<th>Harga Satuan</th>
 			</tr>
 		</thead>
@@ -27,7 +27,7 @@
 				<td><?php echo $obt->id_obat; ?></td>
 				<td><?php echo $obt->nama_obat; ?></td>
 				<td><?php echo $obt->type; ?></td>
-				<td><?php echo $obt->stok; ?></td>
+				<td><?php echo $obt->kategori; ?></td>
 				<td><?php echo $obt->harga_satuan; ?></td>
 			</tr>
 			<?php } ?>
