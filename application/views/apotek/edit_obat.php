@@ -13,7 +13,7 @@
                 <h1>Edit Obat</h1>
             </div>
             <?php foreach ($obat as $o) { ?>
-            <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/'); ?>">
+            <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/').$u->id_obat; ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
