@@ -61,7 +61,6 @@ class Apoteker extends CI_Controller {
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan')
 						//'foto' => $this->input->post('foto')
 					);
