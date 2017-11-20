@@ -25,7 +25,9 @@
 
                                             <h1>Pilih foto</h1>
 
-                                            <img id="preview" src="<?php echo base_url('uploads/').$d->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+                                            <img id="preview" src="<?php if ($d->foto=="") {
+                                                echo base_url('images/person.png');
+                                            }else{echo base_url('uploads/').$d->foto;} ?>" height="200" width="200" class="img-circle" alt="User Image"/>
 
                                             <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $d->foto; ?>" name="gambar">
 
@@ -142,6 +144,10 @@
                                                 <i class="material-icons">add</i>
                                                 <span>Update</span>
                                             </button>
+                                            <a href="<?php echo base_url('index.php/poli/index'); ?>" class="btn btn-info waves-effect">
+                                                <i class="material-icons">exit_to_app</i>
+                                                <span>Kembali</span>
+                                            </a>
                                     </div>
                                 </div>
                                 </form>

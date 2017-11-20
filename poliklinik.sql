@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 05:27 AM
+-- Generation Time: Nov 20, 2017 at 05:38 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -80,9 +80,10 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 --
 
 INSERT INTO `dokter` (`id_dokter`, `id_poli`, `id_resep`, `nama_dokter`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `spesialisasi`, `foto`, `bio`, `status`) VALUES
-('D0001', 'PL0002', 0, 'Putri', 'Malang', '31', '12', '1999', 'Jl MT Haryono', '08345234312', '', '', '---', 1),
-('D0002', 'PL00001', 0, 'Dika', 'Lumajang', '3', '12', '1999', 'Lumajang', '08123456789', '', '', 'test', 2),
-('D0003', 'PL0001', 0, 'Sabdari Bella Chrisdian', 'Magelang', '10', '6', '1999', 'dfsdfsdfsdfdsfsdfsdfs', '89439308038493943', '', '', 'fdsfsfsdfsdfsfds', 0);
+('D0001', 'PL0002', 0, 'Putri', 'Malang', '31', '12', '1999', 'Jl MT Haryono', '08345234312', '', 'large.jpg', '---', 1),
+('D0002', 'PL00001', 0, 'Dika', 'Lumajang', '3', '12', '1999', 'Lumajang', '08123456789', '', 'd225d0c593d80f01ef0df7e09e30fcbf--anime-sketch-boy-manga-boy-drawing.jpg', 'test', 2),
+('D0003', 'PL0001', 0, 'Sabdari Bella Chrisdian', 'Magelang', '10', '6', '1999', 'dfsdfsdfsdfdsfsdfsdfs', '89439308038493943', '', '007a2ededa8b0ce87e048c60fa6f847b.jpg', 'fdsfsfsdfsdfsfds', 0),
+('D0004', 'PL0002', 0, 'Kaneki', 'Tokyo', '10', '6', '1975', '???', '98765432', '', 'how-to-draw-kaneki-ken-from-tokyo-ghoul_3_000000016217_4.png', '????', 0);
 
 -- --------------------------------------------------------
 
