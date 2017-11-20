@@ -42,21 +42,13 @@ class Apoteker extends CI_Controller {
 		$object = array('id_obat' => $nilai_baru2 , 
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
-<<<<<<< HEAD
 						'kategori' => $this->input->post('kategori'),
 						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan')
 						//'foto' => $this->input->post('foto')
 					);
+				
 		$this->mod->input_obat('obat',$object);
-=======
-						// 'kategori' => $kategori,
-						'stok' => $stok,
-						'harga_satuan' => $harga_satuan,
-						'foto' => "kalska");
-		$this->mod->input_obat('obat',$object);
-
->>>>>>> c994c4569f337c149ce29644472e53241c0d5113
 		redirect('apoteker/index');
 	}
 
