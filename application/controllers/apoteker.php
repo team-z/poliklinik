@@ -44,11 +44,11 @@ class Apoteker extends CI_Controller {
 		redirect('apotek/data-obat');
 	}
 
-	public function del_obat($id)
+	public function hps_obat($id)
 	{
-		$where = array('id_' =>$id );
+		$where = array('id_obat' => $id );
 		$this->mod->del_obat('obat',$where);
-		redirect('apotek/data-obat');
+		redirect('apotek');
 	}
 
 }
