@@ -98,6 +98,11 @@ class Mod extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+
+	public function up_obat($table,$object,$where)
+	{
+		$this->db->update($table,$object,$where);
+	}
 }
 
 /* End of file mod.php */
