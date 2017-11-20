@@ -85,11 +85,6 @@ class Mod extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
 //MODEL PENDAFTARAN
 	public function get_id_pendaftaran()
 	{
@@ -107,9 +102,6 @@ class Mod extends CI_Model {
 	{
 		return $this->db->get($table);
 	}
-
->>>>>>> c4ef58971b909c64c85809a93383e30aa2b20db8
->>>>>>> 79b853e11d772a24ee7f274592985d2d1a649ac2
 	public function up_obat($table,$object,$where)
 	{
 		$this->db->update($table,$object,$where);
