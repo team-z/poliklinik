@@ -23,15 +23,15 @@
                                 <div class="col-sm-6">
                                     <center>
                                     <div class="form-group">
-                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$d->id_dokter; ?>">
+                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$p->id_pasien; ?>">
 
                                             <h1>Pilih foto</h1>
 
-                                            <img id="preview" src="<?php echo base_url('uploads/').$d->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+                                            <img id="preview" src="<?php echo base_url('uploads/').$p->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
 
-                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $d->foto; ?>" name="gambar">
+                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $p->foto; ?>" name="gambar">
 
-                                            <input type="hidden" name="image" value="<?php echo $d->foto; ?>"><br>
+                                            <input type="hidden" name="image" value="<?php echo $p->foto; ?>"><br>
 
                                             <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons">camera_alt</i><span>Update Foto</span></button>
 

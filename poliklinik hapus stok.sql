@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 05:27 AM
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- Generation Time: Nov 20, 2017 at 05:28 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `poliklinik`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `bayar`
 --
 
-CREATE TABLE IF NOT EXISTS `bayar` (
-  `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bayar` (
+  `id_pembayaran` int(11) NOT NULL,
   `id_bayar` varchar(11) NOT NULL,
   `id_pasien` varchar(11) NOT NULL,
   `biaya_daftar` int(11) NOT NULL,
@@ -36,9 +36,8 @@ CREATE TABLE IF NOT EXISTS `bayar` (
   `biaya_total` int(11) NOT NULL,
   `uang_bayar` int(11) NOT NULL,
   `kembalian` int(11) NOT NULL,
-  `Status` varchar(11) NOT NULL,
-  PRIMARY KEY (`id_pembayaran`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `Status` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bayar`
@@ -57,7 +56,7 @@ INSERT INTO `bayar` (`id_pembayaran`, `id_bayar`, `id_pasien`, `biaya_daftar`, `
 -- Table structure for table `dokter`
 --
 
-CREATE TABLE IF NOT EXISTS `dokter` (
+CREATE TABLE `dokter` (
   `id_dokter` char(8) NOT NULL,
   `id_poli` varchar(255) NOT NULL,
   `id_resep` int(11) NOT NULL,
@@ -71,8 +70,7 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   `spesialisasi` varchar(255) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `bio` text NOT NULL,
-  `status` int(2) NOT NULL,
-  PRIMARY KEY (`id_dokter`)
+  `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -90,24 +88,21 @@ INSERT INTO `dokter` (`id_dokter`, `id_poli`, `id_resep`, `nama_dokter`, `tempat
 -- Table structure for table `obat`
 --
 
-CREATE TABLE IF NOT EXISTS `obat` (
+CREATE TABLE `obat` (
   `id_obat` varchar(11) NOT NULL,
   `nama_obat` varchar(255) NOT NULL,
   `type` enum('pil','sirup','umum') NOT NULL,
-  `stok` int(11) NOT NULL,
+  `kategori` enum('bebas','keras','psikotropika','rendah') NOT NULL,
   `harga_satuan` int(11) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_obat`)
+  `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `type`, `stok`, `harga_satuan`, `foto`) VALUES
-('1', 'jsdjsjs', 'pil', 100, 10000, 'kalska'),
-('2', 'parasetamol', 'pil', 100, 10000, 'kalska'),
-('A0001', 'asasa', 'pil', 200, 1000, 'kalska');
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `type`, `kategori`, `harga_satuan`, `foto`) VALUES
+('A0002', 'ok', 'sirup', 'keras', 120000, '');
 
 -- --------------------------------------------------------
 
@@ -115,7 +110,7 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `type`, `stok`, `harga_satuan`, `fot
 -- Table structure for table `pasien`
 --
 
-CREATE TABLE IF NOT EXISTS `pasien` (
+CREATE TABLE `pasien` (
   `id_pasien` varchar(11) NOT NULL,
   `nama_pasien` varchar(255) NOT NULL,
   `umur_pasien` varchar(255) NOT NULL,
@@ -125,8 +120,7 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `tahun_lahir` int(11) NOT NULL,
   `alamat` text NOT NULL,
   `no_hp` varchar(255) NOT NULL,
-  `jenis_kelamin` int(2) NOT NULL,
-  PRIMARY KEY (`id_pasien`)
+  `jenis_kelamin` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -147,14 +141,13 @@ INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `umur_pasien`, `tempat_lahir`,
 -- Table structure for table `pembayaran`
 --
 
-CREATE TABLE IF NOT EXISTS `pembayaran` (
+CREATE TABLE `pembayaran` (
   `id_bayar` char(8) NOT NULL,
   `id_pasien` char(8) NOT NULL,
   `biaya_daftar` int(11) NOT NULL,
   `biaya_dokter` int(11) NOT NULL,
   `biaya_obat` int(11) NOT NULL,
-  `total_biaya` int(11) NOT NULL,
-  PRIMARY KEY (`id_bayar`)
+  `total_biaya` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -175,15 +168,14 @@ INSERT INTO `pembayaran` (`id_bayar`, `id_pasien`, `biaya_daftar`, `biaya_dokter
 -- Table structure for table `pendaftaran`
 --
 
-CREATE TABLE IF NOT EXISTS `pendaftaran` (
+CREATE TABLE `pendaftaran` (
   `id_pendaftaran` varchar(11) NOT NULL,
   `id_pasien` varchar(11) NOT NULL,
   `id_poli` varchar(11) NOT NULL,
   `id_dokter` varchar(11) NOT NULL,
   `tanggal_pendaftaran` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `biaya` int(11) NOT NULL,
-  `keterangan` text NOT NULL,
-  PRIMARY KEY (`id_pendaftaran`)
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -220,10 +212,9 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_pasien`, `id_poli`, `id_dokter`
 -- Table structure for table `poli`
 --
 
-CREATE TABLE IF NOT EXISTS `poli` (
+CREATE TABLE `poli` (
   `id_poli` char(8) NOT NULL,
-  `nama_poli` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_poli`)
+  `nama_poli` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -241,15 +232,14 @@ INSERT INTO `poli` (`id_poli`, `nama_poli`) VALUES
 -- Table structure for table `rekam`
 --
 
-CREATE TABLE IF NOT EXISTS `rekam` (
+CREATE TABLE `rekam` (
   `id_rekam` char(8) NOT NULL,
   `id_pasien` char(8) NOT NULL,
   `tanggal` int(11) NOT NULL,
   `bulan` int(11) NOT NULL,
   `tahun` int(11) NOT NULL,
   `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `keterangan` text NOT NULL,
-  PRIMARY KEY (`id_rekam`)
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -265,15 +255,14 @@ INSERT INTO `rekam` (`id_rekam`, `id_pasien`, `tanggal`, `bulan`, `tahun`, `wakt
 -- Table structure for table `resep`
 --
 
-CREATE TABLE IF NOT EXISTS `resep` (
-  `id_resep` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `resep` (
+  `id_resep` int(11) NOT NULL,
   `id_dokter` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
   `jumlah obat` int(11) NOT NULL,
   `dosis` varchar(255) NOT NULL,
-  `total_harga` int(11) NOT NULL,
-  PRIMARY KEY (`id_resep`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `total_harga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -281,8 +270,8 @@ CREATE TABLE IF NOT EXISTS `resep` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` enum('admin','poli','apotek','resepsionis','kasir') NOT NULL,
@@ -293,21 +282,103 @@ CREATE TABLE IF NOT EXISTS `user` (
   `alamat` text NOT NULL,
   `no_hp` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `nama_lengkap` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `nama_lengkap` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `user`, `password`, `status`, `tempat_lahir`, `tanggal_lahir`, `bulan_lahir`, `tahun_lahir`, `alamat`, `no_hp`, `gambar`, `nama_lengkap`) VALUES
-(1, 'admin', 'admin', 'admin', 'Jatim', '3', '1', '1999', 'lumajang', '08123456789', 'user.jpg', 'ADMINISTRATOR'),
-(2, 'poli', 'poli', 'poli', 'lumajang', '10', '9', '1962', 'lumajang', '08124356783', 'pein_sama_by_evilaka-d5q60f6.jpg', 'MASTER POLI'),
-(3, 'apotek', 'apotek', 'apotek', 'Akihabara', '5', '4', '1998', 'Tokyo', '0998765432', 's2Vhf0Mu.png', 'KAORI MIYAZONO'),
-(4, 'resepsionis', 'resepsionis', 'resepsionis', 'tokyo', '1', '1', '1957', 'Tokyo', '987654321', 'arima_kousei_by_axionfong-db21fyw.jpg', 'ARIMA KOUSEI'),
-(5, 'kasir', 'kasir', 'kasir', '??', '1', '1', '1957', '??', '08123456789', '0950c553f0f5b0ab00c46cc9f55614f6.jpg', 'JUN NARUSE');
+(1, 'admin@admin.com', 'admin', 'admin', 'lumajang', '3', 'Januari', '1999', 'lumajang', '08123456789', '', ''),
+(2, 'poli@poli.com', 'poli', 'poli', 'lumajang', '9', 'Maret', '2003', 'lumajang', '08124356783', '', ''),
+(3, 'apotek', 'apotek', 'apotek', '', '', '', '', '', '', '', ''),
+(4, 'resepsionis', 'resepsionis', 'resepsionis', '', '', '', '', '', '', '', ''),
+(5, 'kasir', 'kasir', 'kasir', '', '', '', '', '', '', '', '');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bayar`
+--
+ALTER TABLE `bayar`
+  ADD PRIMARY KEY (`id_pembayaran`);
+
+--
+-- Indexes for table `dokter`
+--
+ALTER TABLE `dokter`
+  ADD PRIMARY KEY (`id_dokter`);
+
+--
+-- Indexes for table `obat`
+--
+ALTER TABLE `obat`
+  ADD PRIMARY KEY (`id_obat`);
+
+--
+-- Indexes for table `pasien`
+--
+ALTER TABLE `pasien`
+  ADD PRIMARY KEY (`id_pasien`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_bayar`);
+
+--
+-- Indexes for table `pendaftaran`
+--
+ALTER TABLE `pendaftaran`
+  ADD PRIMARY KEY (`id_pendaftaran`);
+
+--
+-- Indexes for table `poli`
+--
+ALTER TABLE `poli`
+  ADD PRIMARY KEY (`id_poli`);
+
+--
+-- Indexes for table `rekam`
+--
+ALTER TABLE `rekam`
+  ADD PRIMARY KEY (`id_rekam`);
+
+--
+-- Indexes for table `resep`
+--
+ALTER TABLE `resep`
+  ADD PRIMARY KEY (`id_resep`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bayar`
+--
+ALTER TABLE `bayar`
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `resep`
+--
+ALTER TABLE `resep`
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
