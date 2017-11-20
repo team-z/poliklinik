@@ -66,10 +66,6 @@
 <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $.uploadPreview({
-    input_field: "#image-upload",
-    preview_box: "#image-preview",
-    label_field: "#image-label"
-  });
+  
 });
 </script>

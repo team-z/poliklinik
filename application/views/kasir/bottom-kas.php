@@ -31,6 +31,7 @@
 
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>js/admin.js"></script>
+    <script src="<?php echo base_url(); ?>js/jquery.mask.min.js"></script>
     <script src="<?php echo base_url(); ?>js/pages/tables/jquery-datatable.js"></script>
      <script src="<?php echo base_url('plugins/node-waves/waves.js') ?>"></script>
     <script src="<?php echo base_url('js/pages/ui/modals.js') ?>"></script>
