@@ -38,17 +38,18 @@ class Apoteker extends CI_Controller {
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
 						'stok' => $this->input->post('stok'),
-						'harga_satuan' => $this->input->post('harga_satuan'),
-						'foto' => $this->input->post('foto'));
+						'harga_satuan' => $this->input->post('harga_satuan')
+						//'foto' => $this->input->post('foto')
+					);
 		$this->mod->input_obat('obat',$object);
-		redirect('apotek/data-obat');
+		redirect('apoteker/index');
 	}
 
 	public function hps_obat($id)
 	{
 		$where = array('id_obat' => $id );
 		$this->mod->del_obat('obat',$where);
-		redirect('apotek');
+		redirect('apoteker');
 	}
 
 }

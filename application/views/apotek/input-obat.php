@@ -73,7 +73,7 @@
                                                 Rp.
                                             </span>
                                             <div class="form-line">
-                                                <input type="number" class="form-control" placeholder="Cth : 50000">
+                                                <input type="number" name="harga_satuan" class="form-control" placeholder="Cth : 50000">
                                             </div>
                                         </div>
                                     </div>
