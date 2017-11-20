@@ -54,20 +54,20 @@ class Apoteker extends CI_Controller {
 		$this->load->view('apotek/edit_obat',$data);
 	}
 
-	public function edit_obat($id)
+	public function edit_obat()
 	{
-		$where = array('id_obat' => $id_obat);
-		$object = array('id_obat' => $this->input->post('id') ,
+		$id = $this->input->post('id');
+		$where = array('id_obat' => $id );
+		$object = array('id_obat' => $id ,
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan')
 						//'foto' => $this->input->post('foto')
 					);
 				
 		$this->mod->up_obat('obat',$object,$where);
-		redirect('apoteker/edit_ob');
+		redirect('apoteker/index');
 	}
 
 	public function hps_obat($id)
