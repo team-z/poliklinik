@@ -26,10 +26,6 @@ class Apoteker extends CI_Controller {
 	public function input()
 	{
 		$id = $this->mod->get_id_obat();
-		$kategori = $this->input->post('kategori');
-		$stok = $this->input->post('stok');
-		$harga_satuan = $this->input->post('harga_satuan');
-		$foto = $this->input->post('foto');
 
 		if ($id) {
 			$nilai = substr($id['id_obat'], 1);
@@ -42,20 +38,42 @@ class Apoteker extends CI_Controller {
 		$object = array('id_obat' => $nilai_baru2 , 
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
-						// 'kategori' => $kategori,
-						'stok' => $stok,
-						'harga_satuan' => $harga_satuan,
-						'foto' => "kalska");
+						'kategori' => $this->input->post('kategori'),
+						'harga_satuan' => $this->input->post('harga_satuan')
+						//'foto' => $this->input->post('foto')
+					);
+				
 		$this->mod->input_obat('obat',$object);
-
 		redirect('apoteker/index');
 	}
 
-	public function del_obat($id)
+	public function edit_ob($id)
 	{
-		$where = array('id_' =>$id );
+		$where = array('id_obat' => $id);
+		$data['obat'] = $this->mod->detail('obat',$where)->result();
+		$this->load->view('apotek/edit_obat',$data);
+	}
+
+	public function edit_obat()
+	{
+		$where = array('id_obat' => $id);
+		$object = array('id_obat' => $nilai_baru2 , 
+						'nama_obat' => $this->input->post('obat'),
+						'type' => $this->input->post('type'),
+						'kategori' => $this->input->post('kategori'),
+						'harga_satuan' => $this->input->post('harga_satuan')
+						//'foto' => $this->input->post('foto')
+					);
+				
+		$this->mod->up_obat('obat',$object);
+		redirect('apoteker/edit_ob');
+	}
+
+	public function hps_obat($id)
+	{
+		$where = array('id_obat' => $id );
 		$this->mod->del_obat('obat',$where);
-		redirect('apotek/data-obat');
+		redirect('apoteker');
 	}
 
 	public function cetak_obat()

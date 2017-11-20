@@ -62,7 +62,11 @@ class Mod extends CI_Model {
 		return $query->result();
 	}
 //MODEL POLI
-	public function get_id_poli()
+	public function get_id_poli(){
+		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
+		return $query->row_array();
+	}
+	public function kasir($table)
 	{
 		$query = $this->db->query("SELECT MAX(id_poli) AS id_poli FROM poli");
 		return $query->row_array();
@@ -103,7 +107,11 @@ class Mod extends CI_Model {
 	{
 		return $this->db->get($table);
 	}
-	
+
+	public function up_obat($table,$object,$where)
+	{
+		$this->db->update($table,$object,$where);
+	}
 }
 
 /* End of file mod.php */

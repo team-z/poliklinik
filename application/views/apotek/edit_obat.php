@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include 'css.php'; ?>
+    <?php include 'css.php'; ?>
     <?php include 'js.php'; ?>
 </head>
 <body class="theme-red">
-	<?php include 'navigasi.php'; ?>
-	<?php include 'sidebar.php'; ?>
-	<section class="content">
+    <?php include 'navigasi.php'; ?>
+    <?php include 'sidebar.php'; ?>
+    <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h1>Input Obat</h1>
             </div>
-            <form method="post" action="<?php echo base_url('index.php/apoteker/input'); ?>">
+            <?php foreach ($obat as $o) { ?>
+            <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/'); ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -29,7 +30,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input name="obat" type="text" class="form-control" placeholder="Nama Obat" />
+                                            <input name="obat" type="text" class="form-control" placeholder="Nama Obat" value="<?php echo $o->nama_obat; ?>" />
                                         </div>
                                     </div>
                                         <p>
@@ -68,7 +69,7 @@
                                                 Rp.
                                             </span>
                                             <div class="form-line">
-                                                <input type="number" name="harga_satuan" class="form-control" placeholder="Cth : 50000">
+                                                <input type="number" name="harga_satuan" class="form-control" placeholder="Cth : 50000" value="<?php echo $o->harga_satuan; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -85,8 +86,9 @@
                 </div>
             </div>
             </form>
+            <?php } ?>
         </div>
     </section>
-	
+    
 </body>
 </html>
