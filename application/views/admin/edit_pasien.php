@@ -16,39 +16,22 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                        <h1>Edit Dokter</h1>
+                        <h1>Edit Pasien</h1>
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <center>
-                                    <div class="form-group">
-                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$p->id_pasien; ?>">
-
-                                            <h1>Pilih foto</h1>
-
-                                            <img id="preview" src="<?php echo base_url('uploads/').$p->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
-
-                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $p->foto; ?>" name="gambar">
-
-                                            <input type="hidden" name="image" value="<?php echo $p->foto; ?>"><br>
-
-                                            <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons">camera_alt</i><span>Update Foto</span></button>
-
-                                        </form>
-                                    </div>
-                                    </center>
-                                </div>
                                 <input type="hidden" name="id" value="<?php echo $p->id_pasien; ?>">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input value="<?php echo $p->nama_pasien; ?>" name="pasien" type="text" class="form-control" placeholder="Nama Dokter" />
+                                            <input value="<?php echo $p->nama_pasien; ?>" name="pasien" type="text" class="form-control" />
+                                            <label class="form-label">NAMA PASIEN</label>
                                         </div>
                                     </div>
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input value="<?php echo $p->tempat_lahir ?>" type="text" name="tempat" class="form-control" placeholder="Tempat Lahir">
+                                        <input value="<?php echo $p->tempat_lahir ?>" type="text" name="tempat" class="form-control">
+                                        <label class="form-label">TEMPAT LAHIR</label>
                                     </div>
                                 </div>
                                     <div class="row">
@@ -106,14 +89,18 @@
                                              </select>
                                         </div>
                                     </div><br>
-                                    <div class="form-group">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input name="telpon" value="<?php echo $p->no_hp; ?>" type="text" class="form-control" placeholder="No Telepon" />
+                                            <input name="telpon" value="<?php echo $p->no_hp; ?>" type="text" class="form-control" />
+                                            <label class="form-label">NOMOR TELEPON</label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
                                             <textarea name="alamat" rows="4" class="form-control no-resize" placeholder="Alamat Dokter" value="<?php echo $p->alamat; ?>"><?php echo $p->alamat; ?></textarea>
+                                            <label class="form-label">ALAMAT</label>
                                         </div>
                                     </div>
                                      <div class="form-group">
