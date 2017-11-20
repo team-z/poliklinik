@@ -92,8 +92,6 @@ class Apoteker extends CI_Controller {
 
 	public function edit_obat()
 	{
-		$where = array('id_obat' => $id);
-		$where = array('id_obat' => $id);
 		$id = $this->input->post('id');
 		$where = array('id_obat' => $id );
 		$object = array('id_obat' => $id ,
@@ -103,10 +101,9 @@ class Apoteker extends CI_Controller {
 						'harga_satuan' => $this->input->post('harga_satuan'),
 						'foto' => $this->input->post('foto')
 					);
-		$this->mod->up_obat('obat',$object);
-		redirect('apoteker/edit_ob');
+		
 		$this->mod->up_obat('obat',$object,$where);
-		redirect('apoteker/edit_ob/'.$id);
+		redirect('apoteker/index');
 	}
 
 	public function hps_obat($id)
