@@ -75,10 +75,6 @@ class Mod extends CI_Model {
 		$query = $this->db->query("SELECT id_pendaftaran FROM pendaftaran ORDER BY id_pendaftaran DESC LIMIT 1");
 		return $query->row_array();
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
 	public function kasir($table)
 	{
 		return $this->db->get($table);
@@ -102,14 +98,10 @@ class Mod extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
-
-<<<<<<< HEAD
-=======
 	public function up_obat($table,$object,$where)
 	{
 		$this->db->update($table,$object,$where);
 	}
->>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
 }
 
 /* End of file mod.php */

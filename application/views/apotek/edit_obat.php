@@ -27,6 +27,7 @@
                                     </div>
                                     </center>
                                 </div>
+                                <input type="hidden" name="id" value="<?php echo $o->id_obat; ?>">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
