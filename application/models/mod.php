@@ -106,6 +106,12 @@ class Mod extends CI_Model {
 	{
 		$this->db->update($table,$object,$where);
 	}
+//MODEL PEMBAYARAN
+	public function get_id_pembayaran()
+	{
+		$query = $this->db->query("SELECT id_bayar FROM pembayaran ORDER BY id_pembayaran DESC LIMIT 1");
+		return $query->row_array();
+	}
 }
 
 /* End of file mod.php */
