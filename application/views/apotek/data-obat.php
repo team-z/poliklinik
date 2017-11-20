@@ -58,7 +58,7 @@
                                         $no = 1; 
                                         foreach ($user as $u) { ?>
                                         <tr>
-                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $u->id_obat; ?></td>
                                             <td>no pict</td>
                                             <td><?php echo $u->nama_obat; ?></td>
                                         	<td>

@@ -26,10 +26,6 @@ class Apoteker extends CI_Controller {
 	public function input()
 	{
 		$id = $this->mod->get_id_obat();
-		$kategori = $this->input->post('kategori');
-		$stok = $this->input->post('stok');
-		$harga_satuan = $this->input->post('harga_satuan');
-		$foto = $this->input->post('foto');
 
 		if ($id) {
 			$nilai = substr($id['id_obat'], 1);
@@ -43,7 +39,6 @@ class Apoteker extends CI_Controller {
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan')
 						//'foto' => $this->input->post('foto')
 					);
@@ -72,7 +67,7 @@ class Apoteker extends CI_Controller {
 					);
 				
 		$this->mod->up_obat('obat',$object);
-		redirect('apoteker/index');
+		redirect('apoteker/edit_ob');
 	}
 
 	public function hps_obat($id)
