@@ -92,14 +92,8 @@ class Apoteker extends CI_Controller {
 
 	public function edit_obat()
 	{
-<<<<<<< HEAD
 		$where = array('id_obat' => $id);
-=======
-<<<<<<< HEAD
 		$where = array('id_obat' => $id);
-=======
->>>>>>> 04cdb61135ea53e55b911525137c057060996edd
->>>>>>> 52b0bf450524ce0867574b895167b517872fe4a5
 		$id = $this->input->post('id');
 		$where = array('id_obat' => $id );
 		$object = array('id_obat' => $id ,
@@ -111,12 +105,6 @@ class Apoteker extends CI_Controller {
 					);
 		$this->mod->up_obat('obat',$object);
 		redirect('apoteker/edit_ob');
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 04cdb61135ea53e55b911525137c057060996edd
->>>>>>> 52b0bf450524ce0867574b895167b517872fe4a5
 		$this->mod->up_obat('obat',$object,$where);
 		redirect('apoteker/edit_ob/'.$id);
 	}
