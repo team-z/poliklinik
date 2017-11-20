@@ -62,11 +62,6 @@
                                             <?php  } ?>
                                         </select><br><br>
                                     <div class="form-group">
-                                        <div class="form-line">
-                                            <input name="stok" type="number" class="form-control" placeholder="Stok Barang" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <b>Harga Satuan</b>
                                         <div class="input-group">
                                             <span class="input-group-addon">
