@@ -12,7 +12,7 @@
                 <h1>Edit Dokter</h1>
             </div>
             <?php foreach ($data as $d): ?>           
-            <form method="post" action="<?php echo base_url('index.php/poli/updatedokter/').$d->id_dokter; ?>">
+            
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -20,12 +20,24 @@
                             <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <center>
-                                    <div id="image-preview">
-                                        <label for="image-upload" id="image-label">Pilih Foto</label>
-                                            <input type="file" name="image" id="image-upload" />
+                                    <div class="form-group">
+                                        <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/update_image/').$d->id_dokter; ?>">
+
+                                            <h1>Pilih foto</h1>
+
+                                            <img id="preview" src="<?php echo base_url('uploads/').$d->foto; ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+
+                                            <input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" value="<?php echo $d->foto; ?>" name="gambar">
+
+                                            <input type="hidden" name="image" value="<?php echo $d->foto; ?>"><br>
+
+                                            <button type="submit" class="btn btn-danger btn-lg"><i class="material-icons">camera_alt</i><span>Update Foto</span></button>
+
+                                        </form>
                                     </div>
                                     </center>
                                 </div>
+                                <form enctype="multipart/form-data" method="post" action="<?php echo base_url('index.php/poli/updatedokter/').$d->id_dokter; ?>">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="form-line">
@@ -132,15 +144,39 @@
                                             </button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </form>
             <?php endforeach ?>
         </div>
     </section>
 	<?php include 'js.php'; ?>
+    <script>
+            function tampilkanPreview(gambar,idpreview){
+                var gb = gambar.files;
+                for (var i = 0; i < gb.length; i++){
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+                        preview.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview);
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+                        alert("file yang anda upload tidak sesuai. Khusus mengunakan image.");
+                    }
+                   
+                }    
+            }
+        </script>
 </body>
 </html>

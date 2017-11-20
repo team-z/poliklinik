@@ -9,14 +9,12 @@
 		Kartu Pendaftaran<br>
 		<hr width="100%" height="75"></hr><br>
 	</center>
-	<?php 
-		$this->db->join('pendaftaran', 'pasien.id_pasien = pendaftaran.id_pasien');
-		$this->db->join('poli', 'pendaftaran.id_poli = poli.id_poli');
-		$query = $this->db->get()->row_array();
-	?>
 	POLIKLINIK PELANGI KASIH<br>
 	Jl.Lumajang Kota, No. 59, Lumajang<BR><br>
 	<table>
+		<?php  
+		foreach ($join as $key) {
+		?>
 		<tr>
 			<td>Nomor Pendaftaran</td>
 			<td>:</td>
@@ -30,17 +28,22 @@
 		<tr>
 			<td>Nama Pasien</td>
 			<td>:</td>
-			<td><?php echo $query->nama_pasien; ?></td>
+			<td><?php echo $key->nama_pasien; ?></td>
 		</tr>
 		<tr>
 			<td>Poli</td>
 			<td>:</td>
-			<td><?php echo $query->nama_poli; ?></td>
+			<td><?php echo $id_poli; ?></td>
+		</tr>
+		<tr>
+			<td>Dokter</td>
+			<td>:</td>
+			<td><?php echo $key->nama_dokter; ?></td>
 		</tr>
 		<tr>
 			<td>Tanggal Pendaftaran</td>
 			<td>:</td>
-			<td><?php echo $query->tanggal_pendaftaran; ?></td>
+			<td><?php echo $key->tanggal_pendaftaran; ?></td>
 		</tr>
 		<tr>
 			<td>Biaya Pendaftaran</td>
@@ -52,6 +55,7 @@
 			<td>:</td>
 			<td><?php echo $keterangan; ?></td>
 		</tr>
+		<?php } ?>
 	</table>
 	<br><br>
 	Tanggal Cetak <?php date_default_timezone_set("Asia/Jakarta"); $tgl = date("d F Y h:i:sa"); echo $tgl; ?>

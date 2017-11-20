@@ -1,5 +1,6 @@
 <html>
 	<head>
+<<<<<<< HEAD
 		<title>Kasir Panel</title>
 	<!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -18,6 +19,10 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+=======
+		<title>Admin Panel</title>
+	<?php include 'top-kas.php'; ?>
+>>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
 	</head>
 	<body class="theme-red">
 		<?php include 'navigasi.php'; ?>
@@ -29,37 +34,48 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                FORM PEMBAYARAN
+                                FORM PEMBAYARAN YANG SUDAH MEMBAYAR
                             </h2>
+<<<<<<< HEAD
                              <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Pembayaran</span>
+=======
+                             <a href="<?php echo base_url('index.php/kasir/cetak_bayarlunas'); ?>" target="_blank" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
+                                <i class="material-icons">print</i>
+                                <span>Cetak PDF</span>
+>>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
                             </a>
                         </div>
-                        <br><br>
                         <div class="body">
                             <table class="table table-striped data">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Id Pasien</th>
-                                    <th>Biaya Pendaftaran</th>
-                                    <th>Biaya Dokter</th>
-                                    <th>Biaya Obat</th>
-                                    <th>Total Biaya</th>
-                                </tr>
-                                <?php 
-                                    $no=1;
-                                    foreach ($kasir as $k){
-                                 ?>
-                                <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $k->id_pasien; ?></td>
-                                    <td><?php echo $k->biaya_daftar; ?></td>
-                                    <td><?php echo $k->biaya_dokter; ?></td>
-                                    <td><?php echo $k->biaya_obat; ?></td>
-                                    <td><?php echo $k->total_biaya; ?></td>
-                                </tr>
-                                <?php } ?>
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Id Pasien</th>
+                                        <th>Nama Pasien</th>
+                                        <th>Biaya Pendaftaran</th>
+                                        <th>Biaya Dokter</th>
+                                        <th>Biaya Obat</th>
+                                        <th>Total Biaya</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php  
+                                    $no = 1;
+                                    foreach ($kasir as $k) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $no++; ?></td>
+                                        <td align="center"><?php echo $k->id_pasien; ?></td>
+                                        <td align="center"><?php echo $k->nama_pasien; ?></td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_daftar,2,',','.'); ?> ,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_dokter,2,',','.'); ?> ,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_obat,2,',','.'); ?>,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->total_biaya,2,',','.'); ?> ,-</td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -67,19 +83,8 @@
             </div>
         </div>
     </section>
-		<!-- Bootstrap Core Js -->
-    <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="<?php echo base_url(); ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="<?php echo base_url(); ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="<?php echo base_url(); ?>plugins/node-waves/waves.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/sweetalert/sweetalert.min.js"></script>
-    <script type="text/javascript">
+     <!-- taruh dibawah plugins/sweetalert/sweetalert.min.js -->
+    <!-- <script type="text/javascript">
         $('.confirmation').on('click',function(e) {
             e.preventDefault(); // Prevent the href from redirecting directly
             var linkURL = $(this).attr("href");
@@ -95,15 +100,7 @@
                 window.location.href = linkURL;
             });
         }                                                
-</script>
-    <!-- Bootstrap Notify Plugin Js -->
-    <script src="<?php echo base_url(); ?>plugins/bootstrap-notify/bootstrap-notify.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>js/pages/ui/tooltips-popovers.js"></script>
-    
-    <!-- Custom Js -->
-    <script src="<?php echo base_url(); ?>js/admin.js"></script>
-    <script src="<?php echo base_url(); ?>js/pages/tables/jquery-datatable.js"></script>
+    </script> -->
+	<?php include 'bottom-kas.php'; ?>
 	</body>
 </html>

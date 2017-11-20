@@ -37,6 +37,10 @@
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan</span>
                             </a>
+                            <a href="<?php echo base_url('index.php/Poli/cetak_dok') ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                                <i class="material-icons">print</i>
+                                <span>Cetak Dokter</span>
+                            </a>
                         </div>
                         <br><br>
                         <div class="body">
@@ -57,7 +61,7 @@
                                         foreach ($user as $u) { ?>
                                         <tr>
                                             <td><?php echo $u->id_dokter; ?></td>
-                                            <td>no pict</td>
+                                            <td><img class="img-circle" height="100" width="100" src="<?php echo base_url('uploads/').$u->foto; ?>"></td>
                                             <td><?php echo $u->nama_dokter; ?></td>
                                             <td>
                                                 <?php 

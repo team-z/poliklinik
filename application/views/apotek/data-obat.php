@@ -30,10 +30,15 @@
                         <div class="header">
                             <h2>
                                 DATA OBAT
+                                
                             </h2>
                             <a href="<?php echo base_url('index.php/apoteker/tambahobat'); ?>" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Obat</span>
+                            </a>
+                            <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                                <i class="material-icons">print</i>
+                                <span>Cetak Obat</span>
                             </a>
                         </div>
                         <br><br>
@@ -53,14 +58,14 @@
                                         $no = 1; 
                                         foreach ($user as $u) { ?>
                                         <tr>
-                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $u->id_obat; ?></td>
                                             <td>no pict</td>
                                             <td><?php echo $u->nama_obat; ?></td>
                                         	<td>
-                                                <a href="<?php echo base_url('index.php/apoteker/del_obat/').$u->id_obat; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
+                                                <a href="<?php echo base_url('index.php/apoteker/hps_obat/').$u->id_obat; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
-                                        		<a href="<?php echo base_url('index.php/apotek/edit').$u->id_obat; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
+                                        		<a href="<?php echo base_url('index.php/apoteker/edit_ob/').$u->id_obat; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
                                                 <i class="material-icons">create</i>
                                                 </a>
                                         	</td>
