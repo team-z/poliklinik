@@ -10,7 +10,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h1>Input Obat</h1>
+                <h1>Edit Obat</h1>
             </div>
             <?php foreach ($obat as $o) { ?>
             <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/'); ?>">

@@ -100,7 +100,7 @@
         });
         function warnBeforeRedirect(linkURL) {
             swal({
-              title: "Hapus Poli ?", 
+              title: "Hapus Obat ?", 
               type: "warning",
               showCancelButton: true
              }, function() {

@@ -54,25 +54,30 @@ class Apoteker extends CI_Controller {
 		$this->load->view('apotek/edit_obat',$data);
 	}
 
-	public function edit_obat($id)
+	public function edit_obat()
 	{
 <<<<<<< HEAD
-		$where = array('id_obat' => $id_obat);
+		$where = array('id_obat' => $id);
 		$object = array('id_obat' => $nilai_baru2 , 
 =======
-		$where = array('id_obat' => $id);
-		$object = array('id_obat' => $this->input->post('id') , 
->>>>>>> 79b853e11d772a24ee7f274592985d2d1a649ac2
+		$id = $this->input->post('id');
+		$where = array('id_obat' => $id );
+		$object = array('id_obat' => $id ,
+>>>>>>> 7a7ab5623c3af3c3952b38720ec8cef86c5e19ef
 						'nama_obat' => $this->input->post('obat'),
 						'type' => $this->input->post('type'),
 						'kategori' => $this->input->post('kategori'),
-						'stok' => $this->input->post('stok'),
 						'harga_satuan' => $this->input->post('harga_satuan')
 						//'foto' => $this->input->post('foto')
 					);
 				
-		$this->mod->up_obat('obat',$object,$where);
+<<<<<<< HEAD
+		$this->mod->up_obat('obat',$object);
 		redirect('apoteker/edit_ob');
+=======
+		$this->mod->up_obat('obat',$object,$where);
+		redirect('apoteker/index');
+>>>>>>> 7a7ab5623c3af3c3952b38720ec8cef86c5e19ef
 	}
 
 	public function hps_obat($id)
