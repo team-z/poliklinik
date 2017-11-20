@@ -13,7 +13,7 @@
                 <h1>Edit Obat</h1>
             </div>
             <?php foreach ($obat as $o) { ?>
-            <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/'); ?>">
+            <form method="post" action="<?php echo base_url('index.php/apoteker/edit_obat/').$u->id_obat; ?>">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -45,9 +45,12 @@
                                                 '3' => 'Obat Tetes',
                                                 '4' => 'Plester',
                                                 '5' => 'Kapsul' ); 
-                                                foreach ($jenis as $j => $value) { ?>
-                                                <option value="<?php echo $j; ?>"><?php echo $value ?></option>
-                                            <?php  } ?>
+                                                foreach ($jenis as $key=> $value) {
+                                        echo '<option value="'.$key.'"';
+                                        if ($key==$o->type) {
+                                        echo ' selected="selected"';
+                                        } echo '>'.$value.'</option>\n';
+                                        } ?>
                                         </select><br><br>
                                         <p>
                                             <b>Pilih Kategori Obat</b>
@@ -59,9 +62,12 @@
                                                 '2' => 'bebas',
                                                 '3' => 'psikotropika',
                                                 '4' => 'rendah' ); 
-                                                foreach ($kategori as $k => $value) { ?>
-                                                <option value="<?php echo $k; ?>"><?php echo $value ?></option>
-                                            <?php  } ?>
+                                                foreach ($kategori as $key=> $value) {
+                                        echo '<option value="'.$key.'"';
+                                        if ($key==$o->kategori) {
+                                        echo ' selected="selected"';
+                                        } echo '>'.$value.'</option>\n';
+                                        } ?>
                                         </select><br><br>
                                     <div class="form-group">
                                         <b>Harga Satuan</b>
@@ -76,8 +82,8 @@
                                     </div>
                                     <div class="form-group">
                                             <button type="submit" class="btn btn-danger waves-effect">
-                                                <i class="material-icons">add</i>
-                                                <span>Tambahkan</span>
+                                                <i class="material-icons">update</i>
+                                                <span>Update</span>
                                             </button>
                                     </div>
                                 </div>
