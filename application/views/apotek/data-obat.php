@@ -59,7 +59,9 @@
                                         foreach ($user as $u) { ?>
                                         <tr>
                                             <td><?php echo $u->id_obat; ?></td>
-                                            <td>no pict</td>
+                                            <td><img id="preview" src="<?php if ($u->foto=="") {
+                                                echo base_url('images/person.png');
+                                            }else{echo base_url('uploads/').$u->foto;} ?>" height="100" width="100" class="img-circle" alt="User Image"/></td>
                                             <td><?php echo $u->nama_obat; ?></td>
                                         	<td>
                                                 <a href="<?php echo base_url('index.php/apoteker/hps_obat/').$u->id_obat; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
