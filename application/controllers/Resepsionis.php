@@ -71,7 +71,7 @@ class Resepsionis extends CI_Controller {
 		$object = array('id_pendaftaran' => $nilai_baru2,
 						'id_pasien' => $this->input->post('id_pasien'),
 						'id_poli' => $this->input->post('id_poli'),
-						'id_dokter' => $this->input->post('dokter'),
+						'id_dokter' => $this->input->post('id_dokter'),
 						'biaya' => $this->input->post('biaya'),
 						'keterangan' => $this->input->post('keterangan')
 					);
