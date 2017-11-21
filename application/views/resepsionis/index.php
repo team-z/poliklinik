@@ -2,12 +2,7 @@
 <html>
 <head>
 	<?php include 'top-res.php'; ?>
-	<style type="text/css">
-		.index {
-			margin-top: 100px;
-			margin-left: 30px;
-		}
-	</style>
+	
 </head>
 <body class="theme-red">
 <?php include 'navigasi-res.php'; ?>
@@ -164,7 +159,7 @@
 						</div>
 						<div class="body">
 							<div class="table-responsive">
-								<table class="table table-bordered table-striped data">
+								<table class="table table-bordered table-striped" id="tables">
 									<thead>
 										<tr>
 											<th>No.</th>
@@ -223,6 +218,37 @@
 	<script src="<?php echo base_url('js/jquery.chained.min.js'); ?>"></script>
 	<script type="text/javascript">
         $("#dokter").chained("#poli");		
+   </script>
+  <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+     <script type="text/javascript">
+        $('#tables').DataTable({
+            responsive: true,
+            "language":{
+                "decimal":        "",
+                "emptyTable":     "Data tidak ada di dalam tabel",
+                "info":           "Menampilkan _START_ ke _END_ dari _TOTAL_ Data",
+                "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Menampilkan _MENU_ Entrian",
+                "loadingRecords": "Memuat...",
+                "processing":     "Memproses...",
+                "search":         "Cari:",
+                "zeroRecords":    "Data tidak ditemukan",
+                "paginate": {
+                    "first":      "Pertama",
+                    "last":       "Terakhir",
+                    "next":       "Selanjutnya",
+                    "previous":   "Sebelumnya"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
+        });
    </script>
 	<script>
 		function id_hasil(value) {

@@ -17,5 +17,43 @@
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
-    <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 	<title>Resepsionis</title>
+    <style type="text/css">
+        .index {
+            margin-top: 100px;
+            margin-left: 30px;
+        }
+    </style>
+    <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+     <script type="text/javascript">
+        $('#tables').DataTable({
+            responsive: true,
+            "language":{
+                "decimal":        "",
+                "emptyTable":     "Data tidak ada di dalam tabel",
+                "info":           "Menampilkan _START_ ke _END_ dari _TOTAL_ Data",
+                "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Menampilkan _MENU_ Entrian",
+                "loadingRecords": "Memuat...",
+                "processing":     "Memproses...",
+                "search":         "Cari:",
+                "zeroRecords":    "Data tidak ditemukan",
+                "paginate": {
+                    "first":      "Pertama",
+                    "last":       "Terakhir",
+                    "next":       "Selanjutnya",
+                    "previous":   "Sebelumnya"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
+        });
+   </script>
