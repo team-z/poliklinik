@@ -9,4 +9,10 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">assignment</i>
+                            <span>Resep</span>
+                        </a>
+                    </li>
                 </ul>
