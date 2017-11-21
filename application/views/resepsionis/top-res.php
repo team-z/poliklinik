@@ -17,6 +17,7 @@
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
+<<<<<<< HEAD
 	<title>Resepsionis</title>
     <style type="text/css">
         .index {
@@ -57,3 +58,6 @@
             }
         });
    </script>
+=======
+	<title>Resepsionis</title>
+>>>>>>> 7fe45b7a7a11821337214304d9eb24b114875519
