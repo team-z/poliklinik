@@ -101,7 +101,7 @@
 	                            <h2>Pendaftaran</h2>
 	                       </div>
 	                       <div class="body">
-	                            <form id="form_validation" action="<?php echo base_url('index.php/Resepsionis/tambah_pendaftaran'); ?>" method="POST">
+	                            <form id="form_validation" target="_blank" action="<?php echo base_url('index.php/Resepsionis/tambah_pendaftaran'); ?>" method="POST">
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
 	                                        <input onkeyup="id_hasil(value)" type="text" class="form-control" name="id_pasien" placeholder="ID Pasien" required>

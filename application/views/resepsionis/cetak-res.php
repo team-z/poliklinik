@@ -33,7 +33,7 @@
 		<tr>
 			<td>Poli</td>
 			<td>:</td>
-			<td><?php echo $id_poli; ?></td>
+			<td><?php echo $key->nama_poli; ?></td>
 		</tr>
 		<tr>
 			<td>Dokter</td>
