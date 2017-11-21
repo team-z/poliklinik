@@ -92,7 +92,7 @@ class Resepsionis extends CI_Controller {
 		
 		$this->load->view('resepsionis/cetak-res', $object);
 
-		$paper_size  = array(0,0,450,360); //paper size ('A4')
+		$paper_size  = array(0,0,500,360); //paper size ('A4')
 		$orientation = 'landscape'; //tipe format kertas
 		$html = $this->output->get_output();
 		 
