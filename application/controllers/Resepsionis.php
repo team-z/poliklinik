@@ -71,7 +71,7 @@ class Resepsionis extends CI_Controller {
 		$object = array('id_pendaftaran' => $nilai_baru2,
 						'id_pasien' => $this->input->post('id_pasien'),
 						'id_poli' => $this->input->post('id_poli'),
-						'id_dokter' => $this->input->post('dokter'),
+						'id_dokter' => $this->input->post('id_dokter'),
 						'biaya' => $this->input->post('biaya'),
 						'keterangan' => $this->input->post('keterangan')
 					);
@@ -92,7 +92,7 @@ class Resepsionis extends CI_Controller {
 		
 		$this->load->view('resepsionis/cetak-res', $object);
 
-		$paper_size  = array(0,0,450,360); //paper size ('A4')
+		$paper_size  = array(0,0,500,360); //paper size ('A4')
 		$orientation = 'landscape'; //tipe format kertas
 		$html = $this->output->get_output();
 		 

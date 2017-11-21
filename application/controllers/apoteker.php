@@ -103,7 +103,7 @@ class Apoteker extends CI_Controller {
 					);
 		
 		$this->mod->up_obat('obat',$object,$where);
-		redirect('apoteker/index');
+		redirect('apoteker/edit_ob/'.$id);
 	}
 
 	public function hps_obat($id)
