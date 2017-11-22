@@ -33,7 +33,7 @@
                             <h2>
                                 DATA PASIEN
                             </h2>
-                            <a href="<?php echo base_url('index.php/admin/input_pasien'); ?>"  class="btn bg-red  waves-effect pull-right">
+                            <a href="<?php echo base_url('index.php/admin/input_user'); ?>"  class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan User</span>
                             </a>
@@ -58,11 +58,13 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><img class="img-circle" height="100" width="100" src="<?php echo base_url('uploads/').$u->gambar; ?>"></td>
+                                            <td><img class="img-circle" height="100" width="100" src="<?php if ($u->gambar=="") {
+                                                echo base_url('images/person.png');
+                                            }else{echo base_url('uploads/').$u->gambar;} ?>"></td>
                                             <td><?php echo $u->user; ?></td>
                                             <td><?php echo $u->status; ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('index.php/admin/hapus/').$u->id; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
+                                                <a href="<?php echo base_url('index.php/admin/hapus_user/').$u->id; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
                                                 <i class="material-icons">delete</i>
                                                 </a>
                                                 <a href="<?php echo base_url('index.php/admin/edituser/').$u->id; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Detail User">

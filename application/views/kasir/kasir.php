@@ -91,54 +91,44 @@
 									if (empty($query)) {
 												
 										} else {?>
-								<form action="<?php echo base_url('index.php/kasir/tebus'); ?>" target="_blank" method="POST">
+							</div>
+							<div class="row">
+								<div class="header">
+									<h3>Detail Pembayaran</h3>
+								</div><br>
+								<div class="body">
+									<form action="<?php echo base_url('index.php/kasir/tebus'); ?>" target="_blank" method="POST">
 									<div class="col-sm-6">
-										<div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            ID Rekam :
-	                                        </span>
+										<div class="form-group">
+	                                        <label class="control-label">ID PEMBAYARAN :</label><br>
+	                                        <label class="control-label"><?php echo $query['id_bayar']; ?></label>
+	                                    </div>
+	                                    <div class="form-group">
+	                                    	<label class="control-label">ID PASIEN :</label><br>
+	                                        <label class="control-label"><?php echo $query['id_pasien']; ?></label>
+	                                    </div>
+	                                     <div class="form-group">
+	                                            <label class="control-label">NAMA PASIEN :</label><br>
+	                                            <label class="control-label"><?php echo $query['nama_pasien']; ?></label>
+	                                    </div>
+	                                </div>
+	                                <div class="col-sm-6">
+	                                     <div class="form-group form-float">
 	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="id_bayar" value="<?php echo $query['id_bayar']; ?>">
+	                                            <input type="text" class="form-control date" name="biaya_daftar" value="<?php echo "Rp.". number_format($query['biaya_daftar'],2,',','.') ; ?>">
+	                                            <label class="form-label">BIAYA PENDAFTARAN</label>
 	                                        </div>
 	                                    </div>
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            ID Pasien :
-	                                        </span>
+	                                    <div class="form-group form-float">
 	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="id_pasien" value="<?php echo $query['id_pasien']; ?>">
+	                                            <input type="text" class="form-control date" name="biaya_dokter" value="<?php echo "Rp.". number_format($query['biaya_dokter'],2,',','.') ; ?>">
+	                                            <label class="form-label">BIAYA DOKTER</label>
 	                                        </div>
 	                                    </div>
-	                                     <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            Nama Pasien :
-	                                        </span>
+	                                    <div class="form-group form-float">
 	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" value="<?php echo $query['nama_pasien']; ?>">
-	                                        </div>
-	                                    </div>
-	                                     <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            Biaya Pendaftaran :
-	                                        </span>
-	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="biaya_daftar" value="<?php echo $query['biaya_daftar']; ?>">
-	                                        </div>
-	                                    </div>
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            Biaya Dokter :
-	                                        </span>
-	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="biaya_dokter" value="<?php echo $query['biaya_dokter']; ?>">
-	                                        </div>
-	                                    </div>
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            Biaya Obat :
-	                                        </span>
-	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="biaya_obat" value="<?php echo $query['biaya_obat']; ?>">
+	                                            <input type="text" class="form-control date" name="biaya_obat" value="<?php echo "Rp.". number_format($query['biaya_obat'],2,',','.') ; ?>">
+	                                            <label class="form-label">BIAYA OBAT</label>
 	                                        </div>
 	                                    </div>
 	                                    <div class="input-group">
@@ -146,7 +136,7 @@
 	                                            Sub Total :
 	                                        </span>
 	                                        <div class="form-line">
-	                                            <input type="text" class="form-control date" name="biaya_total" id="total" value="<?php echo $query['total_biaya']; ?>">
+	                                            <input type="text" class="form-control date" name="biaya_total" id="total" value="<?php echo "Rp.". number_format($query['total_biaya'],2,',','.'); ?>">
 	                                        </div>
 	                                    </div>
 	                                    <div class="input-group">
@@ -174,6 +164,7 @@
 											
 								}
 								?>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -182,6 +173,7 @@
 		</div>
 	</section>
 	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+	<?php include 'bottom-kas.php'; ?>
 	<script type="text/javascript">
 	    $(document).ready(function(){
 	        $("form").prop('autocomplete', 'on');
@@ -195,6 +187,5 @@
 	        // $("#potongan_insert").val(potongan);
 	    });
 	</script>
-	<?php include 'bottom-kas.php'; ?>
 </body>
 </html>

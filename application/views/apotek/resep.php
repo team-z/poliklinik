@@ -32,15 +32,10 @@
                                 DATA OBAT
                                 
                             </h2>
-                            <a href="<?php echo base_url('index.php/apoteker/tambahobat'); ?>" class="btn bg-red  waves-effect pull-right">
-                                <i class="material-icons">add</i>
-                                <span>Tambahkan Obat</span>
+                            <a href="<?php echo base_url('index.php/apoteker/detailresep'); ?>" class="btn bg-red  waves-effect pull-right">
+                                <i class="material-icons">remove_red_eye</i>
+                                <span>Detail Resep</span>
                             </a>
-                            <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
-                                <i class="material-icons">print</i>
-                                <span>Cetak Obat</span>
-                            </a>
-                        </div>
                         <br><br>
                         <div class="body">
                             <div class="table-responsive">
@@ -48,8 +43,10 @@
                                     <thead>
                                         <tr>
                                             <th>ID OBAT</th>
-                                            <th>GAMBAR</th>
                                             <th>NAMA OBAT</th>
+                                            <th>HARGA SATUAN</th>
+                                            <th>JUMLAH OBAT</th>
+                                            <th>DOSIS</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -57,22 +54,21 @@
                                         <?php 
                                         $no = 1; 
                                         foreach ($user as $u) { ?>
+                                        
                                         <tr>
-                                            <td><?php echo $u->id_obat; ?></td>
-                                            <td><img id="preview" src="<?php if ($u->foto=="") {
-                                                echo base_url('images/person.png');
-                                            }else{echo base_url('uploads/').$u->foto;} ?>" height="100" width="100" class="img-circle" alt="User Image"/></td>
-                                            <td><?php echo $u->nama_obat; ?></td>
+                                        	<form method="post" action="<?php echo base_url('index.php/apoteker/addresep') ?>">
+                                        	<td><?php echo $u->id_obat; ?><input type="hidden" name="id" value="<?php echo $u->id_obat; ?>"></td>
+                                        	<td><?php echo $u->nama_obat; ?><input type="hidden" name="nama" value="<?php echo $u->nama_obat; ?>"></td>
+                                        	<td><?php echo $u->harga_satuan; ?><input type="hidden" name="harga" value="<?php echo $u->harga_satuan; ?>"></td>
+                                        	<td><input type="number" class="form-control" name="jumlah" placeholder="Jumlah Obat" required=""></td>
                                         	<td>
-                                                <a href="<?php echo base_url('index.php/apoteker/hps_obat/').$u->id_obat; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
-                                                <i class="material-icons">delete</i>
-                                                </a>
-                                        		<a href="<?php echo base_url('index.php/apoteker/edit_ob/').$u->id_obat; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
-                                                <i class="material-icons">create</i>
-                                                </a>
+                                        		<input placeholder="Masukkan Dosis Obat" type="text" class="form-control" name="dosis" required="">
                                         	</td>
+                                        	<td><button type="submit" class="btn btn-default">Tambahkan</button></td>
+                                        	</form>
                                         </tr>
-                                        <?php } ?>
+                                        
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -93,24 +89,6 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url(); ?>plugins/node-waves/waves.js"></script>
-    <script src="<?php echo base_url(); ?>plugins/sweetalert/sweetalert.min.js"></script>
-    <script type="text/javascript">
-        $('.confirmation').on('click',function(e) {
-            e.preventDefault(); // Prevent the href from redirecting directly
-            var linkURL = $(this).attr("href");
-            warnBeforeRedirect(linkURL);
-        });
-        function warnBeforeRedirect(linkURL) {
-            swal({
-              title: "Hapus Obat ?", 
-              type: "warning",
-              showCancelButton: true
-             }, function() {
-             // Redirect the user
-                window.location.href = linkURL;
-            });
-        }                                                
-</script>
     <!-- Bootstrap Notify Plugin Js -->
     <script src="<?php echo base_url(); ?>plugins/bootstrap-notify/bootstrap-notify.js"></script>
     <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>

@@ -8,7 +8,6 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('mod');
 		$this->load->helper('form','url','download');
-		$this->load->library('upload');
 		if ($this->session->userdata('status') != 'admin') {
 			redirect('login');
 		}
@@ -86,7 +85,7 @@ class Admin extends CI_Controller {
 						'no_hp' => $this->input->post('telpon'),
 						'jenis_kelamin' => $this->input->post('gender'));
 		$this->mod->up_pas('pasien',$object,$where);
-		redirect('admin/pasien');
+		redirect('admin/edit_pas/'.$id);
 	}
 
 //INI AKHIR SCRIPT PROSES PASIEN
@@ -104,9 +103,102 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->mod->detail('user',$where)->result();
 		$this->load->view('admin/edit_user', $data);
 	}
+	public function input_user()
+	{
+		$this->load->view('admin/tambah_user');
+	}
 	public function updateuser($id)
 	{
-		# code...
+		$object  = array(
+							'user' => $this->input->post('user'),
+							'password' => $this->input->post('password'),
+							'tanggal_lahir' => $this->input->post('tanggal'),
+							'bulan_lahir' => $this->input->post('bulan'),
+							'tahun_lahir' => $this->input->post('tahun'),
+							'alamat' => $this->input->post('alamat'),
+							'tempat_lahir' => $this->input->post('tempat'),
+							'no_hp' => $this->input->post('telpon'),
+							'status' => $this->input->post('status'),
+							'gambar' => $this->input->post('img'),
+							'nama_lengkap'=> $this->input->post('nama')
+						);
+
+
+		$where = array('id' => $id);
+
+		$this->mod->update('user' ,$object ,$where);
+		redirect('admin/edituser/'.$id);
+	}
+	public function add_user()
+	{
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '5000';
+		$config['max_width']  = '6000';
+		$config['max_height']  = '2048';
+		$this->load->library('upload',$config);
+		$this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
+
+		$object  = array(
+							'user' => $this->input->post('user'),
+							'password' => $this->input->post('password'),
+							'tanggal_lahir' => $this->input->post('tanggal'),
+							'bulan_lahir' => $this->input->post('bulan'),
+							'tahun_lahir' => $this->input->post('tahun'),
+							'alamat' => $this->input->post('alamat'),
+							'tempat_lahir' => $this->input->post('tempat'),
+							'no_hp' => $this->input->post('telpon'),
+							'status' => $this->input->post('status'),
+							'gambar' => $this->input->post('gambar'),
+							'nama_lengkap'=> $this->input->post('nama'),
+							'status' => $this->input->post('status'),
+							'gambar' => $gambar
+							 );
+
+		$this->mod->tambah('user' ,$object);
+		redirect('admin/user');
+	}
+	public function update_image($id)
+	{
+		$image = $this->input->post('image');
+		unlink('./uploads/'.$image);
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '6144';
+		$config['max_height']  = '6144';
+		
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
+		$where = array('id' => $id );
+
+		$object = array('gambar' => $gambar);
+		$this->mod->update('user', $object, $where);
+		redirect('admin/edituser/'.$id);
+	}
+	public function hapus_user($id)
+	{
+		$where = array('id' =>$id );
+		$tampil = $this->mod->detail('user', $where)->result();
+
+		foreach ($tampil as $le) {
+			$gambar = $le->gambar;
+		}
+		unlink('./uploads/'.$gambar);
+		$this->mod->delete('user',$where);
+		redirect('admin/user');
 	}
 
 //INI AKHIR SCRIPT PROSES USER

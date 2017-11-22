@@ -11,6 +11,7 @@
 	</center>
 	POLIKLINIK PELANGI KASIH<br>
 	Jl.Lumajang Kota, No. 59, Lumajang<BR><br>
+	<h4>Pembayaran : <?php echo $id_bayar['id_bayar']; ?></h4>
 	<table>
 		<?php  
 		foreach ($join as $key) {
@@ -33,7 +34,7 @@
 		<tr>
 			<td>Poli</td>
 			<td>:</td>
-			<td><?php echo $id_poli; ?></td>
+			<td><?php echo $key->nama_poli; ?></td>
 		</tr>
 		<tr>
 			<td>Dokter</td>
@@ -60,7 +61,7 @@
 	<br><br>
 	Tanggal Cetak <?php date_default_timezone_set("Asia/Jakarta"); $tgl = date("d F Y h:i:sa"); echo $tgl; ?>
 	<hr width="100%" height="75"></hr><br>
-	Kartu ini harap dibawa saat menuju Poli yang anda Tuju, Tunjukan ke petugas Poli<br>
+	Kartu ini harap dibawa saat menuju Poli dan Kasir yang anda Tuju, Tunjukan ke petugas Poli dan Kasir<br>
 	<center>***Terima Kasih Dan Cepat Sembuh Ya***<br><br>POLIKLINIK PELANGAI KASIH</center>
 </body>
 </html>

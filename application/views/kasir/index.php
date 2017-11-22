@@ -19,10 +19,8 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>css/themes/all-themes.css" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
-=======
 		<title>Admin Panel</title>
 	<?php include 'top-kas.php'; ?>
->>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
 	</head>
 	<body class="theme-red">
 		<?php include 'navigasi.php'; ?>
@@ -36,15 +34,12 @@
                             <h2>
                                 FORM PEMBAYARAN YANG SUDAH MEMBAYAR
                             </h2>
-<<<<<<< HEAD
                              <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Pembayaran</span>
-=======
                              <a href="<?php echo base_url('index.php/kasir/cetak_bayarlunas'); ?>" target="_blank" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">print</i>
-                                <span>Cetak PDF</span>
->>>>>>> cdbaa7e5d7ef8427ce2cfb879bc7386b8aa155ce
+                                <span>Laporan Kasir</span>
                             </a>
                         </div>
                         <div class="body">

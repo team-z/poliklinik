@@ -29,51 +29,81 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA OBAT
+                                DATA RESEP
                                 
                             </h2>
-                            <a href="<?php echo base_url('index.php/apoteker/tambahobat'); ?>" class="btn bg-red  waves-effect pull-right">
-                                <i class="material-icons">add</i>
-                                <span>Tambahkan Obat</span>
-                            </a>
-                            <a href="<?php echo base_url('index.php/apoteker/cetak_obat'); ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                            <?php 
+                             $no = 1; 
+                             foreach ($pasien as $p) { 
+                            ?>
+                            <a href="<?php echo base_url('index.php/apoteker/print_resep/').$p->id_bayar; ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
                                 <i class="material-icons">print</i>
-                                <span>Cetak Obat</span>
-                            </a>
+                                <span>Cetak Resep</span>
+                            </a><?php } ?>
                         </div>
                         <br><br>
                         <div class="body">
+                            <?php 
+                             $no = 1; 
+                             foreach ($pasien as $p) { 
+                                $bayar = $p->id_bayar;
+                            ?>
+                            <h4>ID Pembayaran : <?php echo $p->id_bayar; ?></h4>
+                            <h4>ID PASIEN : <?php echo $p->id_pasien; ?></h4>
+                            <h4>NAMA PASIEN : <?php echo $p->nama_pasien; ?></h4>
+                            <?php } ?><br>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped data">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID OBAT</th>
-                                            <th>GAMBAR</th>
+                                            <th>ID RESEP</th>
                                             <th>NAMA OBAT</th>
-                                            <th>AKSI</th>
+                                            <th>DOSIS</th>
+                                            <th>JUMLAH OBAT</th>
+                                            <th>TOTAL HARGA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        $no = 1; 
-                                        foreach ($user as $u) { ?>
+                             $subtot = 0;
+                             $no = 1; 
+                             $resep = $this->db->query("SELECT
+                                                    pembayaran.id_bayar,
+                                                    obat.nama_obat,
+                                                    resep.jumlah_obat,
+                                                    resep.dosis,
+                                                    resep.total_harga,
+                                                    pembayaran.id_pasien,
+                                                    resep.id_resep,
+                                                    obat.id_obat
+                                                    FROM
+                                                    pembayaran
+                                                    INNER JOIN resep ON pembayaran.id_bayar = resep.id_bayar
+                                                    INNER JOIN obat ON resep.id_obat = obat.id_obat
+                                                    WHERE pembayaran.id_bayar = '$bayar' ")->result();
+                             foreach ($resep as $u) { 
+                            ?>
                                         <tr>
-                                            <td><?php echo $u->id_obat; ?></td>
-                                            <td><img id="preview" src="<?php if ($u->foto=="") {
-                                                echo base_url('images/person.png');
-                                            }else{echo base_url('uploads/').$u->foto;} ?>" height="100" width="100" class="img-circle" alt="User Image"/></td>
-                                            <td><?php echo $u->nama_obat; ?></td>
-                                        	<td>
-                                                <a href="<?php echo base_url('index.php/apoteker/hps_obat/').$u->id_obat; ?>" class="btn btn-danger btn-circle waves-effect waves-circle waves-float confirmation " data-toggle="tooltip" data-placement="left" title="Hapus data" onClick="return ">
-                                                <i class="material-icons">delete</i>
-                                                </a>
-                                        		<a href="<?php echo base_url('index.php/apoteker/edit_ob/').$u->id_obat; ?>" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="right" title="Update data">
-                                                <i class="material-icons">create</i>
-                                                </a>
-                                        	</td>
+                                            <td><?php echo $u->id_resep; ?></td>
+                                            <td><?php 
+                                            $where = array('id_obat' => $u->id_obat);
+                                            $data = $this->db->get_where('obat',$where)->result();
+                                            foreach ($data as $key) {
+                                                echo $key->nama_obat;
+                                            }
+                                             ?></td>
+                                             <td><?php echo $u->dosis; ?></td>
+                                             <td align="right"><?php echo $u->jumlah_obat; ?></td>
+                                             <td align="right">Rp. <?php echo number_format($u->total_harga,2,',','.'); ?> ,-</td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php $subtot += $u->total_harga; } ?>
                                     </tbody>
+                                    <footer>
+                                        <tr>
+                                            <td colspan="4" align="center">Sub Total</td>
+                                            <td align="right">Rp. <?php echo number_format($subtot,2,',','.'); ?> ,-</td>
+                                        </tr>
+                                    </footer>
                                 </table>
                             </div>
                         </div>

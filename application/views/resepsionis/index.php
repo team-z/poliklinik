@@ -2,12 +2,7 @@
 <html>
 <head>
 	<?php include 'top-res.php'; ?>
-	<style type="text/css">
-		.index {
-			margin-top: 100px;
-			margin-left: 30px;
-		}
-	</style>
+	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="theme-red">
 <?php include 'navigasi-res.php'; ?>
@@ -106,7 +101,7 @@
 	                            <h2>Pendaftaran</h2>
 	                       </div>
 	                       <div class="body">
-	                            <form id="form_validation" action="<?php echo base_url('index.php/Resepsionis/tambah_pendaftaran'); ?>" method="POST">
+	                            <form id="form_validation" target="_blank" action="<?php echo base_url('index.php/Resepsionis/tambah_pendaftaran'); ?>" method="POST">
 	                                <div class="form-group form-float">
 	                                    <div class="form-line">
 	                                        <input onkeyup="id_hasil(value)" type="text" class="form-control" name="id_pasien" placeholder="ID Pasien" required>
@@ -131,8 +126,14 @@
 	                                </div>
 	                                <div class="form-group form-float">
 	                                    <div class="form-group">
-											<select class="form-control show tick" name="dokter" id="dokter">
+											<select class="form-control show tick" name="id_dokter" id="dokter">
 												<option>-- Pilih Dokter --</option>
+												<?php  
+												$data = $this->db->get('dokter')->result();
+												foreach ($data as $lue) {
+												?>
+												<option value="<?php echo $lue->id_dokter; ?>" class="<?php echo $lue->id_poli; ?>"><?php echo $lue->nama_dokter; ?></option>
+												<?php } ?>
 											</select>
 										</div>
 	                                </div>
@@ -158,7 +159,7 @@
 						</div>
 						<div class="body">
 							<div class="table-responsive">
-								<table class="table table-bordered table-striped data">
+								<table class="table table-bordered table-striped" id="tables">
 									<thead>
 										<tr>
 											<th>No.</th>
@@ -213,6 +214,42 @@
 		</div>
 	</section>
 	<?php include 'bottom-res.php'; ?>
+	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+	<script src="<?php echo base_url('js/jquery.chained.min.js'); ?>"></script>
+	<script type="text/javascript">
+        $("#dokter").chained("#poli");		
+   </script>
+  <script src="<?php echo base_url(); ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+     <script type="text/javascript">
+        $('#tables').DataTable({
+            responsive: true,
+            "language":{
+                "decimal":        "",
+                "emptyTable":     "Data tidak ada di dalam tabel",
+                "info":           "Menampilkan _START_ ke _END_ dari _TOTAL_ Data",
+                "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Menampilkan _MENU_ Entrian",
+                "loadingRecords": "Memuat...",
+                "processing":     "Memproses...",
+                "search":         "Cari:",
+                "zeroRecords":    "Data tidak ditemukan",
+                "paginate": {
+                    "first":      "Pertama",
+                    "last":       "Terakhir",
+                    "next":       "Selanjutnya",
+                    "previous":   "Sebelumnya"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
+        });
+   </script>
 	<script>
 		function id_hasil(value) {
 			$.ajax({
@@ -226,23 +263,23 @@
 				}
 			})
 		}
-		$(document).ready(function () {
-			$("#poli").change(function () {
-				var id = $(this).val();
+		// $(document).ready(function () {
+		// 	$("#poli").change(function () {
+		// 		var id = $(this).val();
 
-				$.ajax({
-					url: '<?php echo base_url() ?>index.php/Resepsionis/ambil_data_poli/' + id,
-					method : 'POST',
-					dataType:'json',
-					success : function(res){
-						// console.log(res[0].nama_dokter);
-						for (var i = 0; i < res.length; i++) {
-							$("#dokter").append($('<option></option>').attr('value', res[i].id_dokter).text(res[i].nama_dokter));
-						}
-					}
-				})
-			})
-		})
+		// 		$.ajax({
+		// 			url: '<?php echo base_url() ?>index.php/Resepsionis/ambil_data_poli/' + id,
+		// 			method : 'POST',
+		// 			dataType:'json',
+		// 			success : function(res){
+		// 				// console.log(res[0].nama_dokter);
+		// 				for (var i = 0; i < res.length; i++) {
+		// 					$("#dokter").append($('<option></option>').attr('value', res[i].id_dokter).text(res[i].nama_dokter));
+		// 				}
+		// 			}
+		// 		})
+		// 	})
+		// })
 	</script>
 </body>
 </html>

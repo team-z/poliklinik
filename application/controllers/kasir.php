@@ -61,7 +61,7 @@ class Kasir extends CI_Controller {
 		//Convert to PDF
 		$this->dompdf->load_html($html);
 		$this->dompdf->render();
-		$this->dompdf->stream("cetak_struk.pdf", array('Attachment'=>0));
+		$this->dompdf->stream("cetak struk.pdf", array('Attachment'=>0));
 	}
 
 	public function cetak_bayarlunas()

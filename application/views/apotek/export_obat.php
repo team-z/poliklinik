@@ -26,9 +26,29 @@
 			<tr>
 				<td><?php echo $obt->id_obat; ?></td>
 				<td><?php echo $obt->nama_obat; ?></td>
-				<td><?php echo $obt->type; ?></td>
-				<td><?php echo $obt->kategori; ?></td>
-				<td><?php echo $obt->harga_satuan; ?></td>
+				<td><?php 
+						$jenis = array(
+                                                '1' => 'Pil' ,
+                                                '2' => 'Syrup',
+                                                '3' => 'Obat Tetes',
+                                                '4' => 'Plester',
+                                                '5' => 'Kapsul' ); 
+                                                foreach ($jenis as $key=> $value) {
+                                        		if ($key==$obt->type) {
+                                        			echo $value;
+                                        		} } ?>
+                </td>
+				<td><?php 
+						$kategori = array(
+                                                '1' => 'keras' ,
+                                                '2' => 'bebas',
+                                                '3' => 'psikotropika',
+                                                '4' => 'rendah' ); 
+                                                foreach ($kategori as $key=> $value) {
+                                        		if ($key==$obt->kategori) {
+                                        			echo $value;
+                                        		} } ?></td>
+				<td><?php echo "Rp.".number_format($obt->harga_satuan,2,',','.'); ?></td>
 			</tr>
 			<?php } ?>
 		</tbody>
