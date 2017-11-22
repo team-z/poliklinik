@@ -20,7 +20,6 @@
 								<thead>
 									<tr>
 										<th align="center">No.</th>
-										<th align="center">ID Pembayaran</th>
 										<th align="center">ID Pasien</th>
 										<th align="center">Nama Pasien</th>
 										<th align="center">Biaya Daftar</th>
@@ -36,7 +35,6 @@
 									?>
 									<tr>
 										<td align="center"><?php echo $no++; ?></td>
-										<td align="center"><?php echo $key->id_bayar; ?></td>
 										<td align="center"><?php echo $key->id_pasien; ?></td>
 										<td align="left"><?php echo $key->nama_pasien; ?></td>
 										<td align="right">Rp.<?php echo number_format($key->biaya_daftar,2,',','.'); ?> ,-</td>
@@ -62,7 +60,7 @@
 								<div class="col-md-10 col-sm-12">
 									<div class="form-group form-float">
 										<div class="form-line">
-											<input type="text" class="form-control" name="key" placeholder="Cari ID Pembayaran Pasien" required>
+											<input type="text" class="form-control" name="key" placeholder="Cari ID Pasien" required>
 										</div>
 									</div>
 								</div>
@@ -88,7 +86,7 @@
 																FROM
 																pasien
 																INNER JOIN pembayaran ON pasien.id_pasien = pembayaran.id_pasien
-																WHERE pembayaran.id_bayar = '$key' ");
+																WHERE pasien.id_pasien = '$key' ");
 								$query = mysqli_fetch_array($query1);
 									if (empty($query)) {
 												
@@ -104,17 +102,14 @@
 										<div class="form-group">
 	                                        <label class="control-label">ID PEMBAYARAN :</label><br>
 	                                        <label class="control-label"><?php echo $query['id_bayar']; ?></label>
-	                                        <input type="hidden" name="id_bayar" value="<?php echo $query['id_bayar']; ?>">
 	                                    </div>
 	                                    <div class="form-group">
 	                                    	<label class="control-label">ID PASIEN :</label><br>
 	                                        <label class="control-label"><?php echo $query['id_pasien']; ?></label>
-	                                        <input type="hidden" name="id_pasien" value="<?php echo $query['id_pasien']; ?>">
 	                                    </div>
 	                                     <div class="form-group">
 	                                            <label class="control-label">NAMA PASIEN :</label><br>
 	                                            <label class="control-label"><?php echo $query['nama_pasien']; ?></label>
-	                                            <input type="hidden" name="nama_pasien" value="<?php echo $query['nama_pasien']; ?>">
 	                                    </div>
 	                                </div>
 	                                <div class="col-sm-6">
@@ -122,21 +117,18 @@
 	                                        <div class="form-line">
 	                                            <input type="text" class="form-control date" name="biaya_daftar" value="<?php echo "Rp.". number_format($query['biaya_daftar'],2,',','.') ; ?>">
 	                                            <label class="form-label">BIAYA PENDAFTARAN</label>
-	                                            <input type="hidden" name="biaya_daftar" value="<?php echo $query['biaya_daftar']; ?>">
 	                                        </div>
 	                                    </div>
 	                                    <div class="form-group form-float">
 	                                        <div class="form-line">
 	                                            <input type="text" class="form-control date" name="biaya_dokter" value="<?php echo "Rp.". number_format($query['biaya_dokter'],2,',','.') ; ?>">
 	                                            <label class="form-label">BIAYA DOKTER</label>
-	                                            <input type="hidden" name="biaya_dokter" value="<?php echo $query['biaya_dokter']; ?>">
 	                                        </div>
 	                                    </div>
 	                                    <div class="form-group form-float">
 	                                        <div class="form-line">
 	                                            <input type="text" class="form-control date" name="biaya_obat" value="<?php echo "Rp.". number_format($query['biaya_obat'],2,',','.') ; ?>">
 	                                            <label class="form-label">BIAYA OBAT</label>
-	                                            <input type="hidden" name="biaya_obat1" value="<?php echo $query['biaya_obat']; ?>">
 	                                        </div>
 	                                    </div>
 	                                    <div class="input-group">
@@ -145,7 +137,6 @@
 	                                        </span>
 	                                        <div class="form-line">
 	                                            <input type="text" class="form-control date" name="biaya_total" id="total" value="<?php echo "Rp.". number_format($query['total_biaya'],2,',','.'); ?>">
-	                                            <input type="hidden" name="biaya_total1" id="total2" value="<?php echo $query['total_biaya'] ?>">
 	                                        </div>
 	                                    </div>
 	                                    <div class="input-group">
@@ -191,9 +182,8 @@
 	    $("#bayar").keyup(function(){
 	        var total    = parseInt($("#total").val());
 	        var bayar = parseInt($(this).val());
-	        var total2 = $('#total2').val();
 
-	        $("#hasil").val(bayar - total2); 
+	        $("#hasil").val(bayar - total); 
 	        // $("#potongan_insert").val(potongan);
 	    });
 	</script>

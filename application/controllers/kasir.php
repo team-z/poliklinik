@@ -27,7 +27,6 @@ class Kasir extends CI_Controller {
 		$this->db->select('*');
 		$this->db->from('pasien');
 		$this->db->join('pembayaran', 'pembayaran.id_pasien = pasien.id_pasien', 'INNER');
-		$this->db->group_by('pembayaran.id_bayar','ASC');
 		$data['kasir'] = $this->db->get()->result();
 		$this->load->view('kasir/kasir',$data);
 	}
@@ -45,8 +44,8 @@ class Kasir extends CI_Controller {
 						'id_pasien' => $this->input->post('id_pasien'),
 						'biaya_daftar' => $this->input->post('biaya_daftar'),
 						'biaya_dokter' => $this->input->post('biaya_dokter'),
-						'biaya_obat' => $this->input->post('biaya_obat1'),
-						'biaya_total' => $this->input->post('biaya_total1'),
+						'biaya_obat' => $this->input->post('biaya_obat'),
+						'biaya_total' => $this->input->post('biaya_total'),
 						'uang_bayar' => $this->input->post('uang_bayar'),
 						'kembalian' => $this->input->post('kembalian'),
 						'status' =>  $status

@@ -1,5 +1,6 @@
 <html>
 	<head>
+<<<<<<< HEAD
 		<title>Kasir Panel</title>
 	<!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -36,7 +37,7 @@
                              <a href="" data-toggle="modal" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">add</i>
                                 <span>Tambahkan Pembayaran</span>
-                             <a href="<?php echo base_url('index.php/kasir/cetak_bayarlunas'); ?>" target="_blank" data-target="#smallModal" class="btn bg-blue  waves-effect pull-right">
+                             <a href="<?php echo base_url('index.php/kasir/cetak_bayarlunas'); ?>" target="_blank" data-target="#smallModal" class="btn bg-red  waves-effect pull-right">
                                 <i class="material-icons">print</i>
                                 <span>Laporan Kasir</span>
                             </a>
@@ -48,7 +49,6 @@
                                         <th>No.</th>
                                         <th>Id Pasien</th>
                                         <th>Nama Pasien</th>
-                                        <th>Status</th>
                                         <th>Biaya Pendaftaran</th>
                                         <th>Biaya Dokter</th>
                                         <th>Biaya Obat</th>
@@ -57,29 +57,20 @@
                                 </thead>
                                 <tbody>
                                     <?php  
-                                    $sub_tot = 0;
                                     $no = 1;
                                     foreach ($kasir as $k) {
-                                        $sub_tot += $k->total_biaya;
                                     ?>
                                     <tr>
                                         <td><?php echo $no++; ?></td>
                                         <td align="center"><?php echo $k->id_pasien; ?></td>
                                         <td align="center"><?php echo $k->nama_pasien; ?></td>
-                                        <td align="center"><?php echo $k->Status; ?></td>
-                                        <td align="right">Rp.<?php echo number_format($k->biaya_daftar,2,',','.'); ?></td>
-                                        <td align="right">Rp.<?php echo number_format($k->biaya_dokter,2,',','.'); ?></td>
-                                        <td align="right">Rp.<?php echo number_format($k->biaya_obat,2,',','.'); ?></td>
-                                        <td align="right">Rp.<?php echo number_format($k->total_biaya,2,',','.'); ?></td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_daftar,2,',','.'); ?> ,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_dokter,2,',','.'); ?> ,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->biaya_obat,2,',','.'); ?>,-</td>
+                                        <td align="right">Rp.<?php echo number_format($k->total_biaya,2,',','.'); ?> ,-</td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
-                                <footer>
-                                    <tr>
-                                        <td colspan="7" align="center">Sub Total</td>
-                                        <td align="right">Rp.<?php echo number_format($sub_tot,2,',','.'); ?></td>
-                                    </tr>
-                                </footer>
                             </table>
                         </div>
                     </div>
