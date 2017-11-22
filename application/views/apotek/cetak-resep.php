@@ -36,7 +36,7 @@
                              $no = 1; 
                              foreach ($pasien as $p) { 
                             ?>
-                            <a href="<?php echo base_url('index.php/apoteker/print_resep/').$p->id_pasien; ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
+                            <a href="<?php echo base_url('index.php/apoteker/print_resep/').$p->id_bayar; ?>" target="_blank" class="btn bg-blue  waves-effect pull-right">
                                 <i class="material-icons">print</i>
                                 <span>Cetak Resep</span>
                             </a><?php } ?>
@@ -46,7 +46,9 @@
                             <?php 
                              $no = 1; 
                              foreach ($pasien as $p) { 
+                                $bayar = $p->id_bayar;
                             ?>
+                            <h4>ID Pembayaran : <?php echo $p->id_bayar; ?></h4>
                             <h4>ID PASIEN : <?php echo $p->id_pasien; ?></h4>
                             <h4>NAMA PASIEN : <?php echo $p->nama_pasien; ?></h4>
                             <?php } ?><br>
@@ -65,6 +67,20 @@
                                         <?php 
                              $subtot = 0;
                              $no = 1; 
+                             $resep = $this->db->query("SELECT
+                                                    pembayaran.id_bayar,
+                                                    obat.nama_obat,
+                                                    resep.jumlah_obat,
+                                                    resep.dosis,
+                                                    resep.total_harga,
+                                                    pembayaran.id_pasien,
+                                                    resep.id_resep,
+                                                    obat.id_obat
+                                                    FROM
+                                                    pembayaran
+                                                    INNER JOIN resep ON pembayaran.id_bayar = resep.id_bayar
+                                                    INNER JOIN obat ON resep.id_obat = obat.id_obat
+                                                    WHERE pembayaran.id_bayar = '$bayar' ")->result();
                              foreach ($resep as $u) { 
                             ?>
                                         <tr>

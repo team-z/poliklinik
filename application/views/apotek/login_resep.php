@@ -20,7 +20,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="id" class="form-control" style="text-align: center">
+                                            <input type="text" name="rb" class="form-control" style="text-align: center" placeholder="ID Pembayaran">
                                         </div>
                                     </div>
                                 </div>

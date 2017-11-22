@@ -84,35 +84,20 @@ class Apoteker extends CI_Controller {
 			$sub += $total;
 			$this->db->query("INSERT INTO resep (id_resep,id_obat,id_pasien,id_bayar,jumlah_obat,dosis,total_harga) VALUES('$ids','$id_obat','$id_pasien','$id_bayar','$jumlah','$dosis','$total')");
 		}
-
-		$id_pem = $this->mod->get_id_pembayaran();
-
-		if ($id_pem) {
-			$nilai1 = substr($id_pem['id_bayar'], 2);
-			$nilai_baru1 = (int) $nilai1;
-			$nilai_baru1++;
-			$nilai_baru21 = "RB".str_pad($nilai_baru1, 4, "0", STR_PAD_LEFT);
-		}else{
-			$nilai_baru21 = "RB0001";
+		$this->db->where('id_bayar', $this->input->post('id_bayar'));
+		$df = $this->db->get('pembayaran')->result();
+		foreach ($df as $kk) {
+			$hrgdok = $kk->biaya_dokter;
 		}
-
-		// $tot_sub = ;
-
-		$this->db->where('id_dokter', $this->input->post('id_dokter'));
-		$rd = $this->db->get('dokter')->result();
-		foreach ($rd as $rdk) {
-			$hrgdok = $rdk->tarif;
-		}
-
-		$data = array('id_bayar' => $nilai_baru21,
-					  'id_pasien' => $this->input->post('id_pasien'),
-					  'biaya_daftar' => '50000',
-					  'biaya_dokter' => $hrgdok,
-					  'biaya_obat' => $sub,
-					  'total_biaya' => '50000'
+		$a = 50000;
+		$tot_sub = $a + $hrgdok + $sub;
+		
+		$where = array('id_bayar' => $this->input->post('id_bayar') );
+		$data = array('biaya_obat' => $sub,
+					  'total_biaya' => $tot_sub
 					 );
 
-		$this->mod->tambah('pembayaran', $data);
+		$this->mod->update('pembayaran',$data,$where);
 
 		redirect('apoteker/hapus_resep/all');
 		
@@ -124,17 +109,22 @@ class Apoteker extends CI_Controller {
 	}
 	public function cetakresep()
 	{
-		$where = array('id_pasien' => $this->input->get('id') );
-		$data['resep'] = $this->mod->detail('resep',$where)->result();
-		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
-		$this->load->view('apotek/cetak-resep', $data);
+		$where = $this->input->get('rb');
+		$this->db->select('*');
+		$this->db->from('pembayaran');
+		$this->db->join('pasien', 'pembayaran.id_pasien = pasien.id_pasien', 'left');
+		$this->db->where('pembayaran.id_bayar', $where);
+		$data['pasien'] = $this->db->get()->result();
+		$this->load->view('apotek/cetak-resep',$data);
 	}
 
 	public function print_resep($id)
 	{
-		$where = array('id_pasien' => $id );
-		$data['resep'] = $this->mod->detail('resep',$where)->result();
-		$data['pasien'] = $this->mod->detail('pasien',$where)->result();
+		$this->db->select('*');
+		$this->db->from('pembayaran');
+		$this->db->join('pasien', 'pembayaran.id_pasien = pasien.id_pasien', 'left');
+		$this->db->where('pembayaran.id_bayar', $id);
+		$data['pasien'] = $this->db->get()->result();
 		$this->load->view('apotek/print_resep', $data);
 
 		$paper_size  = array(0,0,500,430); //paper size ('A4')

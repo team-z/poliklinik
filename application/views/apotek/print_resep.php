@@ -13,16 +13,23 @@
 	Jl.Lumajang Kota, No. 59, Lumajang<BR><br>
 
 	<table>
-		<?php foreach ($pasien as $val) {?>
+		<?php foreach ($pasien as $p) {
+			$bayar = $p->id_bayar;
+		?>
+		<tr>
+			<td>ID pembayaran</td>
+			<td>:</td>
+			<td><?php echo $p->id_bayar; ?></td>
+		</tr>
 		<tr>
 			<td>ID Pasien</td>
 			<td>:</td>
-			<td><?php echo $val->id_pasien; ?></td>
+			<td><?php echo $p->id_pasien; ?></td>
 		</tr>
 		<tr>
 			<td>Nama Pasien</td>
 			<td>:</td>
-			<td><?php echo $val->nama_pasien; ?></td>
+			<td><?php echo $p->nama_pasien; ?></td>
 		</tr>
 		<?php } ?>
 	</table><br><br>
@@ -36,6 +43,20 @@
 			</tr>
 			<?php  
 			$subtot = 0;
+			$resep = $this->db->query("SELECT
+                                                    pembayaran.id_bayar,
+                                                    obat.nama_obat,
+                                                    resep.jumlah_obat,
+                                                    resep.dosis,
+                                                    resep.total_harga,
+                                                    pembayaran.id_pasien,
+                                                    resep.id_resep,
+                                                    obat.id_obat
+                                                    FROM
+                                                    pembayaran
+                                                    INNER JOIN resep ON pembayaran.id_bayar = resep.id_bayar
+                                                    INNER JOIN obat ON resep.id_obat = obat.id_obat
+                                                    WHERE pembayaran.id_bayar = '$bayar' ")->result();
 			foreach ($resep as $lue) {
 			?>
 			<tr>
