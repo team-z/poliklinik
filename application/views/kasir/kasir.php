@@ -106,7 +106,6 @@
 	                                        <label class="control-label"><?php echo $query['id_bayar']; ?></label>
 	                                        <input type="hidden" name="id_bayar" value="<?php echo $query['id_bayar']; ?>">
 	                                    </div>
-	                                    </div>
 	                                    <div class="form-group">
 	                                    	<label class="control-label">ID PASIEN :</label><br>
 	                                        <label class="control-label"><?php echo $query['id_pasien']; ?></label>
@@ -116,6 +115,7 @@
 	                                            <label class="control-label">NAMA PASIEN :</label><br>
 	                                            <label class="control-label"><?php echo $query['nama_pasien']; ?></label>
 	                                    </div>
+	                                    
 	                                </div>
 	                                <div class="col-sm-6">
 	                                     <div class="form-group form-float">
