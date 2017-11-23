@@ -3,6 +3,7 @@
     <link href="<?php echo base_url('iconfont/material-icons.css') ?>" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url();?>plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('images/hos.png'); ?>">
     <!-- Waves Effect Css -->
     <link href="<?php echo base_url();?>plugins/node-waves/waves.css" rel="stylesheet" />
     <!-- Animation Css -->
