@@ -2,15 +2,10 @@
 <html>
 <head>
 	<?php include 'top-res.php'; ?>
-	<!-- <style type="text/css">
-	.user-info {
-		padding: 13px 15px 12px 15px;
-		white-space: nowrap;
-		position: relative;
-		border-bottom: 1px solid #e9e9e9;
-		background: url("../images/user-img-background.jpg") no-repeat no-repeat;
-		height: 135px; }
-	</style> -->
+	<style type="text/css">
+	.resepsionis {
+		background: url("../images/img-background.jpg") no-repeat no-repeat; }
+	</style>
 	<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="theme-teal">
